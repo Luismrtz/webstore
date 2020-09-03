@@ -1,0 +1,276 @@
+//? Main container
+.container {
+   padding-bottom: 2rem;
+   border-radius: 5px;
+   overflow: hidden;
+   box-sizing: border-box;
+   // border: 1px solid #ddd;
+}
+
+//? Alt. container
+.containerFlip {
+    padding-bottom: 2rem;
+    display: grid;
+    grid-template-columns: .5fr 1fr;
+    grid-gap: 10px;
+    align-items: flex-start;
+    
+}
+
+
+
+
+
+
+//? Main image container
+.imgOverlay {
+  height: 300px;
+    display: grid;
+    //display: block;
+   // overflow: hidden;
+    position: relative;
+}
+
+.image {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-position: center;
+}
+
+//? container for image overlay
+.overlayContainer {
+    opacity: 0;
+
+    //background-color: black;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    transition: all 250ms ease-out;
+    
+    &:hover {
+        opacity: 1;
+    }
+
+    .liked {
+       
+        z-index: 10;
+        top: 20px;
+        right: 20px;
+       position: absolute;
+       // display: block;
+        //background: none;
+    
+       
+    }
+
+}
+//? global for reusability
+.liked {
+    transition: all 250ms ease-out;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--mainDark);
+    font-size: 3rem;
+         &:hover {
+           
+            color: var(--mainWhite);
+         }
+
+}
+
+//? visible during list View
+.listIcons {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 2rem;
+    //flex-wrap: wrap;
+    display: flex;
+        .button2 {
+            color: var(--mainWhite);
+            background-color:var(--mainDark);
+            margin-right: 2rem;
+            &:hover {
+                color: var(--mainDark);
+                background-color: var(--mainWhite);
+            }
+        }
+}
+
+//? add Link tag to image
+.overlay {
+  
+    z-index: 5;
+    background-color: #ffc60032;
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    position: relative;
+
+  
+}
+
+//? button wrapper
+.bwrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    
+        z-index: 10;
+    min-width: 1.5rem;
+
+     display: flex;
+    flex-direction: column;
+   // align-items: center;
+    justify-content: center;
+    //align-content: center;
+    //justify-items: center;
+    font-size: 1.3rem;
+    //padding: 2px;
+   //background-color: brown;
+}
+
+//? global for transition reusability
+.button1:hover, .button2:hover {
+    transition: all 250ms ease-out;
+    background-color:var(--mainDark);
+    color: var(--mainWhite);
+   }
+
+
+
+
+.button1 {
+  
+    z-index: 3;
+    // position: relative;
+     //margin: 20px 0;
+    // left: 0;
+  //  align-self: center;
+    
+    // grid-column: 2 / 3;
+    // grid-row: 2 / 3;
+    //align-items: center;
+    margin-bottom: 5px;
+    border: none;
+    cursor:pointer;
+    text-decoration: none;
+    background: none;
+  //  border: 2px solid red;
+    color:var(--mainDark);
+    text-transform: uppercase;
+    background:var(--mainWhite);
+    padding: 10px;
+}
+
+
+.button2 {
+//     justify-content: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+//    align-items: center;
+//    text-align: center;
+    text-decoration: none;
+    z-index: 3;
+   // margin: 5px;
+    //align-self: center;
+    // grid-column: 2 / 3;
+    // grid-row: 3 / 4;
+    // grid-template-rows: 1/2;
+    cursor:pointer;
+    background: none;
+    border: none;
+    //border: 2px solid white;
+    color: var(--mainDark);
+    text-transform: uppercase;
+    background: var(--mainWhite);
+    padding: 10px;
+
+  
+}
+
+
+//? item description/ icons wrapper
+.contents {
+   
+    z-index: 4;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+//? default description
+.contDesc {
+    .title {
+        font-size: 2rem;
+    }
+
+    .price {
+        font-size: 2rem;
+       padding-top:5px;
+    }
+}
+
+//? list view description
+.contNope {
+  
+    justify-content: space-evenly;
+    padding-bottom: 4rem;
+    margin-left: 2rem;
+
+    .title {
+        font-size: 2.5rem;
+        padding-bottom: 1.6rem;
+    }
+    .price {
+        font-size: 2rem;
+        padding-bottom: 3rem;
+    }
+    .descript {
+        font-size: 1.5rem;
+      
+    }
+}
+
+
+//? manually display block
+.visible {
+    display: block;
+}
+
+
+//? manually display none
+.nope {
+    display: none;
+}
+
+
+//? media queries: come back to fix these later
+@media (max-width: 1000px) {
+    .containerFlip {
+
+        grid-template-columns: .75fr 1fr;
+  
+    }
+}
+
+@media (max-width: 600px) {
+    .containerFlip {
+        grid-template-columns: 1fr;
+      //  border-radius: 5px;
+      //  overflow: hidden;
+        
+        // text-align: center;
+       //  box-sizing: border-box;
+        // border: 1px solid #ddd;
+    }
+}
+

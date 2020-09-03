@@ -1,0 +1,103 @@
+.container {
+    // height: 10vh;
+    // width: 100%;
+    background-color: orange;
+    font-size: 1.8rem;
+    // display: flex;
+    // align-items: center;    //align with others
+    // justify-content: center; //move to center
+
+
+    .title {
+        font-size: 3.5rem;
+        margin: 2rem auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      
+    }
+.imgC {
+    text-align: start;
+    padding: 0 0;
+   // display:grid;
+    height: 5rem;
+    width: 7rem;
+
+    .img {
+        // grid-column: 1 / -1;
+        // grid-row: 1 / -1;
+      //  max-width: 7rem;
+        //max-height: 7rem;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        background-position: center;
+    }
+}
+    .flex {
+        max-width: 120rem;
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+        margin: 15rem auto 0 auto;
+        .table {
+            display: grid;
+            
+       
+            // border-collapse: collapse;
+            // border-spacing: 0;
+            // tr {
+            //     vertical-align: middle;
+            //     border:none;
+            // }
+          text-align: center;
+    
+    
+            width: 100%;
+      
+
+            .spacing {
+                display:inherit;
+                align-items: center;
+              //  justify-content: center;
+                grid-template-columns: 3rem 10rem 1fr repeat(3,12rem);
+              //  grid-template-rows: repeat(6,1fr);
+            }
+            .spacingItems {
+                padding: .8rem 0;
+            }
+            
+            // .itemThumbnail {
+            //    text-align: start;
+            //    width: 9rem;
+            // }
+
+            .categories {
+              //  width: 100%;
+              //  border: none;
+                background-color: #f7f7f7;
+                padding: 1.2rem 0;
+
+            }
+            
+            // .spacing {
+            //     padding: 1.2rem 0;
+            //     //width: 10rem;
+                .alignStart {
+                    text-align: start;
+                }
+            // }
+
+  
+        }
+
+
+
+
+    }
+
+
+
+}

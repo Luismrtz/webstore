@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+
+body {
+    // font-family: 'Oswald', sans-serif;
+    // font-family: 'Raleway', sans-serif;
+     font-family: 'Open Sans', sans-serif;
+    background-color: var(--mainWhite);
+
+}
+
+:root {
+    --grey: rgba(97, 97, 97, 0.404);
+    --lightGrey: grey;
+    --mainBlue: #2a2a72;
+    --lightBlue: #009ffd;
+    --mainWhite: #ececec;
+    --mainDark: #232528;
+    --mainYellow: #ffc60032;
+    --orange: orange;
+    --red: red;
+}
