@@ -61,7 +61,7 @@ const Cart = (props) => {
                                         </button></div>
                                 <div className={cx(styles.imgC, styles.itemThumbnail)}><img className={styles.img} src={'/' + (item ? (item.image) : 'images/antique.jpg')} alt="product"></img></div>
                                 <div className={cx(styles.alignStart, styles.itemName)}>
-                                   <Link to={"/details/" + item.name }>
+                                   <Link to={"/details/" + item.id }>
                                     {item.name}
 
                                    </Link>
@@ -69,7 +69,7 @@ const Cart = (props) => {
                                 <div className={styles.itemPrice}>{item.price}</div>
                                 <div className={styles.itemQuantity}>
                                     Qty:
-                                        <select value={item.qty} onChange={(e) => dispatch(addToCart(item.name, Number(e.target.value)))}>
+                                        <select value={item.qty} onChange={(e) => dispatch(addToCart(item.id, Number(e.target.value)))}>
                                             {[...Array(item.stock).keys()].map(x => 
                                                 <option key={x + 1} value={x + 1}>{x + 1}</option>
                                                 )}

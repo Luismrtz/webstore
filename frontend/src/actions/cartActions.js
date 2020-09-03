@@ -18,7 +18,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { // functio
         Cookie.set("cartItems", JSON.stringify(cartItems));
 
     } catch (error) {
-
+       console.log("helloo")
     }
 }
 const removeFromCart = (productId) => (dispatch, getState) => {

@@ -1,5 +1,5 @@
 import express from 'express';
-import Product from '../models/productModel';
+import Banner from '../models/bannerModel';
 
 const router = express.Router();
 
@@ -12,11 +12,11 @@ router.get("/:id", async (req, res) => {
 
         //const productId = req.params.id;
         // const product = await Product.find(x => x.id === productId);
-        const product = await Product.findOne({_id: req.params.id});
-        res.json(product);
+        const banner = await Banner.findOne({_id: req.params.id});
+        res.json(banner);
     }
    catch (error) {
-            res.status(404).send({msg: "Product Not Found."})
+            res.status(404).send({msg: "banner Not Found."})
         }
     // res.send({message: "we did it!" });
     });
@@ -33,8 +33,8 @@ router.get("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
     // User.find() for promise version?
     try {
-        const newProduct = await Product.find({});
-        res.json(newProduct);
+        const newBanner = await Banner.find({});
+        res.json(newBanner);
 
     } catch (error) {
         res.json({msg: error.message})
@@ -45,25 +45,19 @@ router.get("/", async (req, res) => {
 router.post('/add', async(req, res) =>{
     const title = req.body.title;
     const img = req.body.img;
-    const price = req.body.price;
+    const img2 = req.body.img2;
     const info = req.body.info;
-    const inCart = req.body.inCart;
-    const count = req.body.count;
-    const stock = req.body.stock;
-    const total = req.body.total;
+    const link = req.body.link;
     try {
-        const product = new Product({
+        const banner = new Banner({
             title,
             img,
-            price,
+            img2,
             info,
-            inCart,
-            count,
-            stock,
-            total
+            link
         });
-        const saveProduct = await product.save();
-        res.json(saveProduct);
+        const saveBanner = await banner.save();
+        res.json(saveBanner);
     } catch (error) {
         res.json({message: error})
     }
@@ -73,11 +67,11 @@ router.post('/add', async(req, res) =>{
 //update
 router.patch('/update/:id', async(req,res) => {
     try {
-        const product = await Product.updateOne(
+        const banner = await Banner.updateOne(
             {_id: req.params.id},
            {$set: req.body}
         )
-        res.json(product);
+        res.json(banner);
     } catch (err) {
         res.json({ message: err})
     }

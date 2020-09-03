@@ -21,7 +21,7 @@ const useViewport = () => {
 
 
 
-const Imgbanner = ({ product: {id, img, img2, info,link, title} }) => {
+const Imgbanner = ({ product: {_id, img, img2, info,link, title} }) => {
     const { width } = useViewport();
     const breakpoint = 768;
     
@@ -33,7 +33,7 @@ const Imgbanner = ({ product: {id, img, img2, info,link, title} }) => {
     // }
     return (
             <div className={styles.bContainer}>
-                <img src={width < breakpoint ? img2 : img} alt="slider-img" id={id} className={styles.imgStyles}></img>
+                <img src={width < breakpoint ? img2 : img} alt="slider-img" id={_id} className={styles.imgStyles}></img>
                 <Link to={`${link}`} className={styles.block}>
                     <div className={styles.innerBlock}>
                         <div  className={styles.bannerText}>{info}</div>

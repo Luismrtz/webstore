@@ -4,7 +4,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 //import config from './config';
 import mongoose from 'mongoose';
-import userRoute from './routes/userRoute'
+import userRoute from './routes/userRoute';
+import bannerRoute from './routes/bannerRoute'
 import productRoute from './routes/productRoute'
 import bodyParser from 'body-parser';
 
@@ -24,7 +25,7 @@ app.use(cors());
 
 const uri = process.env.MONGO_URI;
     //( uri || 'mongodb://localhost/api/storeProducts', {
-mongoose.connect( uri || 'mongodb://localhost/api/storeProducts', {
+mongoose.connect( uri || 'mongodb://localhost/storeProducts', {
     useUnifiedTopology: true,
     useNewUrlParser:true,
     useFindAndModify: false,
@@ -47,6 +48,7 @@ mongoose.connect( uri || 'mongodb://localhost/api/storeProducts', {
 
 app.use('/api/users', userRoute);
 app.use('/storeProducts', productRoute);
+app.use('/banner', bannerRoute);
 
 //app.get("/api/storeProducts", (req, res) => {
     //! comment out starts here
