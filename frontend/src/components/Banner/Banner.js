@@ -17,7 +17,7 @@ import cx from 'classnames';
 
 
 
-const Banner = ({products}) => {
+const Banner = ({banners}) => {
     const [sliderArr, setSliderArr] = useState([]);
     //let {bSmall} = useContext(bannerSmall)
    // let {bannerLarge} = useContext(ProductContext)
@@ -34,8 +34,8 @@ const Banner = ({products}) => {
             // <Imgbanner src={i2}/>,
             // <Imgbanner src={i3}/>,
             // <Imgbanner src={i4}/>
-          (products && products.map(product => {
-                return <Imgbanner product={product}   />
+          (banners && banners.map(banner => {
+                return <Imgbanner banner={banner}   />
                 
             }))
     
@@ -43,7 +43,7 @@ const Banner = ({products}) => {
         return () => {
     
         }
-    }, [products])
+    }, [banners])
 
 
 

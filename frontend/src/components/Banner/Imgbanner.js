@@ -21,7 +21,7 @@ const useViewport = () => {
 
 
 
-const Imgbanner = ({ product: {_id, img, img2, info,link, title} }) => {
+const Imgbanner = ({ banner: {_id, img, img2, info,link, title} }) => {
     const { width } = useViewport();
     const breakpoint = 768;
     

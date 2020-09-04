@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect} from 'react';
-
+import {Link} from 'react-router-dom';
 import styles from './ProductList.module.scss';
 import Pagination from '../Pagination/Pagination';
 import ProductItem from '../ProductItem/ProductItem';
@@ -8,12 +8,12 @@ import {ReactComponent as List} from '../assets/list.svg';
 import Title from '../Title/Title';
 //import {products} from '../api/data';
 //import {ProductContext} from '../context/context';
-import Banner from '../Banner/Banner';
+//import Banner from '../Banner/Banner';
 //import Pickles from '../api/Pickles'
 
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../../actions/productActions';
+import { listProducts, bannerProduct} from '../../actions/productActions';
 const ProductList = () => {
 
 
@@ -23,11 +23,14 @@ const ProductList = () => {
 // let {products, isGlobalSpinnerOn} = useContext(ProductContext);
 
 const pList = useSelector(state => state.pList);
+//const bList = useSelector(state => state.bList);
 const { products, loading, error } = pList;
+//const { banners} = bList;
 const dispatch = useDispatch();
 
 useEffect(() => {
     dispatch(listProducts());
+  //  dispatch(bannerProduct());
     return () => {
        //
     }
@@ -93,7 +96,8 @@ const [postsPerPage] = useState(10);
 
           
           {/* <div className={styles.page}> */}
-          <Banner products={products}/>
+          {/* <Banner banners={banners}/> */}
+          <li><Link to="/">back to home</Link></li>
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
