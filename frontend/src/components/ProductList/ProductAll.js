@@ -15,7 +15,7 @@ import Title from '../Title/Title';
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts, bannerProduct} from '../../actions/productActions';
-const ProductList2 = () => {
+const ProductAll = () => {
 
 
 
@@ -28,13 +28,6 @@ const pList = useSelector(state => state.pList);
 const { products, loading, error } = pList;
 //const { banners} = bList;
 const dispatch = useDispatch();
-
-const newFilter = [...products]
-
-
-// if (product.type === 2)
-//const poop = newFilter.splice(e => e.type === 1)
-//const [filtery, setFilter] = useState(poop)
 
 useEffect(() => {
     dispatch(listProducts());
@@ -81,7 +74,7 @@ console.log(products);
 // const [posts, setPosts] = useState([]);
 // const [loading, setLoading] = useState(false);
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage] = useState(10);
+const [postsPerPage] = useState(4);
 
 //todo delete these later
 // console.log(products);
@@ -120,22 +113,22 @@ const [postsPerPage] = useState(10);
 
           <div className={styles.titleContainer}>
 
-                <h1 className={cx(styles.title, styles.center)}>ACCESSORIES</h1>
+                <h1 className={cx(styles.title, styles.center)}>SHOP</h1>
                 <h2 className={cx(styles.subTitle, styles.center)}>
                 <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
-                <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
+                <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp; 
                 {/* if (product.type === 2) { */}
-                    <Link to="/" className={styles.cStyle}>
-                        </Link>&nbsp;ACCESSORIES</h2>
-
+                   </h2>
+    
             </div>
+          
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{newCurP.filter(e => e.type === 2).length} out of {newCurP.filter(e => e.type === 2).length} items</div>
+                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {products.length} items</div>
 
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
@@ -148,16 +141,16 @@ const [postsPerPage] = useState(10);
 
                     <div className={(isToggled === true ? styles.grid : styles.gridFlip)}>
                         {newCurP && newCurP.map(product => {
-                            if (product.type === 2) {
+                           
                             return (
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
                                 ) 
-                            }
+                            
                         })}
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ currentPosts.length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ products.length} paginate={paginate}/>
                     </nav>
                     
                     <div className={styles.footerQuestionmark}></div>
@@ -170,4 +163,4 @@ const [postsPerPage] = useState(10);
     )
 }
 
-export default ProductList2;
+export default ProductAll;

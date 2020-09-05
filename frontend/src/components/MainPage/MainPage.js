@@ -9,11 +9,16 @@ import Title from '../Title/Title';
 //import {products} from '../api/data';
 //import {ProductContext} from '../context/context';
 import Banner from '../Banner/Banner';
+import MainSales from '../mainPageSales/MainSales';
 //import Pickles from '../api/Pickles'
 
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { bannerProduct} from '../../actions/bannerActions';
+import { listProducts} from '../../actions/productActions';
+
+
+
 const ProductList = () => {
 
 
@@ -22,14 +27,14 @@ const ProductList = () => {
 //*let value = useContext(ProductContext);  every products had value.products/currentPosts, originally. But can just destructure
 // let {products, isGlobalSpinnerOn} = useContext(ProductContext);
 
-//const pList = useSelector(state => state.pList);
+const pList = useSelector(state => state.pList);
 const bList = useSelector(state => state.bList);
-//const { products, loading, error } = pList;
-const { banners, loading, error} = bList;
+const { products, loading, error } = pList;
+const { banners} = bList;
 const dispatch = useDispatch();
 
 useEffect(() => {
-  //  dispatch(listProducts());
+    dispatch(listProducts());
     dispatch(bannerProduct());
     return () => {
        //
@@ -56,6 +61,7 @@ useEffect(() => {
 //     console.log(storeP)
     
 console.log(banners);
+console.log(products)
 //console.log(products)
     
 //console.log(products && products.length)
@@ -97,6 +103,16 @@ console.log(banners);
           
           {/* <div className={styles.page}> */}
           <Banner banners={banners}/>
+
+          <div className={styles.poop}>
+                        {products && products.map(product => {
+                            if (product.mainPage === true) {
+                            return (
+                                <MainSales  key={product._id} product={product} />
+                                ) 
+                            }
+                        })}
+          </div>
                 
               
         

@@ -85,8 +85,13 @@ const Details = (props) => {
         <h1 className={cx(styles.title, styles.center)}>{product.title}</h1>
          <h2 className={cx(styles.subTitle, styles.center)}>
          <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
-         <Link to="/" className={styles.cStyle}>DUCKS</Link>&nbsp;/&nbsp;{product.title}</h2>
-    </div>
+         <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
+   {/* if (product.type === 2) { */}
+             <Link to={product.type ===1 ? "/shop/products" : "/shop/accessories"} className={styles.cStyle}>
+                  {product.type === 1 ? 'DUCKS' : 'ACCESSORIES'}
+                 </Link>&nbsp;/&nbsp;{product.title}</h2>
+            
+   </div>
 
 
     

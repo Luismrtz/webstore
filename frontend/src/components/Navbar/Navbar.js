@@ -42,7 +42,8 @@ const Navbar = () => {
             </ul>
             {/* <Searchbar /> WIP */}
             <ul className={cx(styles.center, styles.links)}>
-            <li><Link to="/products">Products</Link></li>
+            <li><Link to="/shop/products">Products</Link></li>
+            <li><Link to="/shop/accessories">Accessories</Link></li>
                 <li><Link to="/details">Account</Link></li>
                 <li><Link to="/cart">Cart ( 1 )</Link></li>     
             </ul>

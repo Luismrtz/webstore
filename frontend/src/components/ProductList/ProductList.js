@@ -5,6 +5,7 @@ import Pagination from '../Pagination/Pagination';
 import ProductItem from '../ProductItem/ProductItem';
 import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
+import cx from 'classnames';
 import Title from '../Title/Title';
 //import {products} from '../api/data';
 //import {ProductContext} from '../context/context';
@@ -28,23 +29,70 @@ const { products, loading, error } = pList;
 //const { banners} = bList;
 const dispatch = useDispatch();
 
+//!scrap it : start
+ //const filtery = [...products];
+ const [f, setFilter] = useState(null);
+ //!scrap it : end
+
+ const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage, setPostsPerPage] = useState(10);
 useEffect(() => {
     dispatch(listProducts());
   //  dispatch(bannerProduct());
+ 
     return () => {
        //
     }
 }, [])
 
 
-
 //const isGlobalSpinnerOn = useContext(LoadContext);
 
-// console.log(poop)
+
 const [isToggled, setToggled] = useState(true);
 
 
-                
+
+//!scrap it: start
+const showSale = () => {
+    let A = products.filter(e => e.sale === true)
+    setFilter(A);
+    setCurrentPage(1);
+}
+
+const showDucks = () => {
+    setFilter(products);
+    let B = products.filter(e => e.type === 1)
+    setFilter(B)
+    setCurrentPage(1);
+}
+
+const showAcc = () => {
+    setFilter(products);
+    let C = products.filter(e => e.type === 2)
+    setFilter(C);
+    setCurrentPage(1);
+}
+
+const showAll = () => {
+    setFilter(products);
+    setCurrentPage(1);
+}
+
+const ten = () => {
+    setPostsPerPage(10);
+    setCurrentPage(1);
+}
+const five = () => {
+    setPostsPerPage(5);
+    setCurrentPage(1);
+}
+const fifteen = () => {
+    setPostsPerPage(15);
+    setCurrentPage(1);
+}
+
+    //!scrap it : end            
 // const [storeP, setP] = useState([]);
 //     useEffect(() => {
 //         fetch("/api/products")
@@ -55,7 +103,7 @@ const [isToggled, setToggled] = useState(true);
     
 //     console.log(storeP)
     
-console.log(products);
+
 //console.log(products)
     
 //console.log(products && products.length)
@@ -72,19 +120,27 @@ console.log(products);
 //todo pagination start | INCLUDE LEFT SIDE FILTERS AND ITEM COUNT TRACKER | FIX 2 buttons
 // const [posts, setPosts] = useState([]);
 // const [loading, setLoading] = useState(false);
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage] = useState(10);
+
 
 //todo delete these later
-// console.log(products);
-// console.log(detailProduct);
+ console.log(products);
+//console.log(filtery);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = products && products.slice(indexOfFirstPost, indexOfLastPost); 
-//todo  change page
+    const currentPosts = (f === null ? (products && products) : (f && f)).slice(indexOfFirstPost, indexOfLastPost); 
+
+    const newCurP = [...currentPosts].sort((a,b) => {
+        // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
+        // if(a.title.toLowerCase() > b.title.toLowerCase()) return 1;
+        // return 0;
+       return a.title.localeCompare(b.title)
+    })
+
+    //todo  change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     
+
 
     return loading ? <div>Loading...</div> :
     error || !products ? <div>{error}</div> :
@@ -92,20 +148,39 @@ const [postsPerPage] = useState(10);
 
       <React.Fragment>
 
-
-
+        
+        <button onClick={() => showAll()}>ALL</button>
+        <button onClick={() => showSale()}>SALES</button>
+        <button onClick={() => showDucks()}>ducks</button>
+        <button onClick={() => showAcc()}>last try</button>
           
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
           <li><Link to="/">back to home</Link></li>
+
+          <div className={styles.titleContainer}>
+
+            <h1 className={cx(styles.title, styles.center)}>DUCKES</h1>
+            <h2 className={cx(styles.subTitle, styles.center)}>
+            <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
+            <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
+            {/* if (product.type === 2) { */}
+                <Link to="/" className={styles.cStyle}>
+                    </Link>&nbsp;DUCKES</h2>
+
+    </div>
+
+          
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{products.length} out of {products.length} items</div>
-
+                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(f === null ? (products) : (f)).length} items</div>
+                <button onClick={() => ten()}>10</button>
+                <button onClick={() => five()}>5</button>
+                <button onClick={() => fifteen()}>15</button>
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
                         {/* MIT License*/}
@@ -116,15 +191,18 @@ const [postsPerPage] = useState(10);
              
 
                     <div className={(isToggled === true ? styles.grid : styles.gridFlip)}>
-                        {currentPosts && currentPosts.map(product => {
-                            return(
+                        {newCurP && newCurP.map(product => {
+                            // if (product.type === 1) {
+                            return (
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
-                                ) 
+                                 ) 
+                            // }
                         })}
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ products.length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (f === null ? (products) : (f)).length} paginate={paginate}/>
+                         {/* totalPosts={ (f === null ? (products && products) : (f && f)).length} */}
                     </nav>
                     
                     <div className={styles.footerQuestionmark}></div>

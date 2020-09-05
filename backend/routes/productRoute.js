@@ -51,6 +51,10 @@ router.post('/add', async(req, res) =>{
     const count = req.body.count;
     const stock = req.body.stock;
     const total = req.body.total;
+    const type = req.body.type;
+    const sale = req.body.sale;
+    const discount = req.body.discount;
+    const mainPage = req.body.mainPage;
     try {
         const product = new Product({
             title,
@@ -60,7 +64,11 @@ router.post('/add', async(req, res) =>{
             inCart,
             count,
             stock,
-            total
+            total,
+            type,
+            sale,
+            discount,
+            mainPage
         });
         const saveProduct = await product.save();
         res.json(saveProduct);
