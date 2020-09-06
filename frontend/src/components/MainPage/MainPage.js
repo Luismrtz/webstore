@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect} from 'react';
 
 import styles from './MainPage.module.scss';
+import {Link} from 'react-router-dom';
 //import Pagination from '../Pagination/Pagination';
 //import ProductItem from '../ProductItem/ProductItem';
 // import {ReactComponent as Grid} from '../assets/grid.svg';
@@ -104,6 +105,10 @@ console.log(products)
           {/* <div className={styles.page}> */}
           <Banner banners={banners}/>
 
+          <Link to="/shop/accessories"><button>Accessories</button></Link>
+          <Link to="/shop"><button>New and Trending</button></Link>
+          <Link to="/shop/products"><button>Decoratives</button></Link>
+         
           <div className={styles.poop}>
                         {products && products.map(product => {
                             if (product.mainPage === true) {

@@ -35,6 +35,10 @@ const newFilter = [...products]
 // if (product.type === 2)
 //const poop = newFilter.splice(e => e.type === 1)
 //const [filtery, setFilter] = useState(poop)
+const [filter, setFilter] = useState(null);
+const [isToggled, setToggled] = useState(true);
+const [currentPage, setCurrentPage] = useState(1);
+const [postsPerPage, setPostsPerPage] = useState(10);
 
 useEffect(() => {
     dispatch(listProducts());
@@ -45,12 +49,33 @@ useEffect(() => {
 }, [])
 
 
+let access = products.filter(e => {
+    return (
+     e.type === 1 
+     //|| e.sale === true
+     )
+ })
+
+
+const five = () => {
+    setPostsPerPage(5);
+    setCurrentPage(1);
+}
+
+const ten = () => {
+    setPostsPerPage(10);
+    setCurrentPage(1);
+}
+
+const fifteen = () => {
+    setPostsPerPage(15);
+    setCurrentPage(1);
+}
+
 
 //const isGlobalSpinnerOn = useContext(LoadContext);
 
 // console.log(poop)
-const [isToggled, setToggled] = useState(true);
-
 
                 
 // const [storeP, setP] = useState([]);
@@ -80,8 +105,7 @@ console.log(products);
 //todo pagination start | INCLUDE LEFT SIDE FILTERS AND ITEM COUNT TRACKER | FIX 2 buttons
 // const [posts, setPosts] = useState([]);
 // const [loading, setLoading] = useState(false);
-const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage] = useState(10);
+
 
 //todo delete these later
 // console.log(products);
@@ -89,7 +113,7 @@ const [postsPerPage] = useState(10);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = products && products.slice(indexOfFirstPost, indexOfLastPost); 
+    const currentPosts = (filter === null ? (access && access) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
 
     const newCurP = [...currentPosts].sort((a,b) => {
         // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -135,7 +159,13 @@ const [postsPerPage] = useState(10);
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{newCurP.filter(e => e.type === 2).length} out of {newCurP.filter(e => e.type === 2).length} items</div>
+                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (access) : (filter)).length} items</div>
+
+                <button onClick={() => five()}>5</button>
+                <button onClick={() => ten()}>10</button>
+                <button onClick={() => fifteen()}>15</button>
+
+
 
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
@@ -148,7 +178,7 @@ const [postsPerPage] = useState(10);
 
                     <div className={(isToggled === true ? styles.grid : styles.gridFlip)}>
                         {newCurP && newCurP.map(product => {
-                            if (product.type === 2) {
+                            if (product.type === 1) {
                             return (
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
                                 ) 
@@ -157,7 +187,7 @@ const [postsPerPage] = useState(10);
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ currentPosts.length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
                     </nav>
                     
                     <div className={styles.footerQuestionmark}></div>

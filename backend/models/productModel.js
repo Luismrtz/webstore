@@ -51,6 +51,10 @@ const productSchema = new mongoose.Schema({
     mainPage: {
         type: Boolean,
         required: false
+    },
+    newItem: {
+        type: Boolean,
+        required: false
     }
 
 });

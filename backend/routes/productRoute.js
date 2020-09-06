@@ -55,6 +55,7 @@ router.post('/add', async(req, res) =>{
     const sale = req.body.sale;
     const discount = req.body.discount;
     const mainPage = req.body.mainPage;
+    const newItem = req.body.new;
     try {
         const product = new Product({
             title,
@@ -68,7 +69,8 @@ router.post('/add', async(req, res) =>{
             type,
             sale,
             discount,
-            mainPage
+            mainPage,
+            newItem
         });
         const saveProduct = await product.save();
         res.json(saveProduct);
@@ -82,6 +84,19 @@ router.post('/add', async(req, res) =>{
 router.patch('/update/:id', async(req,res) => {
     try {
         const product = await Product.updateOne(
+            {_id: req.params.id},
+           {$set: req.body}
+        )
+        res.json(product);
+    } catch (err) {
+        res.json({ message: err})
+    }
+
+});
+// delete single line in collection
+router.patch('/delete/:id', async(req,res) => {
+    try {
+        const product = await Product.deleteOne(
             {_id: req.params.id},
            {$set: req.body}
         )

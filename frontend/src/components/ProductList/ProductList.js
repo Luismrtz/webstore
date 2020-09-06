@@ -31,7 +31,7 @@ const dispatch = useDispatch();
 
 //!scrap it : start
  //const filtery = [...products];
- const [f, setFilter] = useState(null);
+ const [filter, setFilter] = useState(null);
  //!scrap it : end
 
  const [currentPage, setCurrentPage] = useState(1);
@@ -55,27 +55,46 @@ const [isToggled, setToggled] = useState(true);
 
 //!scrap it: start
 const showSale = () => {
-    let A = products.filter(e => e.sale === true)
-    setFilter(A);
+    let salesS = products.filter(e => e.sale === true)
+    setFilter(salesS);
     setCurrentPage(1);
 }
 
 const showDucks = () => {
     setFilter(products);
-    let B = products.filter(e => e.type === 1)
-    setFilter(B)
+    let type1 = products.filter(e => e.type === 1)
+    setFilter(type1)
     setCurrentPage(1);
 }
 
 const showAcc = () => {
     setFilter(products);
-    let C = products.filter(e => e.type === 2)
-    setFilter(C);
+    let type2 = products.filter(e => e.type === 2)
+    setFilter(type2);
     setCurrentPage(1);
 }
+const trending = () => {
+    setFilter(products);
+    let trendD = products.filter(e => {
+       return (
+        e.newItem === true ||
+        e.sale === true
+        )
+    })
+    setFilter(trendD);
+    setCurrentPage(1);
+    console.log(trendD)
+}
+
+
 
 const showAll = () => {
     setFilter(products);
+    setCurrentPage(1);
+}
+
+const five = () => {
+    setPostsPerPage(5);
     setCurrentPage(1);
 }
 
@@ -83,10 +102,7 @@ const ten = () => {
     setPostsPerPage(10);
     setCurrentPage(1);
 }
-const five = () => {
-    setPostsPerPage(5);
-    setCurrentPage(1);
-}
+
 const fifteen = () => {
     setPostsPerPage(15);
     setCurrentPage(1);
@@ -128,7 +144,7 @@ const fifteen = () => {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = (f === null ? (products && products) : (f && f)).slice(indexOfFirstPost, indexOfLastPost); 
+    const currentPosts = (filter === null ? (products && products) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
 
     const newCurP = [...currentPosts].sort((a,b) => {
         // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -153,6 +169,7 @@ const fifteen = () => {
         <button onClick={() => showSale()}>SALES</button>
         <button onClick={() => showDucks()}>ducks</button>
         <button onClick={() => showAcc()}>last try</button>
+        <button onClick={() => trending()}>Trending</button>
           
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
@@ -177,9 +194,10 @@ const fifteen = () => {
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(f === null ? (products) : (f)).length} items</div>
-                <button onClick={() => ten()}>10</button>
+                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (products) : (filter)).length} items</div>
+               
                 <button onClick={() => five()}>5</button>
+                <button onClick={() => ten()}>10</button>
                 <button onClick={() => fifteen()}>15</button>
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
@@ -201,7 +219,7 @@ const fifteen = () => {
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ (f === null ? (products) : (f)).length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (products) : (filter)).length} paginate={paginate}/>
                          {/* totalPosts={ (f === null ? (products && products) : (f && f)).length} */}
                     </nav>
                     
