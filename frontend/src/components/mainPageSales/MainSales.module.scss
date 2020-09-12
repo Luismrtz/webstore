@@ -1,7 +1,7 @@
 //? Main container
 .container {
     padding-bottom: 2rem;
-    border-radius: 5px;
+ 
     overflow: hidden;
     box-sizing: border-box;
     // border: 1px solid #ddd;
@@ -24,6 +24,7 @@
  
  //? Main image container
  .imgOverlay {
+
    height: 300px;
      display: grid;
      //display: block;
