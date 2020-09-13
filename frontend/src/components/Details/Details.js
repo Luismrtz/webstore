@@ -10,9 +10,9 @@ import { detailsProduct } from '../../actions/productActions';
 //* if match, 
 const Details = (props) => {
     //todo STORE IN OWN CONTEXT? TO PASS THROUGH MORE THAN ONE FILE?
-    //todo... but It is LINKED to a context already. Via storeProducts database. 
+    //todo... but It is LINKED to a context already. Via storeproduct database. 
     //todo... so SHOULD I? or maybe include it inside the context with rtrMatch 
-    //let {storeProducts} = useContext(ProductContext);
+    //let {storeproduct} = useContext(ProductContext);
 
 
     const [qty, setQty] = useState(1);
@@ -27,6 +27,9 @@ const Details = (props) => {
         }
     }, [])
     console.log(product);
+    //console.log(JSON.stringify(props.match.params.id))
+    console.log(props.match.params.id)
+    console.log(product)
 
 
     const handleAddToCart = () => {
@@ -36,7 +39,7 @@ const Details = (props) => {
 
 
     
-    //const rtrMatch = storeProducts.find(item => item.title === props.match.params.id);
+    //const rtrMatch = storeproduct.find(item => item.title === props.match.params.id);
 //     const [coords, setCoords] = useState({ x: 0, y: 0})
      
 //    const handler = useCallback(({ clientX, clientY}) => {
@@ -82,8 +85,13 @@ const Details = (props) => {
         <h1 className={cx(styles.title, styles.center)}>{product.title}</h1>
          <h2 className={cx(styles.subTitle, styles.center)}>
          <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
-         <Link to="/" className={styles.cStyle}>DUCKS</Link>&nbsp;/&nbsp;{product.title}</h2>
-    </div>
+         <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
+   {/* if (product.type === 2) { */}
+             <Link to={product.type ===1 ? "/shop/products" : "/shop/accessories"} className={styles.cStyle}>
+                  {product.type === 1 ? 'DUCKS' : 'ACCESSORIES'}
+                 </Link>&nbsp;/&nbsp;{product.title}</h2>
+            
+   </div>
 
 
     

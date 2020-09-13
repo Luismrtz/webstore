@@ -4,9 +4,9 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM } from '../constants/cartConstants';
 
 const addToCart = (productId, qty) => async (dispatch, getState) => { // function returns another function of dispatch
     try {
-        const { data } = await axios.get("/api/storeProducts/" + productId);
+        const { data } = await axios.get("/storeProducts/" + productId);
         dispatch({type: CART_ADD_ITEM, payload: {
-            id: data.id,
+            id: data._id,
             name: data.title,
             image: data.img,
             price: data.price,
@@ -18,7 +18,7 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { // functio
         Cookie.set("cartItems", JSON.stringify(cartItems));
 
     } catch (error) {
-
+       console.log("helloo")
     }
 }
 const removeFromCart = (productId) => (dispatch, getState) => {

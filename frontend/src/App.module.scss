@@ -15,12 +15,16 @@ body {
     // font-family: 'Raleway', sans-serif;
      font-family: 'Open Sans', sans-serif;
     background-color: var(--mainWhite);
-
+    position:relative;
+    top:5rem;
 }
 
+
 :root {
-    --grey: rgba(97, 97, 97, 0.404);
-    --lightGrey: grey;
+    --lightBlack: #242526;
+    --black: #1c1b1b;
+    --grey: #484a4d;
+    --lightGrey:  #afafaf;
     --mainBlue: #2a2a72;
     --lightBlue: #009ffd;
     --mainWhite: #ececec;

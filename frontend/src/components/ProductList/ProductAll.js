@@ -15,7 +15,7 @@ import Title from '../Title/Title';
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts, bannerProduct} from '../../actions/productActions';
-const ProductList2 = () => {
+const ProductAll = () => {
 
 
 
@@ -29,33 +29,53 @@ const { products, loading, error } = pList;
 //const { banners} = bList;
 const dispatch = useDispatch();
 
-const newFilter = [...products]
 
 
-// if (product.type === 2)
-//const poop = newFilter.splice(e => e.type === 1)
-//const [filtery, setFilter] = useState(poop)
 const [filter, setFilter] = useState(null);
 const [isToggled, setToggled] = useState(true);
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostsPerPage] = useState(10);
-
+const [postsPerPage, setPostsPerPage] = useState(4);
 useEffect(() => {
     dispatch(listProducts());
+   
   //  dispatch(bannerProduct());
     return () => {
        //
     }
 }, [])
 
-
-let access = products.filter(e => {
+let defNew = products.filter(e => {
     return (
-     e.type === 1 
+     e.newItem === true 
      //|| e.sale === true
      )
  })
+ 
 
+const showNew = () => {
+    setFilter(products);
+    setFilter(defNew);
+    setCurrentPage(1);
+    //console.log(defNew)
+}
+
+const showSpecials = () => {
+    setFilter(products);
+    let E = products.filter(e => {
+        return (
+         e.sale === true 
+         //|| e.sale === true
+         )
+     })
+    setFilter(E);
+    setCurrentPage(1);
+   // console.log(D)
+}
+
+const showAll = () => {
+    setFilter(products);
+    setCurrentPage(1);
+}
 
 const five = () => {
     setPostsPerPage(5);
@@ -72,10 +92,10 @@ const fifteen = () => {
     setCurrentPage(1);
 }
 
-
 //const isGlobalSpinnerOn = useContext(LoadContext);
 
 // console.log(poop)
+
 
                 
 // const [storeP, setP] = useState([]);
@@ -113,7 +133,7 @@ console.log(products);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = (filter === null ? (access && access) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
+    const currentPosts = (filter === null ? (defNew && defNew) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
 
     const newCurP = [...currentPosts].sort((a,b) => {
         // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -137,6 +157,9 @@ console.log(products);
 
 
 
+<button onClick={() => showNew()}>New Arrivals</button>
+<button onClick={() => showSpecials()}>Specials</button>
+<button onClick={() => showAll()}>ALL</button>
           
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
@@ -144,27 +167,27 @@ console.log(products);
 
           <div className={styles.titleContainer}>
 
-                <h1 className={cx(styles.title, styles.center)}>ACCESSORIES</h1>
+                <h1 className={cx(styles.title, styles.center)}>SHOP</h1>
                 <h2 className={cx(styles.subTitle, styles.center)}>
                 <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
-                <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
+                <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp; 
                 {/* if (product.type === 2) { */}
-                    <Link to="/" className={styles.cStyle}>
-                        </Link>&nbsp;ACCESSORIES</h2>
-
+                   </h2>
+    
             </div>
+          
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (access) : (filter)).length} items</div>
+                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (defNew) : (filter)).length} items</div>
+
 
                 <button onClick={() => five()}>5</button>
                 <button onClick={() => ten()}>10</button>
                 <button onClick={() => fifteen()}>15</button>
-
 
 
                 <div className={styles.icons}>
@@ -178,16 +201,16 @@ console.log(products);
 
                     <div className={(isToggled === true ? styles.grid : styles.gridFlip)}>
                         {newCurP && newCurP.map(product => {
-                            if (product.type === 1) {
+                           
                             return (
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
                                 ) 
-                            }
+                            
                         })}
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (defNew) : (filter)).length} paginate={paginate}/>
                     </nav>
                     
                     <div className={styles.footerQuestionmark}></div>
@@ -200,4 +223,4 @@ console.log(products);
     )
 }
 
-export default ProductList2;
+export default ProductAll;

@@ -6,11 +6,14 @@
 
 
 .slider {
+    border-radius: 5px;
     margin:2rem auto;
     //border: .1px solid var(--lightGrey);
     position: relative;
     // width: 70%;
-    max-width: 120rem;
+
+    //top: 5rem;
+    max-width: 115rem;
     height: 35rem;
     //box-sizing: border-box;
     // margin: 0;
@@ -172,6 +175,8 @@
 
 //? Imgbanner:
 .bContainer{
+    overflow:hidden;
+
     display: grid;
     // height: 100%;
     // grid-template-columns: repeat(5, 1fr);
@@ -195,6 +200,7 @@
 
 
 .block {
+    
 align-items: center;
 text-decoration: none;
 // width: 100%;

@@ -35,6 +35,28 @@ const productSchema = new mongoose.Schema({
     total: {
         type: Number,
         required: true
+
+    },
+    type: {
+        type: Number,
+        required: true
+    },
+    sale: {
+        type: Boolean,
+        required: true
+    },
+    discount: {
+        type: Number,
+        required: false
+    },
+    mainPage: {
+        type: Boolean,
+        required: false
+    },
+    newItem: {
+        type: Boolean,
+        required: false
+
     }
 
 });

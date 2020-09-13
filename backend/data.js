@@ -140,7 +140,8 @@ export default  {
         },
         {
             id: 2,
-            title: "beachLarge2",
+
+            title: "beachLarge",
             img: 'images/banners/beachLarge2.jpg',
             img2: 'images/banners/beachSmall.jpg',
             info: "ON SALE NOW",

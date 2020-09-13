@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styles from './ProductItem.module.scss';
+import styles from './MainSales.module.scss';
 import {Link} from 'react-router-dom';
 //import {ProductContext} from '../context/context';
 //import {storeProducts} from '../api/data';
@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}, isToggled}) => {
+const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, discount}, isToggled}) => {
 
 
 
@@ -53,14 +53,16 @@ const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}
                     <h1 className={styles.title}>{title}</h1>
                     <h2 className={styles.price}>${price}.00</h2>
                     <h3 className={(isToggled === true ? styles.nope : styles.descript)}>{info}</h3>
+                  
                 </div>
-               
+            
                 <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
                     <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                     <div className={styles.liked}>&#10084;</div> 
                     <div className={cx((sale === true ? styles.show : styles.none))}>
                         SALE
                     </div> 
+                    <div> SALE</div>
                 </div> 
             </div>
             
@@ -68,9 +70,9 @@ const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}
      
     )
 }
-export default ProductItem;
+export default MainSales;
 
-ProductItem.propTypes = {
+MainSales.propTypes = {
     product: PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,
