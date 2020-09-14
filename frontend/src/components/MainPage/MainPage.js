@@ -105,10 +105,7 @@ console.log(products)
           {/* //todo  Banner  */}
           <Banner banners={banners}/>
 
-          <Link to="/shop/accessories"><button style={{color:'blue'}}>Accessories</button></Link>
-          <Link to="/shop"><button button style={{color:'blue'}}>New and Trending</button></Link>
-          <Link to="/shop/products"><button button style={{color:'blue'}}>Decoratives</button></Link>
-         
+
         {/* <div className={styles.mainDispContainer}> */}
         <div className={styles.displayContainer}>
             <div className={styles.imgOverlay}>

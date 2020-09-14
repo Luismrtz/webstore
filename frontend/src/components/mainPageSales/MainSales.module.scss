@@ -7,15 +7,7 @@
     // border: 1px solid #ddd;
  }
  
- //? Alt. container
- .containerFlip {
-     padding-bottom: 2rem;
-     display: grid;
-     grid-template-columns: .5fr 1fr;
-     grid-gap: 10px;
-     align-items: flex-start;
-     
- }
+
  
  
  
@@ -111,8 +103,6 @@
      grid-column: 1 / -1;
      grid-row: 1 / -1;
      position: relative;
- 
-   
  }
  
  //? button wrapper
@@ -213,33 +203,29 @@
      .title {
          font-size: 2rem;
      }
- 
+
      .price {
          font-size: 2rem;
-        padding-top:5px;
+         padding-top: .5rem;
+     }
+     .discountWrapper {
+         display: flex;
+         align-content: center;
+         
+         .sale{
+             font-size: 1rem;
+             padding-left: .5rem;
+             padding-top: .7rem;
+
+         }
+
+         .price {
+           font-size: 2rem;
+         }
      }
  }
+
  
- //? list view description
- .contNope {
-   
-     justify-content: space-evenly;
-     padding-bottom: 4rem;
-     margin-left: 2rem;
- 
-     .title {
-         font-size: 2.5rem;
-         padding-bottom: 1.6rem;
-     }
-     .price {
-         font-size: 2rem;
-         padding-bottom: 3rem;
-     }
-     .descript {
-         font-size: 1.5rem;
-       
-     }
- }
  
  
  //? manually display block
@@ -256,23 +242,11 @@
  
  //? media queries: come back to fix these later
  @media (max-width: 1000px) {
-     .containerFlip {
- 
-         grid-template-columns: .75fr 1fr;
-   
-     }
+
  }
  
  @media (max-width: 600px) {
-     .containerFlip {
-         grid-template-columns: 1fr;
-       //  border-radius: 5px;
-       //  overflow: hidden;
-         
-         // text-align: center;
-        //  box-sizing: border-box;
-         // border: 1px solid #ddd;
-     }
+
  }
  
  
