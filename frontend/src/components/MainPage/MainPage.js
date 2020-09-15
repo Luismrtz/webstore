@@ -105,33 +105,49 @@ console.log(products)
           {/* //todo  Banner  */}
           <Banner banners={banners}/>
 
-          <Link to="/shop/accessories"><button>Accessories</button></Link>
-          <Link to="/shop"><button>New and Trending</button></Link>
-          <Link to="/shop/products"><button>Decoratives</button></Link>
-         
+
         {/* <div className={styles.mainDispContainer}> */}
         <div className={styles.displayContainer}>
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    <div className={styles.overlayContainer}>
-                        <Link to={'/'}  className={styles.overlayWrapper}></Link> 
+                    {/* <div className={styles.overlayContainer}> */}
+                    <Link to={'/shop/accessories'}  className={styles.overlayWrapper}></Link> 
+                    <div className={styles.bwrapper}>
+                        <Link to={'/shop/accessories'} className={styles.mainButton}>Accessories</Link>
                     </div>
+                    {/* </div> */}
             </div>
 
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    <div className={styles.overlayContainer}>
-                        <Link to={'/'}  className={styles.overlayWrapper}></Link> 
+                    {/* <div className={styles.overlayContainer}> */}
+                    <Link to={'/shop'}  className={styles.overlayWrapper}></Link> 
+                    <div className={styles.bwrapper}>
+                        <Link to={'/shop'} className={styles.mainButton}>Accessories</Link>
                     </div>
+                    {/* </div> */}
             </div>
 
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    <div className={styles.overlayContainer}>
-                        <Link to={'/'}  className={styles.overlayWrapper}></Link> 
+                    {/* <div className={styles.overlayContainer}> */}
+                    <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
+                    <div className={styles.bwrapper}>
+                        <Link to={'/shop/products'} className={styles.mainButton}>Accessories</Link>
                     </div>
+                    {/* </div> */}
             </div>
-
+        {/* //!ORIGINAL VERSION start*/}
+            {/* <div className={styles.imgOverlay}>
+                    <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
+                    <div className={styles.overlayContainer}>
+                        <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
+                        <div className={styles.bwrapper}>
+                            <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>
+                        </div>
+                    </div>
+            </div> */}
+{/* //!!ORIGINAL VERSIION END */}
         </div>
         {/* </div> */}
 

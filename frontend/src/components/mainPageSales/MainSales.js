@@ -20,23 +20,35 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
     // })
     //const [{id, title, img, info, price, inCart}, useData] = useState(product);
     // setSwoop()
-   
+   const percentage =100 - (discount/price)*100;
 
     return  (
       
-        <div className={(isToggled === true ? styles.container : styles.containerFlip)}>
+        <div className={styles.container}>
            
 
             <div   className={styles.imgOverlay}>
               <img className={styles.image} src={'/' + img} alt="duckens"/>
+              {sale  &&  
+                        (
+                        <div className={styles.saleWrapper}>   
+                            <div className={cx(styles.circle, styles.circleNum)}> 
+                                <h2 className={styles.price}>{percentage}%</h2>
+                            </div>
+                            <div className={cx(styles.circle, styles.circleString)}> 
+                                <h2 className={styles.saleString}>SALE</h2>
+                            </div>
+                        </div>
+                        ) }             
               <div className={styles.overlayContainer}>
                     
                     <Link to={'/details/' + _id}  className={styles.overlay}></Link> 
                     <div className={styles.bwrapper}>
                             <Link to={'/details/' + _id} className={styles.button1}>Quick Shop</Link>
-                            <Link  to="/cart"className={(isToggled === true ? styles.button2 :  styles.nope)}>Add to Cart</Link>
+                            <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                             
                     </div>
+
                     <div className={styles.liked}>&#10084;</div> 
                             {/* <i class="fa fa-heart" aria-hidden="true"></i> */}
              </div>
@@ -49,21 +61,26 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
                     
             </div>
             <div className={styles.contents}>
-                <div className={cx((isToggled === true ? styles.contDesc : styles.contNope))}>
+                <div className={ styles.contDesc}>
                     <h1 className={styles.title}>{title}</h1>
-                    <h2 className={styles.price}>${price}.00</h2>
-                    <h3 className={(isToggled === true ? styles.nope : styles.descript)}>{info}</h3>
+                {sale === false ? (<h2 className={styles.price}>${price}.00</h2>) : 
+                        (<div className={styles.discountWrapper}> 
+                            <h2 className={styles.price}>${discount}.00</h2>
+                            <h2 className={styles.sale} style={{textDecoration: 'line-through'}}>${price}.00</h2>
+                        </div>) }
+                    <h3 className={ styles.nope}>{info}</h3>
                   
                 </div>
+                    
             
-                <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
+                {/* <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
                     <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                     <div className={styles.liked}>&#10084;</div> 
                     <div className={cx((sale === true ? styles.show : styles.none))}>
                         SALE
                     </div> 
                     <div> SALE</div>
-                </div> 
+                </div>  */}
             </div>
             
         </div> 

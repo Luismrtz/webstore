@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}, isToggled}) => {
+const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale, discount}, isToggled}) => {
 
 
 
@@ -21,7 +21,7 @@ const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}
     //const [{id, title, img, info, price, inCart}, useData] = useState(product);
     // setSwoop()
    
-
+    const percentage =100 - (discount/price)*100;
     return  (
       
         <div className={(isToggled === true ? styles.container : styles.containerFlip)}>
@@ -29,6 +29,18 @@ const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}
 
             <div   className={styles.imgOverlay}>
               <img className={styles.image} src={'/' + img} alt="duckens"/>
+              {sale  &&  
+                        (
+                        <div className={styles.saleWrapper}>   
+                            <div className={cx(styles.circle, styles.circleNum)}> 
+                                <h2 className={styles.price}>{percentage}%</h2>
+                            </div>
+                            <div className={cx(styles.circle, styles.circleString)}> 
+                                <h2 className={styles.saleString}>SALE</h2>
+                            </div>
+                        </div>
+                        ) } 
+              
               <div className={styles.overlayContainer}>
                     
                     <Link to={'/details/' + _id}  className={styles.overlay}></Link> 
@@ -51,7 +63,11 @@ const ProductItem = ({product: {_id, title, img, info, price,sale, type, inCart}
             <div className={styles.contents}>
                 <div className={cx((isToggled === true ? styles.contDesc : styles.contNope))}>
                     <h1 className={styles.title}>{title}</h1>
-                    <h2 className={styles.price}>${price}.00</h2>
+                    {sale === false ? (<h2 className={styles.price}>${price}.00</h2>) : 
+                        (<div className={styles.discountWrapper}> 
+                            <h2 className={styles.price}>${discount}.00</h2>
+                            <h2 className={styles.sale} style={{textDecoration: 'line-through'}}>${price}.00</h2>
+                        </div>) }
                     <h3 className={(isToggled === true ? styles.nope : styles.descript)}>{info}</h3>
                 </div>
                
