@@ -84,6 +84,46 @@
 
 }
 
+.saleWrapper {
+    position: absolute;
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+   z-index: 5;
+   top: 2rem;
+   left: 1.5rem;
+}
+
+.circle{
+     
+   line-height: 3rem;
+   text-align: center;
+    width:3rem;
+    height:3rem;
+    padding: .6rem;
+    border-radius: 50%;
+    background-color: aqua;
+  // position: absolute;
+
+
+}
+
+.circleNum {
+    margin-bottom: 1rem;
+  
+}
+
+.circleString {
+
+}
+
+.saleString {
+    font-size: 1.3rem;
+}
+
+
 //? visible during list View
 .listIcons {
     width: 100%;
@@ -216,6 +256,21 @@
     .price {
         font-size: 2rem;
        padding-top:5px;
+    }
+    .discountWrapper {
+        display: flex;
+        align-content: center;
+        
+        .sale{
+            font-size: 1rem;
+            padding-left: .5rem;
+            padding-top: .7rem;
+
+        }
+
+        .price {
+          font-size: 2rem;
+        }
     }
 }
 

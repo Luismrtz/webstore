@@ -20,7 +20,7 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
     // })
     //const [{id, title, img, info, price, inCart}, useData] = useState(product);
     // setSwoop()
-   
+   const percentage =100 - (discount/price)*100;
 
     return  (
       
@@ -29,6 +29,17 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
 
             <div   className={styles.imgOverlay}>
               <img className={styles.image} src={'/' + img} alt="duckens"/>
+              {sale  &&  
+                        (
+                        <div className={styles.saleWrapper}>   
+                            <div className={cx(styles.circle, styles.circleNum)}> 
+                                <h2 className={styles.price}>{percentage}%</h2>
+                            </div>
+                            <div className={cx(styles.circle, styles.circleString)}> 
+                                <h2 className={styles.saleString}>SALE</h2>
+                            </div>
+                        </div>
+                        ) }             
               <div className={styles.overlayContainer}>
                     
                     <Link to={'/details/' + _id}  className={styles.overlay}></Link> 
@@ -37,6 +48,7 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
                             <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                             
                     </div>
+
                     <div className={styles.liked}>&#10084;</div> 
                             {/* <i class="fa fa-heart" aria-hidden="true"></i> */}
              </div>

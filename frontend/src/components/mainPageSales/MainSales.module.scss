@@ -48,13 +48,30 @@
      
      &:hover {
          opacity: 1;
+     } 
+
+     .circle{
+      
+        line-height: 3rem;
+        text-align: center;
+         width:3rem;
+         height:3rem;
+         padding: .5rem;
+         border-radius: 50%;
+         background-color: aqua;
+        position: absolute;
+        z-index: 5;
+        top: 2rem;
+        left: 2rem;
+
      }
- 
+
      .liked {
         
          z-index: 10;
-         top: 20px;
-         right: 20px;
+         top: 2rem;
+         right: 1.5rem;
+         //right: 50%;
         position: absolute;
         // display: block;
          //background: none;
@@ -76,6 +93,46 @@
           }
  
  }
+
+ .saleWrapper {
+     position: absolute;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    z-index: 5;
+    top: 2rem;
+    left: 1.5rem;
+ }
+
+ .circle{
+      
+    line-height: 3rem;
+    text-align: center;
+     width:3rem;
+     height:3rem;
+     padding: .6rem;
+     border-radius: 50%;
+     background-color: aqua;
+   // position: absolute;
+
+
+ }
+
+ .circleNum {
+     margin-bottom: 1rem;
+   
+ }
+
+ .circleString {
+
+ }
+
+ .saleString {
+     font-size: 1.3rem;
+ }
+
  
  //? visible during list View
  .listIcons {
