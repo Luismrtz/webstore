@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 // import useListener from './Uselisteners';
 import cx from 'classnames';
+import Footer from '../Footer/Footer';
 import { detailsProduct } from '../../actions/productActions';
 //* Sync 
 //* if match, 
@@ -145,6 +146,7 @@ const Details = (props) => {
         </div>
 
 </div> 
+<Footer/>
 </div>
       
     )

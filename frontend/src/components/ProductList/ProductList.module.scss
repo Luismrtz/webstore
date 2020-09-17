@@ -1,22 +1,118 @@
 //? main wrapper, have title above this container for BANNER LATER
 .container {
     background-color: var(--mainWhite);
-    margin: 15rem auto 0 auto;
+    margin: 6rem auto 0 auto;
 }
+
 .nope {
    // background-color: var(--mainBlue);
    margin: 15rem auto 0 auto;
 }
 
-.text {
+
+//title
+
+.titleContainer {
+    margin: 4.5rem auto 4rem auto;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    padding-bottom: 1rem;
+  }
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+  }
+
+  .subTitle {
     font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .cStyle {
+    text-decoration: none;
+    color: var(--mainDark);
+   }
+
+   // type of products Filter 
+.typeFilter {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    margin-top: 4rem;
+    .typePerPage {
+        margin: 0 2rem;
+        text-align: center;
+        font-size: 1.9rem;
+        font-weight: 400;
+        letter-spacing: .2rem;
+        //height: 2rem;
+        padding: 0 .3rem;
+        transition: all .3s ease;
+        border-bottom: 1px solid transparent;
+         
+    }
+    .borderLine {
+            
+        border-bottom: 1px solid black;
+
+    }  
+}
+   
+
+
+//number filter
+
+.textPerPage {
+    font-size: 1.3rem;
+    margin-right:1rem;
+    width: 18rem;
 }
 
 .flex {
-    max-width: 120rem;
+    max-width: 115rem;
     display: flex;
     margin: auto;
     justify-content: space-between;
+
+    .numPerPageGrid {
+        display: flex;
+        
+        .numPerPageWrap {
+            display: flex;
+              //margin-left: 5rem;
+            
+            .showBtn {
+                font-size: 1.3rem;
+             
+                margin-right: .5rem;
+            }
+
+            .numPerPage {
+                margin:0 .3rem;
+                width: 2rem;
+                height: 2rem;
+               // text-align: center;
+                //padding: .5rem;
+                border-bottom: 1px solid transparent;
+        
+            }
+
+        .borderLine {
+            
+            border-bottom: 1px solid black;
+    
+        }  
+        }
+
+
+
+    }
     .icons {
         display: grid;
         grid-gap: 1.5rem;
@@ -51,13 +147,13 @@
     
     padding: 2rem 2rem;
     margin: 0 auto 0 auto;
-    max-width: 120rem;
+    max-width: 115rem;
 }
 
 //? alt grid
 .gridFlip {
     display: grid;
-    max-width: 120rem;
+    max-width: 115rem;
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 2.5rem;
     padding: 2rem 2rem;
@@ -108,29 +204,3 @@
     }
 }
 
-//title
-
-.titleContainer {
-    margin: 4.5rem auto;
-  }
-
-  .title {
-    font-size: 2.5rem;
-    padding-bottom: 1rem;
-  }
-
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-  }
-
-  .subTitle {
-    font-size: 1.3rem;
-  }
-
-  .cStyle {
-    text-decoration: none;
-    color: var(--mainDark);
-   }

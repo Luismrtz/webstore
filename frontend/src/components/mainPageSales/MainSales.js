@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, discount}, isToggled}) => {
+const MainSales = ({product: {_id, title, img, info, price, type, inCart, sale, discount, newItem}, isToggled}) => {
 
 
 
@@ -33,13 +33,24 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart,sale, d
                         (
                         <div className={styles.saleWrapper}>   
                             <div className={cx(styles.circle, styles.circleNum)}> 
-                                <h2 className={styles.price}>{percentage}%</h2>
-                            </div>
-                            <div className={cx(styles.circle, styles.circleString)}> 
                                 <h2 className={styles.saleString}>SALE</h2>
                             </div>
+                            <div className={cx(styles.circle, styles.circleString)}> 
+                                <h2 className={styles.price}>{percentage}%</h2>
+                            </div>
                         </div>
-                        ) }             
+                        ) }   
+
+                        
+                {newItem  &&  
+                        (
+                        <div className={styles.saleWrapper}>   
+                            <div className={cx(styles.circle, styles.circleNum)}> 
+                                <h2 className={styles.saleString}>NEW</h2>
+                            </div>
+                        </div>
+                        ) }    
+                               
               <div className={styles.overlayContainer}>
                     
                     <Link to={'/details/' + _id}  className={styles.overlay}></Link> 

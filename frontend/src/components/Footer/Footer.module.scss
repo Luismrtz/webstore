@@ -1,0 +1,49 @@
+.container {
+    color: var(--mainWhite);
+    background-color: var(--black);
+    height: 40vh;
+
+
+    .innerContainer {
+        margin: 2rem 1rem 0 1rem;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(1,1fr);
+        grid-gap: 2rem;
+        max-width: 115rem;
+        width: 100%;
+        margin: 0 auto;
+        padding: 5rem 0;
+    }
+
+    .textLarge {
+        font-weight: 700;
+        font-size: 1.8rem;
+    }
+
+    .textSmall {
+        margin-top: 1.8rem;
+        font-size: 1.2rem;
+     
+    }
+
+    .textTitle {
+        font-weight: 700;
+        font-size: 2rem;
+        letter-spacing: .2rem;
+    }
+
+    .icons {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .copyRight {
+        text-align: center;
+        padding-bottom: 2rem;
+        background-color: var(--black);
+        font-size: 1.2rem;
+
+    }
+}

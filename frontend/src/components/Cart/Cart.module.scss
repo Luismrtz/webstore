@@ -1,7 +1,7 @@
 .container {
     // height: 10vh;
     // width: 100%;
-    background-color: orange;
+   
     font-size: 1.8rem;
     // display: flex;
     // align-items: center;    //align with others
@@ -44,7 +44,7 @@
         margin: 15rem auto 0 auto;
         .table {
             display: grid;
-            
+    
        
             // border-collapse: collapse;
             // border-spacing: 0;
@@ -59,6 +59,9 @@
       
 
             .spacing {
+              &:first-child {
+                background-color:  rgba(222,215,226,.31);
+              }
                 display:inherit;
                 align-items: center;
               //  justify-content: center;

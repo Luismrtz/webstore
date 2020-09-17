@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Switch,Route} from 'react-router-dom';
 import './App.module.scss';
 
-import { Navbar4, Cart, Details, ProductList, ProductList2, ProductAll, Default, MainPage } from './components/index';
+import { Navbar4, Cart, Details, ProductList, ProductList2, ProductAll, Default, MainPage,  } from './components/index';
 //import Navbar2 from "./components/Navbar/Navbar2";
 
 export default () => {
@@ -20,6 +20,7 @@ export default () => {
                 <Route component={Default}/>
                 
             </Switch>
+            
         </div>
     )
 }

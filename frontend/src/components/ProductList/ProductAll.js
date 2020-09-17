@@ -10,7 +10,8 @@ import Title from '../Title/Title';
 //import {products} from '../api/data';
 //import {ProductContext} from '../context/context';
 //import Banner from '../Banner/Banner';
-//import Pickles from '../api/Pickles'
+//import Pickles from '../api/Pickles';
+import Footer from '../Footer/Footer';
 
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,6 +36,17 @@ const [filter, setFilter] = useState(null);
 const [isToggled, setToggled] = useState(true);
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostsPerPage] = useState(4);
+//temp borderLine fix
+const [borderNew, setBorderNew] = useState(true);
+const [borderSpecial, setBorderSpecial] = useState(false);
+const [borderAll, setBorderAll] = useState(false);
+// temp numPage fix
+const [fivePage, setFivePage] = useState(false);
+const [tenPage, setTenPage] = useState(true);
+const [fifPage, setFifPage] = useState(false);
+
+
+
 useEffect(() => {
     dispatch(listProducts());
    
@@ -57,6 +69,9 @@ const showNew = () => {
     setFilter(defNew);
     setCurrentPage(1);
     //console.log(defNew)
+    setBorderNew(true);
+    setBorderSpecial(false);
+    setBorderAll(false);
 }
 
 const showSpecials = () => {
@@ -70,26 +85,41 @@ const showSpecials = () => {
     setFilter(E);
     setCurrentPage(1);
    // console.log(D)
+   setBorderNew(false);
+    setBorderSpecial(true);
+    setBorderAll(false);
 }
 
 const showAll = () => {
     setFilter(products);
     setCurrentPage(1);
+    setBorderNew(false);
+    setBorderSpecial(false);
+    setBorderAll(true);
 }
 
 const five = () => {
     setPostsPerPage(5);
     setCurrentPage(1);
+    setFivePage(true);
+    setTenPage(false);
+    setFifPage(false);
 }
 
 const ten = () => {
     setPostsPerPage(10);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(true);
+    setFifPage(false);
 }
 
 const fifteen = () => {
     setPostsPerPage(15);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(false);
+    setFifPage(true);
 }
 
 //const isGlobalSpinnerOn = useContext(LoadContext);
@@ -142,6 +172,8 @@ console.log(products);
        return a.title.localeCompare(b.title)
     })
 
+    const onePage = Math.ceil(((filter === null ? (defNew) : (filter)).length) / postsPerPage);
+
     //todo  change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     
@@ -157,38 +189,44 @@ console.log(products);
 
 
 
-<button onClick={() => showNew()}>New Arrivals</button>
-<button onClick={() => showSpecials()}>Specials</button>
-<button onClick={() => showAll()}>ALL</button>
           
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
-          <li><Link to="/">back to home</Link></li>
+          {/* <li><Link to="/">back to home</Link></li> */}
 
           <div className={styles.titleContainer}>
 
                 <h1 className={cx(styles.title, styles.center)}>SHOP</h1>
-                <h2 className={cx(styles.subTitle, styles.center)}>
-                <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
-                <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp; 
-                {/* if (product.type === 2) { */}
-                   </h2>
+
     
             </div>
+
+            <div className={styles.typeFilter}>
+                <button className={borderNew  ?  cx(styles.typePerPage, styles.borderLine) : styles.typePerPage }  onClick={() => showNew()}>NEW</button>
+                <button className={borderSpecial ?  cx(styles.typePerPage, styles.borderLine) : styles.typePerPage }  onClick={() => showSpecials()}>SALES</button>
+                <button className={borderAll ? cx(styles.typePerPage, styles.borderLine) : styles.typePerPage }  onClick={() => showAll()}>ALL</button>
           
+            </div>
+                
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (defNew) : (filter)).length} items</div>
-
-
-                <button onClick={() => five()}>5</button>
-                <button onClick={() => ten()}>10</button>
-                <button onClick={() => fifteen()}>15</button>
-
+                    <div className={styles.numPerPageGrid}>
+                      {onePage === 1 ? <div className={styles.textPerPage}>Showing all {(filter === null ? (defNew) : (filter)).length} results</div> 
+                                :
+                        <div className={styles.textPerPage}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} of {(filter === null ? (defNew) : (filter)).length} results</div>
+                        }
+                        <div className={styles.numPerPageWrap}>
+                            <div className={styles.showBtn}>show</div>
+                            <button className={fivePage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => five()}>5</button>
+                            <button className={tenPage ?cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => ten()}>10</button>
+                            <button className={fifPage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => fifteen()}>15</button>    
+                        </div>
+                    </div>
+                        
 
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
@@ -210,15 +248,16 @@ console.log(products);
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (defNew) : (filter)).length} paginate={paginate}/>
+                         <Pagination  postsPerPage={postsPerPage} totalPosts={ (filter === null ? (defNew) : (filter)).length} paginate={paginate}/>
                     </nav>
                     
-                    <div className={styles.footerQuestionmark}></div>
+
                         
               </div>
              
           {/* </div> */}
           {/* <Pickles /> */}
+          <Footer/>
       </React.Fragment>
     )
 }
