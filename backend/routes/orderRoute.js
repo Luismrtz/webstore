@@ -17,7 +17,7 @@ router.get("/", isAuth, async (req, res) => {
 router.get("/:id", isAuth, async(req, res) => {
     try {
     const order = await Order.findOne({_id: req.params.id});
-    
+        
             res.json(order);
         
     } catch (error) {
@@ -45,6 +45,34 @@ router.post("/", isAuth, async(req, res) => {
         res.json({ message: err})
     }
 })
+
+
+
+
+router.delete("/:id", isAuth, async (req, res) => {
+    const order = await Order.findOne({ _id: req.params.id });
+    if (order) {
+      const deletedOrder = await order.remove();
+      res.send(deletedOrder);
+    } else {
+      res.status(404).send("Order Not Found.")
+    }
+  });
+
+
+//   router.delete("/", isAuth, async (req, res) => {
+//       try {
+//     const order = await Order.remove({});
+   
+      
+//       res.send(order);
+//     } catch(error) {
+//       res.status(404).send("Order Not Found.")
+//     }
+//   });
+
+
+
 
 router.put("/:id/pay", isAuth, async(req, res) => {
     try {

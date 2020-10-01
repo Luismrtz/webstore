@@ -19,7 +19,7 @@ const orderItemSchema = new mongoose.Schema({
     qty: {type: Number, required: true},
     image: { type: String, required: true },
     price: { type: String, required: true },
-    discount: {type: String, required: true},
+    discount: {type: String, required: false},
     sale: {type: Boolean, required: true},
     id: {
         type: mongoose.Schema.Types.ObjectId,

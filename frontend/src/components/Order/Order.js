@@ -126,13 +126,13 @@ const Order = (props) => {
 
             <div className={styles.placeorderAction}>
                 <ul>
-                    {/* <li className={styles.placeorderActionPayment}>
+                    <li className={styles.placeorderActionPayment}>
                         {!order.isPaid && 
                         <PaypalButton
                          amount={order.totalPrice} 
                          onSuccess={handleSuccessPayment}/>
                          }
-                    </li> */}
+                    </li>
                     <li>
                         <h3 className={styles.fontSize}>Order Summary</h3>
                     </li>
