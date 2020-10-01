@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Link } from 'react-router-dom';
+//import Signin from '../Signin/Signin' 
 import Dropdown from "./Dropdown4";
 import * as FaIcons from 'react-icons/fa';
 //import * as AiIcons from 'react-icons/ai';
 import * as MdIcon from 'react-icons/md';
 import styles from "./Navbar.module.scss";
 import cx from 'classnames';
+import { useSelector } from "react-redux";
 
 function Navbar4() {
  const [navbar, setNavbar] = useState(false);
@@ -44,6 +46,9 @@ function Navbar4() {
   //   }
   // };
 //! innerwidth end
+
+  const userSignin = useSelector(state => state.userSignin);
+  const {userInfo} = userSignin;
 
   return (
 
@@ -134,9 +139,17 @@ function Navbar4() {
 
 
           <li className={styles.navLinkItem}>
-            <Link to={'/'} className={cx(styles.iconButton, styles.underline)}>
-                Profile
-            </Link>
+            { userInfo ? 
+             <Link to={'/profile'} className={cx(styles.iconButton, styles.underline)}>
+                {userInfo.name}
+             </Link> 
+                  :  
+              <Link to={'/signin'} className={cx(styles.iconButton, styles.underline)}>
+              Sign In
+              </Link>
+           }
+ 
+           
           </li>
 
 

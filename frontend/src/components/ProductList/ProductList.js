@@ -61,45 +61,16 @@ const [isToggled, setToggled] = useState(true);
 
 
 
+
+let access = products.filter(e => {
+    return (
+     e.type === 2 
+     //|| e.sale === true
+     )
+ })
+
 //!scrap it: start
-const showSale = () => {
-    let salesS = products.filter(e => e.sale === true)
-    setFilter(salesS);
-    setCurrentPage(1);
-}
 
-const showDucks = () => {
-    setFilter(products);
-    let type1 = products.filter(e => e.type === 1)
-    setFilter(type1)
-    setCurrentPage(1);
-}
-
-const showAcc = () => {
-    setFilter(products);
-    let type2 = products.filter(e => e.type === 2)
-    setFilter(type2);
-    setCurrentPage(1);
-}
-const trending = () => {
-    setFilter(products);
-    let trendD = products.filter(e => {
-       return (
-        e.newItem === true ||
-        e.sale === true
-        )
-    })
-    setFilter(trendD);
-    setCurrentPage(1);
-    console.log(trendD)
-}
-
-
-
-const showAll = () => {
-    setFilter(products);
-    setCurrentPage(1);
-}
 
 const five = () => {
     setPostsPerPage(5);
@@ -161,7 +132,7 @@ const fifteen = () => {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = (filter === null ? (products && products) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
+    const currentPosts = (filter === null ? (access && access) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
 
     const newCurP = [...currentPosts].sort((a,b) => {
         // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -169,7 +140,7 @@ const fifteen = () => {
         // return 0;
        return a.title.localeCompare(b.title)
     })
-    const onePage = Math.ceil(((filter === null ? (products) : (filter)).length) / postsPerPage);
+    const onePage = Math.ceil(((filter === null ? (access) : (filter)).length) / postsPerPage);
 
 
     //todo  change page
@@ -216,9 +187,9 @@ const fifteen = () => {
                 <div className={styles.numPerPageGrid}>
 
                     
-                    {onePage === 1 ? <div className={styles.textPerPage}>Showing all {(filter === null ? (products) : (filter)).length} results</div> 
+                    {onePage === 1 ? <div className={styles.textPerPage}>Showing all {(filter === null ? (access) : (filter)).length} results</div> 
                                 :
-                        <div className={styles.textPerPage}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} of {(filter === null ? (products) : (filter)).length} results</div>
+                        <div className={styles.textPerPage}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} of {(filter === null ? (access) : (filter)).length} results</div>
                         }
                     
                     
@@ -250,7 +221,7 @@ const fifteen = () => {
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (products) : (filter)).length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
                          {/* totalPosts={ (f === null ? (products && products) : (f && f)).length} */}
                     </nav>
                     

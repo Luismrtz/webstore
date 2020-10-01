@@ -87,9 +87,7 @@ const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale,
                 <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
                     <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                     <div className={styles.liked}>&#10084;</div> 
-                    <div className={cx((sale === true ? styles.show : styles.none))}>
-                        SALE
-                    </div> 
+ 
                 </div> 
             </div>
 

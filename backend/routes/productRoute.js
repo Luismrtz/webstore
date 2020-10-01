@@ -1,6 +1,6 @@
 import express from 'express';
 import Product from '../models/productModel';
-
+import { isAuth, isAdmin} from '../util'
 const router = express.Router();
 
 
@@ -44,46 +44,49 @@ router.get("/", async (req, res) => {
 });
 
 //? add
-router.post('/add', async(req, res) =>{
+router.post('/add', isAuth, isAdmin, async(req, res) =>{
     const title = req.body.title;
     const img = req.body.img;
     const price = req.body.price;
     const info = req.body.info;
-    const inCart = req.body.inCart;
-    const count = req.body.count;
+    // const inCart = req.body.inCart;
+    // const count = req.body.count;
     const stock = req.body.stock;
-    const total = req.body.total;
+    // const total = req.body.total;
     const type = req.body.type;
     const sale = req.body.sale;
     const discount = req.body.discount;
     const mainPage = req.body.mainPage;
-    const newItem = req.body.new;
+    const newItem = req.body.newItem;
     try {
         const product = new Product({
             title,
             img,
             price,
             info,
-            inCart,
-            count,
+            // inCart,
+            // count,
             stock,
-            total,
+            // total,
             type,
             sale,
             discount,
             mainPage,
             newItem
         });
-        const saveProduct = await product.save();
-        res.json(saveProduct);
+        const newProduct = await product.save();
+      
+        if( newProduct) {
+            return res.status(201).json({message: 'New Product Creted', data: newProduct});
+        }
     } catch (error) {
-        res.json({message: error})
+        res.json({message: 'error at productRoute add'})
     }
 });
 
 
-//update
-router.patch('/update/:id', async(req,res) => {
+//*UPDATE
+router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
     try {
         const product = await Product.updateOne(
             {_id: req.params.id},
@@ -95,6 +98,27 @@ router.patch('/update/:id', async(req,res) => {
     }
 
 });
+
+//*UPDATE
+// router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
+//     try {
+//         const product = await Product.updateOne(
+//             {_id: req.params.id},
+//            {$set: req.body}
+//         )
+//         const updateProduct = await product.save();
+//         if(updateProduct) {
+//             return res.status(200).send({message:'Product Updated', data: updateProduct});
+//         }
+
+//     } catch (err) {
+//         res.json({ message: 'Error in updating Product.' })
+//     }
+
+// });
+
+
+
 // delete single line in collection
 router.patch('/delete/:id', async(req,res) => {
     try {
@@ -103,6 +127,10 @@ router.patch('/delete/:id', async(req,res) => {
            {$set: req.body}
         )
         res.json(product);
+        // if(product) {
+        //     await product.remove();
+        //     res.send({message: 'Product Deleted'});
+        // }
     } catch (err) {
         res.json({ message: err})
     }

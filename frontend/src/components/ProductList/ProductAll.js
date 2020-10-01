@@ -75,7 +75,7 @@ const showNew = () => {
 }
 
 const showSpecials = () => {
-    setFilter(products);
+  //  setFilter(products);
     let E = products.filter(e => {
         return (
          e.sale === true 
@@ -92,6 +92,7 @@ const showSpecials = () => {
 
 const showAll = () => {
     setFilter(products);
+    ten(); //! quick fix to reset item entries
     setCurrentPage(1);
     setBorderNew(false);
     setBorderSpecial(false);

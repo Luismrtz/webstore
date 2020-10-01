@@ -6,7 +6,7 @@
 
 .nope {
    // background-color: var(--mainBlue);
-   margin: 15rem auto 0 auto;
+   margin: 6rem auto 0 auto;
 }
 
 
@@ -185,6 +185,16 @@
         //grid-auto-rows: 500px;
     }
 }
+
+@media (max-width: 1200px) {
+    .flex {
+        margin: 0 2rem;
+    }    
+}
+
+
+
+
 @media (max-width: 990px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
@@ -204,3 +214,8 @@
     }
 }
 
+@media (max-width: 480px) {
+    .textPerPage {
+        display: none;
+    }
+}

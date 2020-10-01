@@ -39,38 +39,6 @@ const Details = (props) => {
     }
 
 
-    
-    //const rtrMatch = storeproduct.find(item => item.title === props.match.params.id);
-//     const [coords, setCoords] = useState({ x: 0, y: 0})
-     
-//    const handler = useCallback(({ clientX, clientY}) => {
-//        setCoords({ x: clientX, y: clientY});
-//    }, [setCoords]);
-
-//    useListener('mousemove', handler);
-   
-
-   // const zoom = useRef(null);
-
-  
-
-//    const [coords, setCoords] = useState({ x: 0, y: 0 });
-
-//    // Event handler utilizing useCallback ...
-//    // ... so that reference never changes.
-//    const handler = useCallback(
-//      ({ clientX, clientY }) => {
-//        // Update coordinates
-//        setCoords({ x: clientX, y: clientY });
-//      },
-//      [setCoords]
-//    );
- 
-//    // Add event listener using our hook
-//    useListener('mousemove', handler);
-
-
-
 
 
 
@@ -138,9 +106,12 @@ const Details = (props) => {
                     <div className={styles.liked}>&#10084;</div> 
 
                 </div>
-                <div className={styles.stock}>Status:{' '} {product.stock > 0 ? `${product.stock} In Stock` : "Unavailable"}</div>
-                <div className={styles.category}>Categories: 
-                            <Link to="/" className={styles.cStyle}>Ducks</Link>
+                    <div className={styles.statusWrap}>
+                        <div className={styles.stock}>Status:{' '} {product.stock > 0 ? `${product.stock} In Stock` : "Unavailable"}</div>
+                        <div className={styles.category}>Categories: 
+                                    <Link to="/" className={styles.cStyle}>Ducks</Link>
+                    </div>
+
                 </div>
             </div> 
         </div>

@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
     },
     price: {
         type: Number, 
+        default: 0,
         required: true
     },
     info: {
@@ -19,31 +20,33 @@ const productSchema = new mongoose.Schema({
         required: true
  
     },
-    inCart: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    count: {
-        type: Number,
-        required: true,
-    },
+    // inCart: {
+    //     type: Boolean,
+    //     required: false,
+    //     default: false
+    // },
+    // count: {
+    //     type: Number,
+    //     required: false,
+    // },
     stock: {
         type: Number,
+        default:0,
         required: true
     },
-    total: {
-        type: Number,
-        required: true
+    // total: {
+    //     type: Number,
+    //     required: false
 
-    },
+    // },
     type: {
         type: Number,
         required: true
     },
     sale: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
     discount: {
         type: Number,
@@ -51,11 +54,13 @@ const productSchema = new mongoose.Schema({
     },
     mainPage: {
         type: Boolean,
-        required: false
+        required: true,
+        default: false
     },
     newItem: {
         type: Boolean,
-        required: false
+        required: true,
+        default: false
 
     }
 

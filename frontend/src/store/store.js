@@ -1,18 +1,27 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import Cookie from 'js-cookie';
-import { productListReducer, productDetailsReducer } from '../reducer/productReducers';
+import { productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer } from '../reducer/productReducers';
 import {bannerListReducer} from '../reducer/bannerReducer';
 import { cartReducer } from '../reducer/cartReducer';
+import { userSigninReducer, userRegisterReducer } from '../reducer/userReducer';
+import { orderDetailsReducer, orderCreateReducer, orderPayReducer } from '../reducer/orderReducer';
 
 const cartItems = Cookie.getJSON('cartItems') || [];
-
-const initialState = { cart: { cartItems }};
+const userInfo = Cookie.getJSON('userInfo') || null;
+const initialState = { cart: { cartItems, shipping: {}, payment: {} }, userSignin: {userInfo} };
 const reducer = combineReducers({
     pList: productListReducer,
     pDetails: productDetailsReducer,
     bList: bannerListReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    userSignin: userSigninReducer,
+    userRegister: userRegisterReducer,
+    productSave: productSaveReducer,
+    productDelete: productDeleteReducer,
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer
 })
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //thunk: to run async operations inside action in redux

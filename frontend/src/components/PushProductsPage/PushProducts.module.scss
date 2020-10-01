@@ -1,0 +1,80 @@
+
+// .hide {
+//     display: none;
+// }
+
+// .show {
+//     display: flex;
+// }
+
+.form {
+    margin:4rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+   //display: none;
+
+
+
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        width: 32rem;
+        padding: 2rem;
+        border: .1rem var(--black) solid;
+        border-radius: .5rem;
+        list-style-type: none;
+
+        .title {
+            font-size: 2rem;
+        }
+
+        li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+        }
+
+        input {
+            padding: 1rem;
+            border: .1rem var(--black) solid;
+            border-radius: .5rem;
+        }
+
+        .text {
+            margin: 3rem 0 0 0;
+        }
+    
+        .button {
+            
+            margin: 0;
+            z-index: 3;
+            width: 100%;
+            text-align: center;
+            border-radius: .5rem;
+            cursor:pointer;
+            text-decoration: none;
+            background:var(--mainDark);
+            text-transform: uppercase;
+            color:var(--mainWhite);
+            padding: 1rem 1.5rem;
+            transition: all 250ms ease-out;
+    
+            &:hover {
+                color:var(--mainDark);
+                background-color: var(--lightGrey);
+            }
+        }
+    }
+  
+
+
+}
+
+//* GRID
+//? GRID
+//! GRID
+
+

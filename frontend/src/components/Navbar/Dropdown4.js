@@ -54,7 +54,7 @@ const Dropdown = () => {
       
       
           <li>
-            <Link to={'/cart'} className={cx(styles.mobileIcon, styles.borderbotNone)} >
+            <Link to={'/'} className={cx(styles.mobileIcon, styles.borderbotNone)} >
             <FaIcons.FaUser/>
             </Link>
         </li>
@@ -102,13 +102,13 @@ const Dropdown = () => {
               </span>
             </button>
             <ul className={open2 === false ? cx(styles.dropdownMenuInner, styles.hide) : cx(styles.dropdownMenuInner, styles.show)}>
-            <Link to={"/"} onClick={e =>  setOpen(!open)}>
+            <Link to={"/shop/products"} onClick={e =>  setOpen(!open)}>
               <li className={styles.dropdownMenuItemSec} >Products</li>
             </Link>
-            <Link to={"/"} onClick={e =>  setOpen(!open)}>
+            <Link to={"/shop/accessories"} onClick={e =>  setOpen(!open)}>
                 <li className={styles.dropdownMenuItemSec}>Accessories</li>
             </Link>
-            <Link to={"/"} onClick={e =>  setOpen(!open)}>
+            <Link to={"/shop"} onClick={e =>  setOpen(!open)}>
                 <li className={styles.dropdownMenuItemSec}>Sales</li>
             </Link>
             </ul> 
