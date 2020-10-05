@@ -7,6 +7,7 @@ import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
 import cx from 'classnames';
 import Title from '../Title/Title';
+import Footer from '../Footer/Footer';
 //import {products} from '../api/data';
 //import {ProductContext} from '../context/context';
 //import Banner from '../Banner/Banner';
@@ -40,6 +41,14 @@ const [isToggled, setToggled] = useState(true);
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostsPerPage] = useState(10);
 
+
+// temp numPage fix
+const [fivePage, setFivePage] = useState(false);
+const [tenPage, setTenPage] = useState(true);
+const [fifPage, setFifPage] = useState(false);
+
+    
+
 useEffect(() => {
     dispatch(listProducts());
   //  dispatch(bannerProduct());
@@ -60,16 +69,25 @@ let access = products.filter(e => {
 const five = () => {
     setPostsPerPage(5);
     setCurrentPage(1);
+    setFivePage(true);
+    setTenPage(false);
+    setFifPage(false);
 }
 
 const ten = () => {
     setPostsPerPage(10);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(true);
+    setFifPage(false);
 }
 
 const fifteen = () => {
     setPostsPerPage(15);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(false);
+    setFifPage(true);
 }
 
 
@@ -122,6 +140,9 @@ console.log(products);
        return a.title.localeCompare(b.title)
     })
 
+    const onePage = Math.ceil(((filter === null ? (access) : (filter)).length) / postsPerPage);
+
+
     //todo  change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     
@@ -140,7 +161,7 @@ console.log(products);
           
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
-          <li><Link to="/">back to home</Link></li>
+          {/* <li><Link to="/">back to home</Link></li> */}
 
           <div className={styles.titleContainer}>
 
@@ -153,19 +174,31 @@ console.log(products);
                         </Link>&nbsp;ACCESSORIES</h2>
 
             </div>
+            
                 
                <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (access) : (filter)).length} items</div>
+                    <div className={styles.numPerPageGrid}>
 
-                <button onClick={() => five()}>5</button>
-                <button onClick={() => ten()}>10</button>
-                <button onClick={() => fifteen()}>15</button>
+                        
+                       
+                         {onePage === 1 ? <div className={styles.textPerPage}>Showing all {(filter === null ? (access) : (filter)).length} results</div> 
+                                :
+                        <div className={styles.textPerPage}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} of {(filter === null ? (access) : (filter)).length} results</div>
+                        }
 
 
+                         <div className={styles.numPerPageWrap}>
+                            <div className={styles.showBtn}>show</div>
+                            <button className={fivePage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => five()}>5</button>
+                            <button className={tenPage ?cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => ten()}>10</button>
+                            <button className={fifPage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => fifteen()}>15</button>    
+                        </div>   
+
+                    </div>
 
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
@@ -189,13 +222,13 @@ console.log(products);
                     <nav className={styles.navPagination}>
                          <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
                     </nav>
-                    
-                    <div className={styles.footerQuestionmark}></div>
+
                         
               </div>
              
           {/* </div> */}
           {/* <Pickles /> */}
+          <Footer/>
       </React.Fragment>
     )
 }

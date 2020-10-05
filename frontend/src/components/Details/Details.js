@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 // import useListener from './Uselisteners';
 import cx from 'classnames';
+import Footer from '../Footer/Footer';
+import Rating from '../Rating/Rating';
 import { detailsProduct } from '../../actions/productActions';
 //* Sync 
 //* if match, 
@@ -36,38 +38,6 @@ const Details = (props) => {
         // method to redirect to another url
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty)
     }
-
-
-    
-    //const rtrMatch = storeproduct.find(item => item.title === props.match.params.id);
-//     const [coords, setCoords] = useState({ x: 0, y: 0})
-     
-//    const handler = useCallback(({ clientX, clientY}) => {
-//        setCoords({ x: clientX, y: clientY});
-//    }, [setCoords]);
-
-//    useListener('mousemove', handler);
-   
-
-   // const zoom = useRef(null);
-
-  
-
-//    const [coords, setCoords] = useState({ x: 0, y: 0 });
-
-//    // Event handler utilizing useCallback ...
-//    // ... so that reference never changes.
-//    const handler = useCallback(
-//      ({ clientX, clientY }) => {
-//        // Update coordinates
-//        setCoords({ x: clientX, y: clientY });
-//      },
-//      [setCoords]
-//    );
- 
-//    // Add event listener using our hook
-//    useListener('mousemove', handler);
-
 
 
 
@@ -111,6 +81,9 @@ const Details = (props) => {
         <div className={styles.contents}>
             <div className={ styles.contDesc}>
                 <h1 className={styles.title}>{product.title}</h1>
+                <Link to="#reviews" className={styles.ratingRedirect}>
+                    <Rating value={product.rating} text={product.numReviews + ' reviews'}/>
+                </Link>
                 <h2 className={styles.price}>${product.price}.00</h2>
                 <h3 className={ styles.descript}>{product.info}</h3>
             </div>
@@ -137,14 +110,27 @@ const Details = (props) => {
                     <div className={styles.liked}>&#10084;</div> 
 
                 </div>
-                <div className={styles.stock}>Status:{' '} {product.stock > 0 ? `${product.stock} In Stock` : "Unavailable"}</div>
-                <div className={styles.category}>Categories: 
-                            <Link to="/" className={styles.cStyle}>Ducks</Link>
+                    <div className={styles.statusWrap}>
+                        <div className={styles.stock}>Status:{' '} {product.stock > 0 ? `${product.stock} In Stock` : "Unavailable"}</div>
+                        <div className={styles.category}>Categories: 
+                                    <Link to="/" className={styles.cStyle}>Ducks</Link>
+                    </div>
+
                 </div>
             </div> 
         </div>
 
 </div> 
+
+<div className={styles.lineTitle}>
+        <div className={styles.divLine}></div>
+                {/* <div className={styles.title}>
+                     NEW & SPECIALS
+                </div> */}
+        <div className={styles.divLine}></div>
+ </div> 
+
+<Footer/>
 </div>
       
     )

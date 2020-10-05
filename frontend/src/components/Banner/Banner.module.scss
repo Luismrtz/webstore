@@ -252,5 +252,25 @@ grid-row: 1 / -1;
 
 }
 
+@media (max-width: 1200px) {
+    .slider {
+        //padding: 0 2rem;
+        margin:2rem 2rem;
+    }
+    // .slide {
+    //     padding: 0 2rem;
+    // }
+    // .bContainer{
+    //     padding: 0 2rem;
+    //     }
+    
+}
 
+
+@media (max-width: 768px) {
+    .slider {
+        // margin: 2rem 0;
+        // border-radius: 0;
+    }
+}
 

@@ -5,6 +5,12 @@ import {
     PRODUCT_DETAILS_REQUEST, 
     PRODUCT_DETAILS_SUCCESS, 
     PRODUCT_DETAILS_FAIL,
+    PRODUCT_SAVE_REQUEST,
+    PRODUCT_SAVE_SUCCESS,
+    PRODUCT_SAVE_FAIL,
+    PRODUCT_DELETE_REQUEST,
+    PRODUCT_DELETE_SUCCESS,
+    PRODUCT_DELETE_FAIL,
      } from "../constants/productConstants";
 
 function productListReducer(state= {products: []}, action) {
@@ -36,6 +42,34 @@ function productDetailsReducer(state= {products: {}}, action) {
         }
 }
 
+function productDeleteReducer(state= {products: {}}, action) {
+
+    switch (action.type) {
+        case PRODUCT_DELETE_REQUEST: //send request to server to get list of products
+            return { loading: true}; // for loading box during this case
+        case PRODUCT_DELETE_SUCCESS: // received data from server
+            return { loading: false, product: action.payload, success: true}; // 
+        case PRODUCT_DELETE_FAIL: // in case of an error
+            return { loading: false, error: action.payload}
+        default: 
+            return state; // do not change state at all
+        }
+}
+
+function productSaveReducer(state= {products: {}}, action) {
+
+    switch (action.type) {
+        case PRODUCT_SAVE_REQUEST: //send request to server to get list of products
+            return { loading: true}; // for loading box during this case
+        case PRODUCT_SAVE_SUCCESS: // received data from server
+            return { loading: false, success: true, product: action.payload}; // 
+        case PRODUCT_SAVE_FAIL: // in case of an error
+            return { loading: false, error: action.payload}
+        default: 
+            return state; // do not change state at all
+        }
+}
+
 // function productBannerReducer(state = )
 
-export {productListReducer, productDetailsReducer}
+export {productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer}

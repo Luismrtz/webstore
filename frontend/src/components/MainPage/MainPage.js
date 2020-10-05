@@ -17,7 +17,7 @@ import MainSales from '../mainPageSales/MainSales';
 import { useSelector, useDispatch } from 'react-redux';
 import { bannerProduct} from '../../actions/bannerActions';
 import { listProducts} from '../../actions/productActions';
-
+import Footer from '../Footer/Footer';
 
 
 const ProductList = () => {
@@ -123,7 +123,7 @@ console.log(products)
                     {/* <div className={styles.overlayContainer}> */}
                     <Link to={'/shop'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
-                        <Link to={'/shop'} className={styles.mainButton}>Accessories</Link>
+                        <Link to={'/shop'} className={styles.mainButton}>New Items</Link>
                     </div>
                     {/* </div> */}
             </div>
@@ -133,7 +133,7 @@ console.log(products)
                     {/* <div className={styles.overlayContainer}> */}
                     <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
-                        <Link to={'/shop/products'} className={styles.mainButton}>Accessories</Link>
+                        <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>
                     </div>
                     {/* </div> */}
             </div>
@@ -150,7 +150,14 @@ console.log(products)
 {/* //!!ORIGINAL VERSIION END */}
         </div>
         {/* </div> */}
-
+            <div className={styles.lineTitle}>
+                <div className={styles.divLine}></div>
+                <div className={styles.title}>
+                     NEW & SPECIALS
+                </div>
+                <div className={styles.divLine}></div>
+            </div>
+            
 
 
             {/* //todo sales and new products          */}
@@ -169,6 +176,7 @@ console.log(products)
              
           {/* </div> */}
           {/* <Pickles /> */}
+          <Footer/>
       </React.Fragment>
     )
 }

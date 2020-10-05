@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale, discount}, isToggled}) => {
+
+const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale, discount, newItem}, isToggled}) => {
 
 
 
@@ -33,10 +34,19 @@ const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale,
                         (
                         <div className={styles.saleWrapper}>   
                             <div className={cx(styles.circle, styles.circleNum)}> 
-                                <h2 className={styles.price}>{percentage}%</h2>
+                                <h2 className={styles.saleString}>SALE</h2>
                             </div>
                             <div className={cx(styles.circle, styles.circleString)}> 
-                                <h2 className={styles.saleString}>SALE</h2>
+                                <h2 className={styles.price}>{percentage}%</h2>
+                            </div>
+                        </div>
+                        ) } 
+
+                {newItem  &&  
+                        (
+                        <div className={styles.saleWrapper}>   
+                            <div className={cx(styles.circle, styles.circleNum)}> 
+                                <h2 className={styles.saleString}>NEW</h2>
                             </div>
                         </div>
                         ) } 
@@ -63,23 +73,24 @@ const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale,
             <div className={styles.contents}>
                 <div className={cx((isToggled === true ? styles.contDesc : styles.contNope))}>
                     <h1 className={styles.title}>{title}</h1>
+
                     {sale === false ? (<h2 className={styles.price}>${price}.00</h2>) : 
                         (<div className={styles.discountWrapper}> 
                             <h2 className={styles.price}>${discount}.00</h2>
                             <h2 className={styles.sale} style={{textDecoration: 'line-through'}}>${price}.00</h2>
                         </div>) }
+
+
                     <h3 className={(isToggled === true ? styles.nope : styles.descript)}>{info}</h3>
                 </div>
                
                 <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
                     <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
                     <div className={styles.liked}>&#10084;</div> 
-                    <div className={cx((sale === true ? styles.show : styles.none))}>
-                        SALE
-                    </div> 
+ 
                 </div> 
             </div>
-            
+
         </div> 
      
     )

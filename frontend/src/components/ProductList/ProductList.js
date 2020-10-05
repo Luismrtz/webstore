@@ -15,6 +15,7 @@ import Title from '../Title/Title';
 //import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts, bannerProduct} from '../../actions/productActions';
+import Footer from '../Footer/Footer';
 const ProductList = () => {
 
 
@@ -36,6 +37,13 @@ const dispatch = useDispatch();
 
  const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostsPerPage] = useState(10);
+
+// temp numPage fix
+const [fivePage, setFivePage] = useState(false);
+const [tenPage, setTenPage] = useState(true);
+const [fifPage, setFifPage] = useState(false);
+
+
 useEffect(() => {
     dispatch(listProducts());
   //  dispatch(bannerProduct());
@@ -53,59 +61,39 @@ const [isToggled, setToggled] = useState(true);
 
 
 
+
+let access = products.filter(e => {
+    return (
+     e.type === 2 
+     //|| e.sale === true
+     )
+ })
+
 //!scrap it: start
-const showSale = () => {
-    let salesS = products.filter(e => e.sale === true)
-    setFilter(salesS);
-    setCurrentPage(1);
-}
 
-const showDucks = () => {
-    setFilter(products);
-    let type1 = products.filter(e => e.type === 1)
-    setFilter(type1)
-    setCurrentPage(1);
-}
-
-const showAcc = () => {
-    setFilter(products);
-    let type2 = products.filter(e => e.type === 2)
-    setFilter(type2);
-    setCurrentPage(1);
-}
-const trending = () => {
-    setFilter(products);
-    let trendD = products.filter(e => {
-       return (
-        e.newItem === true ||
-        e.sale === true
-        )
-    })
-    setFilter(trendD);
-    setCurrentPage(1);
-    console.log(trendD)
-}
-
-
-
-const showAll = () => {
-    setFilter(products);
-    setCurrentPage(1);
-}
 
 const five = () => {
     setPostsPerPage(5);
     setCurrentPage(1);
+    setFivePage(true);
+    setTenPage(false);
+    setFifPage(false);
 }
 
 const ten = () => {
     setPostsPerPage(10);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(true);
+    setFifPage(false);
 }
 
 const fifteen = () => {
     setPostsPerPage(15);
     setCurrentPage(1);
+    setFivePage(false);
+    setTenPage(false);
+    setFifPage(true);
 }
 
     //!scrap it : end            
@@ -144,7 +132,7 @@ const fifteen = () => {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = (filter === null ? (products && products) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
+    const currentPosts = (filter === null ? (access && access) : (filter && filter)).slice(indexOfFirstPost, indexOfLastPost); 
 
     const newCurP = [...currentPosts].sort((a,b) => {
         // if(a.title.toLowerCase() < b.title.toLowerCase()) return -1;
@@ -152,6 +140,8 @@ const fifteen = () => {
         // return 0;
        return a.title.localeCompare(b.title)
     })
+    const onePage = Math.ceil(((filter === null ? (access) : (filter)).length) / postsPerPage);
+
 
     //todo  change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
@@ -164,16 +154,16 @@ const fifteen = () => {
 
       <React.Fragment>
 
-        
+{/*         
         <button onClick={() => showAll()}>ALL</button>
         <button onClick={() => showSale()}>SALES</button>
         <button onClick={() => showDucks()}>ducks</button>
         <button onClick={() => showAcc()}>last try</button>
         <button onClick={() => trending()}>Trending</button>
-          
+           */}
           {/* <div className={styles.page}> */}
           {/* <Banner banners={banners}/> */}
-          <li><Link to="/">back to home</Link></li>
+          {/* <li><Link to="/">back to home</Link></li> */}
 
           <div className={styles.titleContainer}>
 
@@ -194,11 +184,23 @@ const fifteen = () => {
               
             
               <div className={styles.flex}>
-                <div className={styles.text}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} out of {(filter === null ? (products) : (filter)).length} items</div>
-               
-                <button onClick={() => five()}>5</button>
-                <button onClick={() => ten()}>10</button>
-                <button onClick={() => fifteen()}>15</button>
+                <div className={styles.numPerPageGrid}>
+
+                    
+                    {onePage === 1 ? <div className={styles.textPerPage}>Showing all {(filter === null ? (access) : (filter)).length} results</div> 
+                                :
+                        <div className={styles.textPerPage}>Showing {indexOfFirstPost + 1}-{indexOfFirstPost + currentPosts.length} of {(filter === null ? (access) : (filter)).length} results</div>
+                        }
+                    
+                    
+                    <div className={styles.numPerPageWrap}>
+                            <div className={styles.showBtn}>show</div>
+                            <button className={fivePage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => five()}>5</button>
+                            <button className={tenPage ?cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => ten()}>10</button>
+                            <button className={fifPage ? cx(styles.numPerPage, styles.borderLine) : styles.numPerPage} onClick={() => fifteen()}>15</button>    
+                        </div> 
+                </div>
+                
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
                         {/* MIT License*/}
@@ -219,16 +221,17 @@ const fifteen = () => {
                     </div>
 
                     <nav className={styles.navPagination}>
-                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (products) : (filter)).length} paginate={paginate}/>
+                         <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
                          {/* totalPosts={ (f === null ? (products && products) : (f && f)).length} */}
                     </nav>
                     
-                    <div className={styles.footerQuestionmark}></div>
+
                         
               </div>
              
           {/* </div> */}
           {/* <Pickles /> */}
+          <Footer/>
       </React.Fragment>
     )
 }
