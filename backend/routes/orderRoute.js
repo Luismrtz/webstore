@@ -1,18 +1,37 @@
 import express from 'express';
 import Order from '../models/orderModel';
-import {isAuth} from '../util';
+import {isAuth, isAdmin} from '../util';
 
 const router = express.Router();
 
-router.get("/", isAuth, async (req, res) => {
+router.get("/myorders", isAuth, async (req, res) => {
     try {
-        const newOrder = await Order.find({});
-        res.json(newOrder);
+        const orders = await Order.find({ user: req.user._id});
+        res.json(orders);
 
     } catch (error) {
         res.json({msg: error.message})
     }
 });
+
+
+router.get("/", isAuth, async (req, res) => {
+    try {
+        const orders = await Order.find({}).populate('user');
+        res.json(orders);
+
+    } catch (error) {
+        res.json({msg: error.message})
+    }
+});
+
+
+
+// router.get("/myorders", isAuth, async (req, res) => {
+//     const orders = await Order.find({ user: req.user._id });
+//     res.send(orders);
+//   });
+
 
 router.get("/:id", isAuth, async(req, res) => {
     try {
@@ -49,7 +68,7 @@ router.post("/", isAuth, async(req, res) => {
 
 
 
-router.delete("/:id", isAuth, async (req, res) => {
+router.delete("/:id", isAuth, isAdmin, async (req, res) => {
     const order = await Order.findOne({ _id: req.params.id });
     if (order) {
       const deletedOrder = await order.remove();

@@ -358,6 +358,18 @@
         //padding: 2rem 2rem;
      
     }
+    .lineTitle {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    
+        .innerContainer {
+        
+        }
+    
+    }
+      
+      
+        
 
 
 }
@@ -398,6 +410,10 @@
     }
     .lineTitle {
         margin: 4rem auto;
+        .title {
+            font-size: 2rem;
+            margin: 0 2rem;
+        }
     }
 }
 

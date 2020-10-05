@@ -1,0 +1,21 @@
+.rating {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.rating span {
+
+    color: orangered;
+    font-size: 1.8rem;
+    margin: .1rem;
+}
+
+.rating span:last-child {
+    
+    color: var(--black);
+    font-size: 1.4rem;
+    transition: all .3s ease;
+    &:hover {
+        color: var(--lightGrey);
+    }
+}

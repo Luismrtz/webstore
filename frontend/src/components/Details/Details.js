@@ -6,6 +6,7 @@ import {useSelector, useDispatch} from 'react-redux';
 // import useListener from './Uselisteners';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
+import Rating from '../Rating/Rating';
 import { detailsProduct } from '../../actions/productActions';
 //* Sync 
 //* if match, 
@@ -80,6 +81,9 @@ const Details = (props) => {
         <div className={styles.contents}>
             <div className={ styles.contDesc}>
                 <h1 className={styles.title}>{product.title}</h1>
+                <Link to="#reviews" className={styles.ratingRedirect}>
+                    <Rating value={product.rating} text={product.numReviews + ' reviews'}/>
+                </Link>
                 <h2 className={styles.price}>${product.price}.00</h2>
                 <h3 className={ styles.descript}>{product.info}</h3>
             </div>
@@ -117,6 +121,15 @@ const Details = (props) => {
         </div>
 
 </div> 
+
+<div className={styles.lineTitle}>
+        <div className={styles.divLine}></div>
+                {/* <div className={styles.title}>
+                     NEW & SPECIALS
+                </div> */}
+        <div className={styles.divLine}></div>
+ </div> 
+
 <Footer/>
 </div>
       

@@ -4,8 +4,8 @@ import Cookie from 'js-cookie';
 import { productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer } from '../reducer/productReducers';
 import {bannerListReducer} from '../reducer/bannerReducer';
 import { cartReducer } from '../reducer/cartReducer';
-import { userSigninReducer, userRegisterReducer } from '../reducer/userReducer';
-import { orderDetailsReducer, orderCreateReducer, orderPayReducer } from '../reducer/orderReducer';
+import { userSigninReducer, userRegisterReducer, userUpdateReducer } from '../reducer/userReducer';
+import { orderDetailsReducer, orderCreateReducer, orderPayReducer, myOrderListReducer, orderListReducer, orderDeleteReducer } from '../reducer/orderReducer';
 
 const cartItems = Cookie.getJSON('cartItems') || [];
 const userInfo = Cookie.getJSON('userInfo') || null;
@@ -21,7 +21,11 @@ const reducer = combineReducers({
     productDelete: productDeleteReducer,
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
-    orderPay: orderPayReducer
+    orderPay: orderPayReducer,
+    userUpdate: userUpdateReducer,
+    myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
+    orderDelete: orderDeleteReducer
 })
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //thunk: to run async operations inside action in redux

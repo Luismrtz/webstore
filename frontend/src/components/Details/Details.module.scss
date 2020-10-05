@@ -2,6 +2,12 @@
  //background-color: orangered;
 }
 
+//?global start
+.ratingRedirect {
+  text-decoration: none;
+}
+//? end
+
 .titleContainer {
   margin: 4.5rem auto;
 }
@@ -184,12 +190,48 @@
 
 }
 
+
+.lineTitle {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  // align-content: center;
+  // align-items: center;
+  justify-content: center;
+  max-width: 115rem;
+  margin: 7rem auto 2rem auto;
+  .divLine {
+
+    margin: 1rem auto;
+      max-width: 115rem;
+      width: 100%;
+      height: 0;
+      border-bottom: .1px solid var(--lightGrey);
+  }
+  }
+
 // Global
 .cStyle {
   text-decoration: none;
   color: var(--mainDark);
  }
 
+
+ @media (max-width:1200px) {
+
+  .lineTitle {
+      padding-left: 2rem;
+      padding-right: 2rem;
+
+      .innerContainer {
+      
+      }
+
+  }
+
+
+  
+}
 
 
 

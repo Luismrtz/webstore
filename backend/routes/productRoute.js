@@ -58,6 +58,8 @@ router.post('/add', isAuth, isAdmin, async(req, res) =>{
     const discount = req.body.discount;
     const mainPage = req.body.mainPage;
     const newItem = req.body.newItem;
+    const rating = req.body.rating;
+    const numReviews = req.body.numReviews;
     try {
         const product = new Product({
             title,
@@ -72,7 +74,9 @@ router.post('/add', isAuth, isAdmin, async(req, res) =>{
             sale,
             discount,
             mainPage,
-            newItem
+            newItem,
+            rating,
+            numReviews
         });
         const newProduct = await product.save();
       
