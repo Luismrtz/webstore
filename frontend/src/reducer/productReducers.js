@@ -10,7 +10,7 @@ import {
     PRODUCT_SAVE_FAIL,
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
-    PRODUCT_DELETE_FAIL,
+    PRODUCT_DELETE_FAIL, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAIL, PRODUCT_REVIEW_SAVE_RESET
      } from "../constants/productConstants";
 
 function productListReducer(state= {products: []}, action) {
@@ -28,7 +28,7 @@ function productListReducer(state= {products: []}, action) {
 }
 
 
-function productDetailsReducer(state= {products: {}}, action) {
+function productDetailsReducer(state= {products: {reviews: [] }}, action) {
 
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST: //send request to server to get list of products
@@ -70,6 +70,21 @@ function productSaveReducer(state= {products: {}}, action) {
         }
 }
 
+function productReviewSaveReducer(state = {}, action) {
+    switch (action.type) {
+      case PRODUCT_REVIEW_SAVE_REQUEST:
+        return { loading: true };
+      case PRODUCT_REVIEW_SAVE_SUCCESS:
+        return { loading: false, review: action.payload, success: true };
+      case PRODUCT_REVIEW_SAVE_FAIL:
+        return { loading: false, errror: action.payload };
+      case PRODUCT_REVIEW_SAVE_RESET:
+        return {};
+      default:
+        return state;
+    }
+  }
+
 // function productBannerReducer(state = )
 
-export {productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer}
+export {productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer, productReviewSaveReducer}

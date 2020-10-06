@@ -7,7 +7,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 import Rating from '../Rating/Rating';
-import { detailsProduct } from '../../actions/productActions';
+import { detailsProduct, saveProductReview } from '../../actions/productActions';
+import { PRODUCT_REVIEW_SAVE_RESET } from '../../constants/productConstants';
+
 //* Sync 
 //* if match, 
 const Details = (props) => {
@@ -18,20 +20,46 @@ const Details = (props) => {
 
 
     const [qty, setQty] = useState(1);
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
     const pDetails = useSelector(state => state.pDetails);
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
     const {product, loading, error} = pDetails;
+    const productReviewSave = useSelector(state => state.productReviewSave);
+    const {success: productSaveSucces} = productReviewSave;
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if(productSaveSucces) {
+            alert('Review submitted successfully.');
+            setRating(0);
+            setComment('');
+
+            dispatch({type: PRODUCT_REVIEW_SAVE_RESET})
+        }
         dispatch(detailsProduct(props.match.params.id));
         return () => {
             //
         }
-    }, [])
+    }, [productSaveSucces])
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        // dispatch actions to save usercomments
+        dispatch(saveProductReview(props.match.params.id, {
+            name: userInfo.name,
+            rating: rating,
+            comment: comment
+        } ))
+    }
+
+
+
     console.log(product);
     //console.log(JSON.stringify(props.match.params.id))
     console.log(props.match.params.id)
-    console.log(product)
+   // console.log(product.reviews)
 
 
     const handleAddToCart = () => {
@@ -114,9 +142,11 @@ const Details = (props) => {
                         <div className={styles.stock}>Status:{' '} {product.stock > 0 ? `${product.stock} In Stock` : "Unavailable"}</div>
                         <div className={styles.category}>Categories: 
                                     <Link to="/" className={styles.cStyle}>Ducks</Link>
+                        </div>
+
                     </div>
 
-                </div>
+
             </div> 
         </div>
 
@@ -129,6 +159,54 @@ const Details = (props) => {
                 </div> */}
         <div className={styles.divLine}></div>
  </div> 
+
+ <div className={styles.reviewContainer}>
+     <h2>Reviews</h2>
+    {!product.reviews.length && <div> There is no review</div>}
+    <ul className={styles.review} id="reviews">
+       {product.reviews.map((review) => (
+           <li key={review._id}>
+               <div>{review.name}</div>
+               <div>
+                   <Rating value={review.rating}></Rating>
+                </div>
+                <div>{review.createdAt.substring(0, 10)}</div>
+                <div>{review.comment}</div>
+           </li>
+       ))}
+       <li>
+           <h3>Write a customer review</h3>
+           {userInfo ? (
+           <form onSubmit={submitHandler}>
+               <ul className={styles.formContainer}>
+                   <li>
+                     <label htmlFor="rating">
+                      Rating
+                     </label>
+                     <select name="rating" id="rating" value={rating}
+                     onChange={(e) => setRating(e.target.value)}>
+                         <option value="1">1- Poor</option>
+                         <option value="2">2- Fair</option>
+                         <option value="3">3- Good</option>
+                         <option value="4">4- Very Good</option>
+                         <option value="5">5- Excellent</option>
+                     </select>
+                   </li>
+                   <li>
+                       <label htmlFor="comment">Comment</label>
+                       <textarea name="comment" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
+                   </li>
+                   <li>
+                       <button type="submit" className={styles.buttonPrimary}>Submit</button>
+                   </li>
+               </ul>
+           </form> 
+           )  : (
+           <div>Please <Link to="/signin">Sign-in</Link> to write a review</div>
+           )}
+       </li>
+    </ul>
+ </div>
 
 <Footer/>
 </div>
