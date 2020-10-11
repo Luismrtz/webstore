@@ -5,6 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 import { saveProduct, listProducts, deleteProduct} from '../../actions/productActions';
+import Axios from 'axios';
 // import AdminHideShow from './AdminHideShow';
 
 
@@ -20,7 +21,7 @@ const PushProducts = (props) => {
     const [discount, setDiscount] = useState('');
     const [mainPage, setMainPage] = useState(false);
     const [newItem, setNewItem] = useState(false);
-
+    const [uploading, setUploading] = useState(false);
 
     const [visibility, setVisibility] = useState(false);
 
@@ -77,6 +78,26 @@ const PushProducts = (props) => {
     // return loading ? <div>Loading...</div> :
     // error || !products ? <div>{error}</div> :
     // (
+
+    const uploadFileHandler = (e) => {
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image', file);
+        setUploading(true);
+        Axios.post('/uploads', bodyFormData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => {
+            setImg(response.data);
+            setUploading(false);
+        }).catch(err => {
+            console.log(err);
+            setUploading(false);
+        })
+    }
+
+
     return (
     <React.Fragment>
 
@@ -196,6 +217,8 @@ const PushProducts = (props) => {
                         Image
                     </label>
                     <input type="text" name="image" id="img" value={img} onChange={(e) => setImg(e.target.value)}></input>
+                    <input type="file" onChange={uploadFileHandler}></input>
+                    {uploading && <div>Uploading...</div>}
                 </li>
 
                 <li>

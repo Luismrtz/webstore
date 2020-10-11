@@ -9,10 +9,13 @@ import bannerRoute from './routes/bannerRoute'
 import productRoute from './routes/productRoute'
 import orderRoute from './routes/orderRoute'
 import bodyParser from 'body-parser';
+import uploadRoute from './routes/uploadRoute';
+
 
 //import bodyParser from 'body-parser';
 //const bodyParser = require('body-parser');
 const app = express();
+const path = require('path');
 dotenv.config();
 app.use(bodyParser.json());
 
@@ -46,15 +49,20 @@ mongoose.connect( uri || 'mongodb://localhost/storeProducts', {
 
 
 
-
-
+app.use('/uploads', uploadRoute);
 app.use('/users', userRoute);
 app.use('/storeProducts', productRoute);
 app.use('/orders', orderRoute);
 app.use('/banner', bannerRoute);
 app.get('/config/paypal', (req, res) => {
     res.send(config.PAYPAL_CLIENT_ID);
-})
+});
+
+app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
+
+
+
+
 
 //app.get("/api/storeProducts", (req, res) => {
     //! comment out starts here
