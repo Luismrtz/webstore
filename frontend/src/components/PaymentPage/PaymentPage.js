@@ -30,15 +30,15 @@ const PaymentPage = (props) => {
         
 
             <div className={styles.form}>
-            <form onSubmit={submitHandler}>
-            <ul className={styles.formContainer}>
+            <form onSubmit={submitHandler} className={styles.formContainer} >
+            <ul className={styles.formSubContainer}>
                 <li>
                     <h2 className={styles.title}>Payment</h2>
                 </li>
                 <li>
-                    <div>
+                    <div className={styles.radioFlex}>
                         <input type="radio" name="paymentMethod" id="paymentMethod" value="paypal" onChange={(e) => setPaymentMethod(e.target.value)}></input>
-                        <label htmlFor="paymentMethod">
+                        <label htmlFor="paymentMethod" >
                             Paypal
                         </label>
                     </div>

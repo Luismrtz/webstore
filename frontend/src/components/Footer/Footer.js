@@ -25,8 +25,9 @@ function Footer() {
     
                 <div >
                     <h2 className={styles.textLarge}>Profile</h2>
-                    <div className={styles.textSmall}><Link to="/">Account</Link></div>
+                    <div className={styles.textSmall}><Link to="/profile">Account</Link></div>
                     <div className={styles.textSmall}><Link to="/cart">Cart</Link></div>
+                    <div className={styles.textSmall}><Link to="/ordermenu">Orders</Link></div>
                 </div>
                 <div >
                     <h2 className={styles.textLarge}>Info</h2>

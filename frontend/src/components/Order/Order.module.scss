@@ -13,6 +13,7 @@
     padding: 1rem;
     justify-content: space-between;
     margin-top: 4rem;
+    min-height: 70vh;
 
     .fontSize {
         font-size: 1.5rem;
@@ -104,6 +105,7 @@
 
 //? innerContaine 2 : right side
   .placeorderAction {
+    z-index: 5;
     flex: 1 1 20rem;
     border: 0.1rem #c0c0c0 solid;
     border-radius: 0.5rem;

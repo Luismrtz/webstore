@@ -25,10 +25,3 @@ const userSchema = new mongoose.Schema({
 const userModel = mongoose.model("User", userSchema);
 
 export default userModel;
-
-// {
-// 	"name": "beebs",
-// 	"email": "macro@beebs.com",
-// 	"password": "doo3234",
-// 	"isAdmin": true
-// }

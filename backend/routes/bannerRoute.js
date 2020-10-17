@@ -7,7 +7,6 @@ const router = express.Router();
 
 //? specific id match? 
 router.get("/:id", async (req, res) => {
-    // res.header('Access-Control-Allow-Origin', '*');
     try {
 
         //const productId = req.params.id;
@@ -18,20 +17,12 @@ router.get("/:id", async (req, res) => {
    catch (error) {
             res.status(404).send({msg: "banner Not Found."})
         }
-    // res.send({message: "we did it!" });
     });
-        //??? needed???
-    // app.get("/api/storeProducts", (req, res) => {
-    //     // res.header('Access-Control-Allow-Origin', '*');
-    //     res.send(data);
-    // // res.send({message: "we did it!" });
-    // });
 
 
 
 // //? try catch approach
 router.get("/", async (req, res) => {
-    // User.find() for promise version?
     try {
         const newBanner = await Banner.find({});
         res.json(newBanner);

@@ -30,7 +30,7 @@ const Cart = (props) => {
         props.history.push("/signin?redirect=shipping");
     }
 
-
+    console.log(cartItems.length);
 
     const itemsPrice =   cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0);
     const shippingPrice = itemsPrice > 50 ? 0 : 10;
@@ -41,9 +41,9 @@ const Cart = (props) => {
 
     return (
         <div className={styles.mainContainer}>
-            <h1 className={styles.title}>Your Cart</h1>
+            <h1 className={styles.title}>YOUR CART</h1>
 
-            <div >
+            <div className={styles.heightContainer}>
                 {cartItems.lengdiv === 0 ? 
                 <div>
                     Cart is empty
@@ -129,7 +129,7 @@ const Cart = (props) => {
                                 </li>
                                 <li>
                                     <div className={styles.fontSizeSm}>Shipping</div>
-                                    <div className={styles.fontSizeSm}>${shippingPrice}</div>
+                                    <div className={styles.fontSizeSm}>${`${cartItems.length === 0 ? '0' : shippingPrice}`}</div>
                                 </li>
                                 <li>
                                     <div className={styles.fontSizeSm}>Tax</div>
@@ -137,7 +137,7 @@ const Cart = (props) => {
                                 </li>
                                 <li>
                                     <div className={styles.fontSize}>Order Total</div>
-                                    <div className={styles.fontSize}>${totalPrice}</div>
+                                    <div className={styles.fontSize}>${`${cartItems.length === 0 ? '0' : totalPrice}`}</div>
                                 </li>
                                 
                                     <button onClick={checkoutHandler} className={cx(styles.btnPrimary, styles.maxWidth)} disabled={cartItems.length ===0}>

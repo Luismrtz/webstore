@@ -2,38 +2,15 @@ import React , { useState, useEffect, useCallback} from 'react';
 import styles from './Banner.module.scss'
 import Imgbanner from './Imgbanner'
 import cx from 'classnames';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { listProducts } from '../../actions/productActions';
-//import {ProductContext} from '../context/context'
-
-//todo push images into data.js & pull through useContext
-//todo grab lower res images for phones
-
-
-// import i1 from './slider/antique.jpg'
-// import i2 from './slider/baddie.jpg'
-// import i3 from './slider/banner.jpg'
-// import i4 from './slider/triohero.jpg'
-
 
 
 const Banner = ({banners}) => {
     const [sliderArr, setSliderArr] = useState([]);
-    //let {bSmall} = useContext(bannerSmall)
-   // let {bannerLarge} = useContext(ProductContext)
-    
-    // const pList = useSelector(state => state.pList);
-    // const { products, loading, error } = pList;
-    // const dispatch = useDispatch();
 
 
     useEffect(() => {
-        // dispatch(listProducts());
         setSliderArr(
-            // <Imgbanner src={i1}/>,
-            // <Imgbanner src={i2}/>,
-            // <Imgbanner src={i3}/>,
-            // <Imgbanner src={i4}/>
+  
           (banners && banners.map(banner => {
                 return <Imgbanner banner={banner}   />
                 
@@ -50,9 +27,6 @@ const Banner = ({banners}) => {
     console.log(sliderArr)
 
     const [x, setX] = useState(0);
-    // const goLeft = useCallback(() => {
-    //     x === 0 ? setX(-100 * (sliderArr.length - 1)) : setX(x + 100);
-    // }, [sliderArr.length, x]);
     const goLeft = () => {
         x === 0 ? setX(-100 * (sliderArr && sliderArr.length - 1)) : setX(x + 100);
     };
@@ -80,7 +54,7 @@ useEffect(() => {
                 return (
                     <div key={id} className={styles.slide} style={{transform: `translateX(${x}%)`}}>
                         {item}
-                        {/* <p className={styles.bannerText}>{info}</p> */}
+  
                        
                     </div>
                  

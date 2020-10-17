@@ -1,5 +1,24 @@
-//? main wrapper, have title above this container for BANNER LATER
-.container {
+
+
+
+//title
+
+.mainContainer {
+    
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
+    list-style: none;
+    }
+
+
+    //? main wrapper, have title above this container for BANNER LATER
+.itemsContainer {
     background-color: var(--mainWhite);
     margin: 6rem auto 0 auto;
 }
@@ -10,10 +29,10 @@
 }
 
 
-//title
 
 .titleContainer {
     margin: 4.5rem auto 4rem auto;
+
   }
 
   .title {
@@ -171,9 +190,15 @@
     justify-content: center;
 }
 
+
+
+
+
 //? pagination inc.
 .footerQuestionmark {
     border-bottom: 200px  var(--grey) solid;
+}
+
 }
 
 
@@ -196,13 +221,17 @@
 
 
 @media (max-width: 990px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(250px, auto);
+    .mainContainer {
+
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: minmax(250px, auto);
+        }
     }
 }
 
 @media (max-width: 768px) {
+    .mainContainer {
     .grid {
         grid-template-columns: 1fr;
        // grid-auto-rows: minmax(600px, auto);
@@ -213,9 +242,12 @@
         grid-auto-rows: minmax(100px, auto); 
     }
 }
+}
 
 @media (max-width: 480px) {
+    .mainContainer {
     .textPerPage {
         display: none;
     }
+}
 }

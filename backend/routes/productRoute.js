@@ -20,14 +20,7 @@ router.get("/:id", async (req, res) => {
    catch (error) {
             res.status(404).send({msg: "Product Not Found."})
         }
-    // res.send({message: "we did it!" });
     });
-        //??? needed???
-    // app.get("/api/storeProducts", (req, res) => {
-    //     // res.header('Access-Control-Allow-Origin', '*');
-    //     res.send(data);
-    // // res.send({message: "we did it!" });
-    // });
 
 
 
@@ -49,10 +42,7 @@ router.post('/add', isAuth, isAdmin, async(req, res) =>{
     const img = req.body.img;
     const price = req.body.price;
     const info = req.body.info;
-    // const inCart = req.body.inCart;
-    // const count = req.body.count;
     const stock = req.body.stock;
-    // const total = req.body.total;
     const type = req.body.type;
     const sale = req.body.sale;
     const discount = req.body.discount;
@@ -67,10 +57,8 @@ router.post('/add', isAuth, isAdmin, async(req, res) =>{
             img,
             price,
             info,
-            // inCart,
-            // count,
+
             stock,
-            // total,
             type,
             sale,
             discount,
@@ -131,28 +119,12 @@ router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
         )
         res.json(product);
     } catch (err) {
-        res.json({ message: err})
+        res.json({ message: 'Error in updating Product.' })
     }
 
 });
 
-//*UPDATE
-// router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
-//     try {
-//         const product = await Product.updateOne(
-//             {_id: req.params.id},
-//            {$set: req.body}
-//         )
-//         const updateProduct = await product.save();
-//         if(updateProduct) {
-//             return res.status(200).send({message:'Product Updated', data: updateProduct});
-//         }
 
-//     } catch (err) {
-//         res.json({ message: 'Error in updating Product.' })
-//     }
-
-// });
 
 
 
@@ -164,10 +136,7 @@ router.patch('/delete/:id', async(req,res) => {
            {$set: req.body}
         )
         res.json(product);
-        // if(product) {
-        //     await product.remove();
-        //     res.send({message: 'Product Deleted'});
-        // }
+
     } catch (err) {
         res.json({ message: err})
     }

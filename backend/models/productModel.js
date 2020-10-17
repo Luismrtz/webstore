@@ -91,9 +91,3 @@ const productModel = mongoose.model("Product", productSchema);
 
 export default productModel;
 
-// {
-// 	"name": "beebs",
-// 	"email": "macro@beebs.com",
-// 	"password": "doo3234",
-// 	"isAdmin": true
-// }

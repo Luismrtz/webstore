@@ -1,41 +1,25 @@
 
-
-
-
-//todo REMOVE COMMENTS ONLY AT END 
-
-
 .slider {
     border-radius: 5px;
     margin:2rem auto;
-    //border: .1px solid var(--lightGrey);
-    position: relative;
-    // width: 70%;
 
-    //top: 5rem;
+    position: relative;
+
+
     max-width: 115rem;
     height: 35rem;
-    //box-sizing: border-box;
-    // margin: 0;
-    // padding: 0;
-     display: flex;
-  //  display: inline-block;
-  
-    
-    
 
+     display: flex;
     overflow: hidden;
 
 }
 
 .slide {
     position:relative;
-   // border: 1px solid blue;
     min-width: 100%;
     height: 100%;
     overflow:hidden;
     transition: .5s;
-    //display: inline-block;
      display: grid;
 
 
@@ -69,28 +53,10 @@
     }
 
     .goLeft {
-        // margin-left: 1rem;
-        //position: relative;
-       // top: 50%;
-        //left: 0;
-       // transform: translateY(-50%);
-        // width: 5%;
-        // height: 25%;
-      //  background: none;
-    
         transform: rotate(135deg);
         -webkit-transform: rotate(135deg);
     }
     .goRight {
-        // margin-right: 1rem;
-     //   position: absolute;
-      //  top: 50%;
-        //right: 0;
-        //transform: translateY(-50%);
-        // width: 5%;
-        // height: 25%;
-       // background: none;
-    
         transform: rotate(-45deg);
         -webkit-transform: rotate(-45deg);
     
@@ -114,63 +80,13 @@
 
 .c1 {
     margin-left: 2rem;
-    // position: absolute;
-    // top: 45%;
     left: 0;
-    // display: flex;
- 
-
-    // align-items: center;
-    // justify-content: center;
-    // background-color: rgba(255, 255, 255, 0.541);
-    // border-radius: 50%;
-    // width: 6rem;
-    // height: 6rem;
-    // cursor: pointer;
-
-
-
-    // &:hover { 
-    //     transition: .2s;
-    //     background-color: rgb(255, 255, 255);
-    //     .arrow {
-    //         transition: .2s;
-    //         border: solid rgb(54, 54, 54);
-    //         border-width: 0 4px 4px 0;
-    //         display: inline-block;
-    //         padding: .4rem;
-    //     }
-    // }
 }
 
 
 .c2 {
     margin-right: 2rem;
-    // position: absolute;
-    // top: 45%;
     right: 0;
- //   display: flex;
-  //  flex-direction: column;
-
-    // align-items: center;
-    // justify-content: center;
-    // background-color: rgba(255, 255, 255, 0.541);
-    // border-radius: 50%;
-    // width: 6rem;
-    // height: 6rem;
-    // cursor: pointer;
-
-    // &:hover {
-    //     transition: .2s;
-    //     background-color: rgb(255, 255, 255);
-    //     .arrow {
-    //         transition: .2s;
-    //         border: solid rgb(54, 54, 54);
-    //         border-width: 0 4px 4px 0;
-    //         display: inline-block;
-    //         padding: .4rem;
-    //     }
-    // }
 }
 
 //? Imgbanner:
@@ -178,9 +94,6 @@
     overflow:hidden;
 
     display: grid;
-    // height: 100%;
-    // grid-template-columns: repeat(5, 1fr);
-    // grid-template-rows: repeat(5, 1fr);
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     
@@ -203,12 +116,9 @@
     
 align-items: center;
 text-decoration: none;
-// width: 100%;
-// height: 100%;
 
 grid-column: 1 / -1;
 grid-row: 1 / -1;
-   // position: absolute;
     
  
     background-color: rgba(0, 0, 0, 0.048);
@@ -228,18 +138,11 @@ grid-row: 1 / -1;
         position: relative;
         top: 20%;
         left: 10%;
-        // grid-column: 1 / 2;
-        // grid-row: 5 / -1;
         display: flex;
         flex-direction: column;
    
         .bannerText {
-            // height: 100%;
-         //   position:absolute;
             text-align: center;
-          //  justify-content: center;
-           // justify-items: center;
-            //align-items: center;
           
             font-size: 3rem;
             z-index: 200;
@@ -254,23 +157,9 @@ grid-row: 1 / -1;
 
 @media (max-width: 1200px) {
     .slider {
-        //padding: 0 2rem;
         margin:2rem 2rem;
     }
-    // .slide {
-    //     padding: 0 2rem;
-    // }
-    // .bContainer{
-    //     padding: 0 2rem;
-    //     }
     
 }
 
-
-@media (max-width: 768px) {
-    .slider {
-        // margin: 2rem 0;
-        // border-radius: 0;
-    }
-}
 

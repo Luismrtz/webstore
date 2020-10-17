@@ -186,7 +186,7 @@ console.log(products);
     error || !products ? <div>{error}</div> :
     (
 
-      <React.Fragment>
+      <div className={styles.mainContainer}>
 
 
 
@@ -210,7 +210,7 @@ console.log(products);
             </div>
                 
                 
-               <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
+               <div className={(isToggled === true ? styles.itemsContainer : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
@@ -259,7 +259,7 @@ console.log(products);
           {/* </div> */}
           {/* <Pickles /> */}
           <Footer/>
-      </React.Fragment>
+      </div>
     )
 }
 

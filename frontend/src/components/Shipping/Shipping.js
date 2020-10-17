@@ -33,8 +33,8 @@ const Shipping = (props) => {
         
 
             <div className={styles.form}>
-            <form onSubmit={submitHandler}>
-            <ul className={styles.formContainer}>
+            <form onSubmit={submitHandler} className={styles.formContainer} >
+            <ul className={styles.formSubContainer}>
                 <li>
                     <h2 className={styles.title}>Shipping</h2>
                 </li>

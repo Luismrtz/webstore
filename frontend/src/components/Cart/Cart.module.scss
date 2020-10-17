@@ -1,5 +1,5 @@
 .mainContainer {
-
+ 
   .fontSize {
     font-size: 1.5rem;
 }
@@ -25,6 +25,9 @@ a {
     justify-content: center;
   }
 
+  .heightContainer {
+    //margin-bottom: 26rem;
+    min-height: 65vh;
   .maxWidth {
     max-width: 115rem;
     margin: auto;
@@ -113,6 +116,7 @@ a {
     width: 100%;
       display: flex;
       justify-content: flex-end;
+      //margin-bottom: 10rem;
 
  
   
@@ -135,7 +139,7 @@ a {
 
       & > li:nth-last-child(2) {
         font-weight: bold;
-        color: #c04000;
+        color: var(--red);
       }
         }
   
@@ -162,7 +166,7 @@ a {
         }
     }
   }
-
+}
 
 
 
@@ -171,12 +175,15 @@ a {
 
 @media (max-width: 768px) {
   .mainContainer {
+    .heightContainer {
   .maxWidth {
-  .subTotalDetails {
-    ul {
-      width: 100%;
+
+      .subTotalDetails {
+        ul {
+          width: 100%;
+        }
+      }
     }
-  }
 }
 }
 }

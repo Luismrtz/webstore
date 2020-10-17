@@ -30,9 +30,3 @@ const bannerModel = mongoose.model("banner", bannerSchema);
 
 export default bannerModel;
 
-// {
-// 	"name": "beebs",
-// 	"email": "macro@beebs.com",
-// 	"password": "doo3234",
-// 	"isAdmin": true
-// }

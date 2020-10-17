@@ -152,7 +152,7 @@ const fifteen = () => {
     error || !products ? <div>{error}</div> :
     (
 
-      <React.Fragment>
+        <div className={styles.mainContainer}>
 
 {/*         
         <button onClick={() => showAll()}>ALL</button>
@@ -179,7 +179,7 @@ const fifteen = () => {
 
           
                 
-               <div className={(isToggled === true ? styles.container : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
+               <div className={(isToggled === true ? styles.itemsContainer : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
               {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
               
             
@@ -232,7 +232,7 @@ const fifteen = () => {
           {/* </div> */}
           {/* <Pickles /> */}
           <Footer/>
-      </React.Fragment>
+      </div>
     )
 }
 

@@ -9,8 +9,6 @@ const router = express.Router();
 
 
 
-
-
 //?get Specific post
 router.get('/:id', async (req, res) => {
     try {
@@ -186,10 +184,6 @@ router.post("/add", async(req, res) => {
         email,
         password,
         isAdmin
-    //  name : req.body.name,
-    //  email : req.body.email,
-    //  password : req.body.password,
-    //  isAdmin : req.body.isAdmin
     });
    
         const saveUser = await user.save();

@@ -55,11 +55,11 @@ const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale,
                     
                     <Link to={'/details/' + _id}  className={styles.overlay}></Link> 
                     <div className={styles.bwrapper}>
-                            <Link to={'/details/' + _id} className={styles.button1}>Quick Shop</Link>
-                            <Link  to="/cart"className={(isToggled === true ? styles.button2 :  styles.nope)}>Add to Cart</Link>
+                            <Link to={'/details/' + _id} className={styles.button1}>Item Details</Link>
+                            {/* <Link  to="/cart"className={(isToggled === true ? styles.button2 :  styles.nope)}>Add to Cart</Link> */}
                             
                     </div>
-                    <div className={styles.liked}>&#10084;</div> 
+                    {/* <div className={styles.liked}>&#10084;</div>  */}
                             {/* <i class="fa fa-heart" aria-hidden="true"></i> */}
              </div>
                    
@@ -86,7 +86,7 @@ const ProductItem = ({product: {_id, title, img, info, price,type, inCart ,sale,
                
                 <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
                     <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
-                    <div className={styles.liked}>&#10084;</div> 
+                    {/* <div className={styles.liked}>&#10084;</div>  */}
  
                 </div> 
             </div>

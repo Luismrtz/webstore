@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { Link } from 'react-router-dom';
-//import Signin from '../Signin/Signin' 
+import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown4";
-import * as FaIcons from 'react-icons/fa';
-//import * as AiIcons from 'react-icons/ai';
-import * as MdIcon from 'react-icons/md';
+import * as FaIcons from "react-icons/fa";
+import * as MdIcon from "react-icons/md";
 import styles from "./Navbar.module.scss";
-import cx from 'classnames';
-import { useSelector } from "react-redux";
+import cx from "classnames";
+import {useSelector } from "react-redux";
 
 function Navbar4() {
- const [navbar, setNavbar] = useState(false);
-
+  const [navbar, setNavbar] = useState(false);
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -20,216 +17,181 @@ function Navbar4() {
     } else {
       setNavbar(false);
     }
-  }
+  };
 
-  window.addEventListener('scroll', changeBackground)
+  window.addEventListener("scroll", changeBackground);
 
- //! innerwidth vs hover
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
-  // const [dropdown, setDropdown] = useState(false);
-  
-
-  // const onMouseEnter = () => {
-  //   if (window.innerWidth < 960) {
-  //     setDropdown(false);
-  //   } else {
-  //     setDropdown(true);
-  //   }
-  // };
-
-  // const onMouseLeave = () => {
-  //   if (window.innerWidth < 960) {
-  //     setDropdown(false);
-  //   } else {
-  //     setDropdown(false);
-  //   }
-  // };
-//! innerwidth end
-
-  const userSignin = useSelector(state => state.userSignin);
-  const {userInfo} = userSignin;
+  console.log(cartItems.length);
+  console.log(userInfo);
 
   return (
-
     <nav className={styles.mainNavContainer}>
-      
-        <div className={navbar ? cx(styles.secNavContainer, styles.scrollCss) : cx(styles.secNavContainer)}>
-            <div className={styles.navStart}>
-            <ul className={cx(styles.navTitle, styles.navHide)}>
-            <Link to={'/'} className={styles.titleColor}> SYMBOLS </Link>
-            </ul>
-
-
-
-
-            <ul className={styles.navLinksContainer}>
-            <li className={styles.navLinkItem }>
-              <Link to={'/'} className={cx(styles.iconButton, styles.underline)}>
-                  Home
-              </Link>
-            </li>
-
-
-                    <NavHoverLinks >
-                     
-                    </NavHoverLinks>
-                
-{/* //! innerwidth vs hover end */}
-{/* 
-
-
-            <ul
-            className='fullScreenHover'
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <Link
-              to='/services'
-              className='icon-button'
-              
-            >
-              Services <i className='fas fa-caret-down' />
+      <div
+        className={
+          navbar
+            ? cx(styles.secNavContainer, styles.scrollCss)
+            : cx(styles.secNavContainer)
+        }
+      >
+        <div className={styles.navStart}>
+          <ul className={cx(styles.navTitle)}>
+            <Link to={"/"} className={styles.titleColor}>
+              {" "}
+              SYMBOLS{" "}
             </Link>
+          </ul>
 
-           {dropdown === true && <ul className="dropdown-menu">
-            <li>
+          {/* //!switch between this for full screen  */}
+          <ul className={cx(styles.navLinksContainer, styles.yup)}>
+            <li className={styles.navLinkItem}>
               <Link
-                className="icon-button"
-                to="/"
-                
+                to={"/"}
+                className={cx(styles.iconButton, styles.underline)}
               >
-                ONE
+                Home
+              </Link>
+            </li>
+
+            <NavHoverLinks />
+
+            <li className={styles.navLinkItem}>
+              {userInfo ? (
+                <ul className={styles.fullScreenHover}>
+                  <li>
+                    <div className={cx(styles.iconButton)}>
+                      {" "}
+                      {userInfo.name}
+                      <div>
+                        <MdIcon.MdKeyboardArrowDown
+                          className={styles.arrowDown}
+                        />
+                      </div>
+                    </div>
+                  </li>
+
+                  <div className={styles.onHoverMenu}>
+                    <div className={styles.onHoverBlock}>
+                      <span className={styles.onHoverArrow}></span>
+
+                      <Link to={"/profile"} className={styles.iconButtonHov}>
+                        Account
+                      </Link>
+                      <Link to={"/ordermenu"} className={styles.iconButtonHov}>
+                        Orders
+                      </Link>
+                      {userInfo.isAdmin && (
+                        <Link
+                          to={"/pushItems"}
+                          className={styles.iconButtonHov}
+                        >
+                          Push Items
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </ul>
+              ) : (
+                <Link
+                  to={"/signin"}
+                  className={cx(styles.iconButton, styles.underline)}
+                >
+                  Sign In
+                </Link>
+              )}
+            </li>
+
+            <li className={styles.navLinkItem}>
+              <Link
+                to={"/cart"}
+                className={cx(styles.iconButton, styles.borderbotNone)}
+              >
+                <FaIcons.FaShoppingCart />
+                {cartItems.length > 0 &&
+                
+                <div className={styles.cartNumTracker}>{cartItems.length}</div>
+              }
+              </Link>
+            </li>
+          </ul>
+          {/* //! Switch to this for Mobile mode */}
+
+          <ul className={cx(styles.navLinksContainer, styles.nope)}>
+            <li>
+              <Link    
+                      to={`${userInfo ? "/profile" : "/signin"}`}      
+                className={cx(styles.mobileIcon, styles.borderbotNone)}
+              >
+                <FaIcons.FaUser />
               </Link>
             </li>
             <li>
               <Link
-                className="icon-button"
-                to="/"
-                
+                to={"/cart"}
+                className={cx(styles.mobileIcon, styles.borderbotNone)}
               >
-                TWO
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="icon-button"
-                to="/"
+                <FaIcons.FaShoppingCart />
+                {cartItems.length > 0 &&
                 
-              >
-                THREE
+                <div className={styles.cartNumTracker}>{cartItems.length}</div>
+              }
               </Link>
+             
+
+          
+  
             </li>
-            <li>
-              <Link
-                className="icon-button"
-                to="/"
-                
-              >
-                FOUR
-              </Link>
+            {/* <li className={styles.hamburgerDiv} onClick={(e) => setOpen(!open)}>
+              <FaIcons.FaBars className={styles.hamburgerToggle} />
+            </li> */}
+            <li className={styles.mobileIcon}>
+              <Dropdown />
             </li>
+          </ul>
 
-                  </ul> }
-
-          </ul> 
-          */}
-
-{/* //! innerwidth vs hover end */}
-
-
-          <li className={styles.navLinkItem}>
-            { userInfo ? 
-             <Link to={'/profile'} className={cx(styles.iconButton, styles.underline)}>
-                {userInfo.name}
-             </Link> 
-                  :  
-              <Link to={'/signin'} className={cx(styles.iconButton, styles.underline)}>
-              Sign In
-              </Link>
-           }
- 
-           
-          </li>
-
-
-          <li className={styles.navLinkItem}>
-            <Link to={'/cart'} className={cx(styles.iconButton, styles.borderbotNone)}>
-            <FaIcons.FaShoppingCart/>
-            </Link>
-        </li>
-
-
-        <li className={styles.mobileNav}>
-      <Dropdown 
-                // placeholder="Select Vegetable"
-                // value={vegetagle}
-                // onChange={v => setVegetable(v)}
-                // options={["Tomato", "Cucumber", "Potato"]}
-            />
-        </li>
-        
-
-        {/* <FaIcons.FaBars style={{color:'white', width: '15px', height: '15px'}} /> */}
-
-
-      {/* <NavItemFull className="yup"  icon={'profile'} /> */}
-      {/* <NavItemFull className="yup" icon={'cart'} /> */}
-
- 
-      
-      </ul>
-
-
-
-
-
-     
-            {/* <Dropdown
-                placeholder="Select Fruit"
-                value={fruit}
-                onChange={v => setFruit(v)}
-                options={["Apple", "Banana", "Orange", "Mango"]}
-            /> */}
-            </div>
+          {/* //!switch for both end */}
         </div>
+      </div>
     </nav>
   );
 }
 
-
-//! 3.a) baby function: links to 1)(and thus inside 2))
+//! call for onHover during full screens
 function NavHoverLinks() {
-
-    return (
-      <ul className={styles.fullScreenHover}>
-        <li style={{display:'flex', alignItems:'center'}}>
-           <div className={cx(styles.iconButton, styles.underline)}> Store </div>
-            <div>
-              <MdIcon.MdKeyboardArrowDown className={styles.borderbotNone} style={{color:'#aaa', width: '15px', height: '15px', marginBottom: '-.3rem', marginLeft:'-1.4rem'}}/>
-              </div> 
-
-        </li>
-        
-        <div className={styles.onHoverMenu}>
-        <div className={styles.onHoverBlock}>
-              <span className={styles.onHoverArrow}></span>
+  return (
+    <ul className={styles.fullScreenHover}>
+      <li>
+        <div className={cx(styles.iconButton)}>
+          {" "}
+          Store
+          <div>
+            <MdIcon.MdKeyboardArrowDown className={styles.arrowDown} />
           </div>
-        <Link to={'/shop/products'} className={styles.iconButtonHov}>
-            Products
-        </Link>
-        <Link to={"/shop/accessories"} className={styles.iconButtonHov}>
-            Accessories
-        </Link>
-        <Link to={"/shop"} className={styles.iconButtonHov}>
-            sales
-        </Link>
         </div>
-        
-  
-       
-      </ul>
-    );
-  }
+      </li>
 
-export default Navbar4
+      <div className={styles.onHoverMenu}>
+        <div className={styles.onHoverBlock}>
+          <span className={styles.onHoverArrow}></span>
+
+          <Link to={"/shop/products"} className={styles.iconButtonHov}>
+            Products
+          </Link>
+          <Link to={"/shop/accessories"} className={styles.iconButtonHov}>
+            Accessories
+          </Link>
+          <Link to={"/shop"} className={styles.iconButtonHov}>
+            sales
+          </Link>
+        </div>
+      </div>
+    </ul>
+  );
+}
+
+export default Navbar4;

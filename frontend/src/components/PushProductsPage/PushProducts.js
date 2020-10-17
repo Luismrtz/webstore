@@ -75,9 +75,6 @@ const PushProducts = (props) => {
         dispatch(deleteProduct(product._id))
     }
 
-    // return loading ? <div>Loading...</div> :
-    // error || !products ? <div>{error}</div> :
-    // (
 
     const uploadFileHandler = (e) => {
         const file = e.target.files[0];
@@ -99,12 +96,11 @@ const PushProducts = (props) => {
 
 
     return (
-    <React.Fragment>
+    <div className={styles.pageWrapper}>
 
-        <div className={cx(styles.content, styles.contentMargined)}>
+        <div className={styles.content}>
             <div className={styles.productHeader}>
-                <h3>Products</h3>
-                <button onClick={() => editItem({})}>Create Product</button>
+                <h3>PRODUCTS</h3>
             </div>
            
             <div className={styles.productList}>
@@ -145,50 +141,15 @@ const PushProducts = (props) => {
                         ))}
                     </tbody>
                 </table>
+                <div className={styles.buttonContainer}>
+                    {visibility === false ? 
 
+                    <button className={styles.button} onClick={() => editItem({})}>Create Product</button>
+                    : 
+                    <button type="button" className={cx(styles.button)} onClick={(e) => setVisibility(!visibility)}>Back</button>
+                    }
+                 </div>
 
-
-                    {/* <div className={cx(styles.spacing, styles.categories)}>
-                            
-                            <div className={styles.itemRemove}></div>
-                            <div className={styles.itemThumbnail}></div>
-                            <div className={styles.itemName}>Product</div>
-                            <div className={cx(styles.itemPrice)}>Price</div>
-                            <div className={cx(styles.itemQuantity)}>Quantity</div>
-                            <div className={cx( styles.total, styles.hideShow)}>subtotal</div>
-                        
-                    </div>
-
-                    {products.map(product => 
-                        <div className={cx(styles.spacing, styles.spacingItems )} key={product.id}>
-
-                               
-                                <div className={cx(styles.itemName)}>{product.id}</div>
-                                <div className={cx(styles.itemName)}>
-                                    <Link to={"/details/" + product.id }>
-                                        {item.name}
-                                    </Link>
-                                </div>
-                                <div className={styles.itemName}>${item.price}.00</div>
-                                <div className={styles.itemName}>${item.price}.00</div>
-                                
-                
-
-                                <div className={styles.itemQuantity}>
-                                    Qty:
-                                        <select value={item.qty} onChange={(e) => dispatch(addToCart(item.id, Number(e.target.value)))}>
-                                            {[...Array(item.stock).keys()].map(x => 
-                                                <option key={x + 1} value={x + 1}>{x + 1}</option>
-                                                )}
-                                        </select>
-                                  
-                                </div>
-                                <div className={cx(styles.total, styles.hideShow)}>{(item.sale ? item.discount : item.price) * item.qty}</div>
-
-                        </div>
-                        
-                    
-                    )} */}
 
             </div>
         </div>
@@ -283,10 +244,10 @@ const PushProducts = (props) => {
                 </li>
   
                 <li>
-                    <button type="submit" className={styles.button}>{id? "Update" : "Create"}</button>
+                    <button type="submit" className={cx(styles.button, styles.buttonSize)}>{id? "Update" : "Create"}</button>
                 </li>
                 <li>
-                    <button type="button" className={styles.button} onClick={(e) => setVisibility(!visibility)}>Back</button>
+                    <button type="button" className={cx(styles.button, styles.buttonSize)} onClick={(e) => setVisibility(!visibility)}>Back</button>
                 </li>
               
             </ul>
@@ -294,14 +255,8 @@ const PushProducts = (props) => {
         </div>
 }
 
-        {/* <button style={{marginTop: '8rem', backgroundColor: 'black'}} onClick={(e) => {setVisibility(!visibility)}}>
-            CLICK THIS DAMN SHIT
-        </button> */}
-        
-
-
     <Footer/>
-    </React.Fragment>
+    </div>
       
     )
 }
