@@ -1,9 +1,6 @@
 import React, {useEffect} from 'react';
-
-
 import styles from './PlaceOrder.module.scss'
 import Footer from '../Footer/Footer';
-import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import {Link} from 'react-router-dom';
@@ -48,9 +45,6 @@ const PlaceOrder = (props) => {
         }
     }, [success]);
     
-    console.log(cart)
-    console.log(orderCreate);
-    console.log(order)
     return (
 
         <div>
@@ -97,9 +91,7 @@ const PlaceOrder = (props) => {
                     cartItems.map(item => 
                     <li  key={item.id}>
 
-                        {/* <div className={styles.itemRemove}>      <button type="button" className={styles.btn} onClick={ () => removeFromCartHandler(item.id)}>
-                                    X
-                                </button></div> */}
+       
                         <div className={styles.cartImage}>
                         <Link to={"/details/" + item.id }>
                             <img className={styles.img} src={'/' + (item ? (item.image) : 'images/antique.jpg')} alt="product"></img>

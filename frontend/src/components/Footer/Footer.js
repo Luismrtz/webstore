@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import styles from "./Footer.module.scss";
+import {useSelector } from "react-redux";
 
 function Footer() {
  
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
 
-// rgba(222,215,226,.31)
   return (
     <React.Fragment>
         <div className={styles.container}>
@@ -27,7 +29,9 @@ function Footer() {
                     <h2 className={styles.textLarge}>Profile</h2>
                     <div className={styles.textSmall}><Link to="/profile">Account</Link></div>
                     <div className={styles.textSmall}><Link to="/cart">Cart</Link></div>
+                    {userInfo && (
                     <div className={styles.textSmall}><Link to="/ordermenu">Orders</Link></div>
+                    )}
                 </div>
                 <div >
                     <h2 className={styles.textLarge}>Info</h2>
@@ -36,14 +40,14 @@ function Footer() {
                 </div>
                 <div >
                     <h2 className={styles.textLarge}>SYMBOLS</h2>
-                    <div >
+                    <div className={styles.iconsWrapper}>
                     <a target="_black" href="#"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
                        <a target="_black" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
                         <a target="_black" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>          
                     </div>
                 </div>
             </div>
-            <div className={styles.copyRight}>copy right @ Luis martinez</div>
+            <div className={styles.copyRight}>Copyright {(new Date().getFullYear())}, Luis martinez</div>
         </div>
     </React.Fragment>
     

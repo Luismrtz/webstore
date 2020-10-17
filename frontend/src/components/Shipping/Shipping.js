@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Shipping.module.scss';
-import {Link} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import cx from 'classnames';
+import { useDispatch} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { saveShipping } from '../../actions/cartActions';
 import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';

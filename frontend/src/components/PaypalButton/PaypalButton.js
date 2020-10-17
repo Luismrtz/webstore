@@ -17,7 +17,7 @@ function PaypalButton(props) {
         document.body.appendChild(script);
     }
 
-    const createOrder = (data, actions) => actions.order.create({
+    const createOrder = (actions) => actions.order.create({
         purchase_units: [
             {
                 amount: {

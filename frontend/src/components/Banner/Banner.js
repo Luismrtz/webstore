@@ -24,7 +24,7 @@ const Banner = ({banners}) => {
 
 
 
-    console.log(sliderArr)
+    // console.log(sliderArr)
 
     const [x, setX] = useState(0);
     const goLeft = () => {

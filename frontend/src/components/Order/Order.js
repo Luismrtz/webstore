@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import {Link} from 'react-router-dom';
-import { createOrder, detailsOrder, payOrder } from '../../actions/orderActions';
+import { detailsOrder, payOrder } from '../../actions/orderActions';
 import PaypalButton from '../PaypalButton/PaypalButton';
 
 const Order = (props) => {
@@ -28,13 +28,8 @@ const Order = (props) => {
 
     const orderDetails = useSelector(state => state.orderDetails);
     const { loading, order, error } = orderDetails;
-    // const payHandler = () => {}
 
-    // return loading ? <div>Loading...</div> :
-    // error || !products ? <div>{error}</div> :
-    // (
 
-    console.log(order)
         return loading ? <div>Loading...</div> :
         error ? <div>{error}</div> :
         (
@@ -88,9 +83,6 @@ const Order = (props) => {
                     order.orderItems.map(item => 
                     <li  key={item.id}>
 
-                        {/* <div className={styles.itemRemove}>      <button type="button" className={styles.btn} onClick={ () => removeFromCartHandler(item.id)}>
-                                    X
-                                </button></div> */}
                         <div className={styles.cartImage}>
                         <Link to={"/details/" + item.id }>
                             <img className={styles.img} src={'/' + (item ? (item.image) : 'images/antique.jpg')} alt="product"></img>

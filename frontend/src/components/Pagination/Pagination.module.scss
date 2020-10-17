@@ -1,26 +1,19 @@
 //WHOLE container
 .pagination {
     display: flex;
-    //margin: 0 -5px;
     padding: 0;
     list-style: none;
     text-align: center;
-    //display: inline-block;
 
 }
-// eachy individual container
+// each individual container
 .pageItem {
     cursor: pointer;
     margin: 5px;
-   // padding: 5px 20px;
-    
-  //  display: flex;
     border: solid transparent 1px;
 
     &:hover {
-       // padding: 5px 20px;
         border: solid black 1px;
-      // text-decoration: none;
       background: gray;
     }
 
@@ -34,30 +27,8 @@
     border: none;
     background-color: transparent;
     outline:none;
-
-    // background: gray;
-
-    // box-shadow: 0px 0px 0px transparent;
-
-    // border: 0px solid transparent;
-
-    // text-shadow: 0px 0px 0px transparent;
-
      text-decoration: none;
-    // color: white;
     font-size: 30px;
-    // display: flex;
 
-    // &:hover {
-
-    //     color: red;
-   
-
-    //     // box-shadow: 0px 0px 0px transparent;
-    
-    //     // border: 0px solid transparent;
-    
-    //     // text-shadow: 0px 0px 0px transparent;
-    // }
 }
 

@@ -17,14 +17,13 @@ button {
     }
 
 
-    //? main wrapper, have title above this container for BANNER LATER
 .itemsContainer {
     background-color: var(--mainWhite);
     margin: 6rem auto 0 auto;
 }
 
 .nope {
-   // background-color: var(--mainBlue);
+
    margin: 6rem auto 0 auto;
 }
 
@@ -70,7 +69,6 @@ button {
         font-size: 1.9rem;
         font-weight: 400;
         letter-spacing: .2rem;
-        //height: 2rem;
         padding: 0 .3rem;
         transition: all .3s ease;
         border-bottom: 1px solid transparent;
@@ -104,7 +102,6 @@ button {
         
         .numPerPageWrap {
             display: flex;
-              //margin-left: 5rem;
             
             .showBtn {
                 font-size: 1.3rem;
@@ -116,8 +113,7 @@ button {
                 margin:0 .3rem;
                 width: 2rem;
                 height: 2rem;
-               // text-align: center;
-                //padding: .5rem;
+    
                 border-bottom: 1px solid transparent;
         
             }

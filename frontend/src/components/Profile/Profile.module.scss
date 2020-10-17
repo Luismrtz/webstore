@@ -106,24 +106,14 @@
 
 .profileOrders {
    margin-top: 7.5rem;
-    //align-items: center;
-
     flex: 1 1 60rem;
     display: flex;
     justify-content: center;
-   // align-items: center;
-    // ul {
-    //     list-style: none;
-    
-    //   }
-      
+
       a {
         text-decoration: none;
-        //color: var(--red);
         transition: all .3s ease;
-        // &:hover {
-        //     color: var(--black);
-        // }
+
     }
 
     .table {

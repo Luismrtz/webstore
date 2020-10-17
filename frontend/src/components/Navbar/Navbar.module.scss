@@ -14,7 +14,6 @@
   align-items: center;
   justify-content: center;
    transition: all 600ms ease;
- // color: var(--mainWhite);
   color: var(--lightBlack);
   text-decoration: none;
   cursor: pointer;
@@ -22,7 +21,6 @@
 
 
   &:hover {
-    //  transition: all 600ms ease-in-out;
      border-bottom: 1.5px solid var(--lightBlack);
    }
 }
@@ -213,7 +211,7 @@
         flex-direction: column;
         align-items: center;
         min-width: 11rem;
-        min-height: 11rem;
+        height: 11rem;
 
         // background-color: red;
 
@@ -248,7 +246,7 @@
       z-index: 22;
       top: 4rem;
         width: 11rem;
-      min-height: 8rem;
+      min-height: 7rem;
       padding: .5rem;
       position: absolute;
       background: var(--lightBlack);

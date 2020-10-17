@@ -6,34 +6,19 @@ import ProductItem from '../ProductItem/ProductItem';
 import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
 import cx from 'classnames';
-import Title from '../Title/Title';
-//import {products} from '../api/data';
-//import {ProductContext} from '../context/context';
-//import Banner from '../Banner/Banner';
-//import Pickles from '../api/Pickles'
 
-//import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts, bannerProduct} from '../../actions/productActions';
+import { listProducts} from '../../actions/productActions';
 import Footer from '../Footer/Footer';
 const ProductList = () => {
 
 
-
-//const [products, setProducts] = useState(products);  NOT NEEDED HERE
-//*let value = useContext(ProductContext);  every products had value.products/currentPosts, originally. But can just destructure
-// let {products, isGlobalSpinnerOn} = useContext(ProductContext);
-
 const pList = useSelector(state => state.pList);
-//const bList = useSelector(state => state.bList);
 const { products, loading, error } = pList;
-//const { banners} = bList;
 const dispatch = useDispatch();
 
-//!scrap it : start
- //const filtery = [...products];
- const [filter, setFilter] = useState(null);
- //!scrap it : end
+ const [filter] = useState(null);
+
 
  const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage, setPostsPerPage] = useState(10);
@@ -53,8 +38,6 @@ useEffect(() => {
     }
 }, [])
 
-
-//const isGlobalSpinnerOn = useContext(LoadContext);
 
 
 const [isToggled, setToggled] = useState(true);
@@ -96,39 +79,8 @@ const fifteen = () => {
     setFifPage(true);
 }
 
-    //!scrap it : end            
-// const [storeP, setP] = useState([]);
-//     useEffect(() => {
-//         fetch("/api/products")
-//         .then(res => res.json())
-//         .then(data => setP(data))
-//     },[])
-    
-    
-//     console.log(storeP)
-    
-
-//console.log(products)
-    
-//console.log(products && products.length)
 
 
-
-
-// const toggleTrue = () => setToggled(true);
-// const toggleFalse = () => setToggled(false);
-
-   // console.log(products) NOT NEEDED
-    // console.log(value)
-    // console.log(value.products)
-//todo pagination start | INCLUDE LEFT SIDE FILTERS AND ITEM COUNT TRACKER | FIX 2 buttons
-// const [posts, setPosts] = useState([]);
-// const [loading, setLoading] = useState(false);
-
-
-//todo delete these later
- console.log(products);
-//console.log(filtery);
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -154,16 +106,6 @@ const fifteen = () => {
 
         <div className={styles.mainContainer}>
 
-{/*         
-        <button onClick={() => showAll()}>ALL</button>
-        <button onClick={() => showSale()}>SALES</button>
-        <button onClick={() => showDucks()}>ducks</button>
-        <button onClick={() => showAcc()}>last try</button>
-        <button onClick={() => trending()}>Trending</button>
-           */}
-          {/* <div className={styles.page}> */}
-          {/* <Banner banners={banners}/> */}
-          {/* <li><Link to="/">back to home</Link></li> */}
 
           <div className={styles.titleContainer}>
 
@@ -179,10 +121,7 @@ const fifteen = () => {
 
           
                 
-               <div className={(isToggled === true ? styles.itemsContainer : styles.nope)}> {/* THIS IS JUST FOR COLOR LUL  */}
-              {/* <div className={"styles." + (isToggled === true ? 'container' : 'nope')}>  */}
-              
-            
+               <div className={(isToggled === true ? styles.itemsContainer : styles.nope)}> 
               <div className={styles.flex}>
                 <div className={styles.numPerPageGrid}>
 
@@ -203,7 +142,7 @@ const fifteen = () => {
                 
                 <div className={styles.icons}>
                     <div onClick={() => setToggled(true)}><Grid alt="grid" className={styles.svg1}/></div>
-                        {/* MIT License*/}
+            
                     <div onClick={() => setToggled(false)}><List alt="list" className={styles.svg2}/></div>
                 </div>
 
@@ -212,7 +151,6 @@ const fifteen = () => {
 
                     <div className={(isToggled === true ? styles.grid : styles.gridFlip)}>
                         {newCurP && newCurP.map(product => {
-                            // if (product.type === 1) {
                             return (
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
                                  ) 
@@ -222,15 +160,12 @@ const fifteen = () => {
 
                     <nav className={styles.navPagination}>
                          <Pagination postsPerPage={postsPerPage} totalPosts={ (filter === null ? (access) : (filter)).length} paginate={paginate}/>
-                         {/* totalPosts={ (f === null ? (products && products) : (f && f)).length} */}
+
                     </nav>
                     
 
                         
               </div>
-             
-          {/* </div> */}
-          {/* <Pickles /> */}
           <Footer/>
       </div>
     )

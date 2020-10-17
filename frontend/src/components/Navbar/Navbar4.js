@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import Dropdown from "./Dropdown4";
 import * as FaIcons from "react-icons/fa";
@@ -27,8 +26,8 @@ function Navbar4() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  console.log(cartItems.length);
-  console.log(userInfo);
+  // console.log(cartItems.length);
+  // console.log(userInfo);
 
   return (
     <nav className={styles.mainNavContainer}>
@@ -146,9 +145,6 @@ function Navbar4() {
           
   
             </li>
-            {/* <li className={styles.hamburgerDiv} onClick={(e) => setOpen(!open)}>
-              <FaIcons.FaBars className={styles.hamburgerToggle} />
-            </li> */}
             <li className={styles.mobileIcon}>
               <Dropdown />
             </li>

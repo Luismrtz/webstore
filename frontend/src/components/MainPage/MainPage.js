@@ -2,18 +2,8 @@ import React, { useContext, useState, useEffect} from 'react';
 
 import styles from './MainPage.module.scss';
 import {Link} from 'react-router-dom';
-//import Pagination from '../Pagination/Pagination';
-//import ProductItem from '../ProductItem/ProductItem';
-// import {ReactComponent as Grid} from '../assets/grid.svg';
-// import {ReactComponent as List} from '../assets/list.svg';
-import Title from '../Title/Title';
-//import {products} from '../api/data';
-//import {ProductContext} from '../context/context';
 import Banner from '../Banner/Banner';
 import MainSales from '../mainPageSales/MainSales';
-//import Pickles from '../api/Pickles'
-
-//import {LoadContext} from '../context/LoadContext';
 import { useSelector, useDispatch } from 'react-redux';
 import { bannerProduct} from '../../actions/bannerActions';
 import { listProducts} from '../../actions/productActions';
@@ -23,8 +13,6 @@ import Footer from '../Footer/Footer';
 const ProductList = () => {
 
 
-
-//const [products, setProducts] = useState(products);  NOT NEEDED HERE
 //*let value = useContext(ProductContext);  every products had value.products/currentPosts, originally. But can just destructure
 // let {products, isGlobalSpinnerOn} = useContext(ProductContext);
 
@@ -46,52 +34,9 @@ useEffect(() => {
 
 //const isGlobalSpinnerOn = useContext(LoadContext);
 
-// console.log(poop)
-const [isToggled, setToggled] = useState(true);
+const [isToggled] = useState(true);
 
 
-                
-// const [storeP, setP] = useState([]);
-//     useEffect(() => {
-//         fetch("/api/products")
-//         .then(res => res.json())
-//         .then(data => setP(data))
-//     },[])
-    
-    
-//     console.log(storeP)
-    
-console.log(banners);
-console.log(products)
-//console.log(products)
-    
-//console.log(products && products.length)
-
-
-
-
-// const toggleTrue = () => setToggled(true);
-// const toggleFalse = () => setToggled(false);
-
-   // console.log(products) NOT NEEDED
-    // console.log(value)
-    // console.log(value.products)
-//todo pagination start | INCLUDE LEFT SIDE FILTERS AND ITEM COUNT TRACKER | FIX 2 buttons
-// const [posts, setPosts] = useState([]);
-// const [loading, setLoading] = useState(false);
-//const [currentPage, setCurrentPage] = useState(1);
-//const [postsPerPage] = useState(10);
-
-//todo delete these later
-// console.log(products);
-// console.log(detailProduct);
-
- //   const indexOfLastPost = currentPage * postsPerPage;
-//   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-//    const currentPosts = products && products.slice(indexOfFirstPost, indexOfLastPost); 
-//todo  change page
- //   const paginate = (pageNumber) => setCurrentPage(pageNumber)
-    
 
     return loading ? <div>Loading...</div> :
     error || !banners ? <div>{error}</div> :
@@ -106,50 +51,36 @@ console.log(products)
           <Banner banners={banners}/>
 
 
-        {/* <div className={styles.mainDispContainer}> */}
         <div className={styles.displayContainer}>
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    {/* <div className={styles.overlayContainer}> */}
                     <Link to={'/shop/accessories'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
                         <Link to={'/shop/accessories'} className={styles.mainButton}>Accessories</Link>
                     </div>
-                    {/* </div> */}
+          
             </div>
 
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    {/* <div className={styles.overlayContainer}> */}
                     <Link to={'/shop'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
                         <Link to={'/shop'} className={styles.mainButton}>New Items</Link>
                     </div>
-                    {/* </div> */}
+              
             </div>
 
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    {/* <div className={styles.overlayContainer}> */}
                     <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
                         <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>
                     </div>
-                    {/* </div> */}
+                    
             </div>
-        {/* //!ORIGINAL VERSION start*/}
-            {/* <div className={styles.imgOverlay}>
-                    <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    <div className={styles.overlayContainer}>
-                        <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
-                        <div className={styles.bwrapper}>
-                            <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>
-                        </div>
-                    </div>
-            </div> */}
-{/* //!!ORIGINAL VERSIION END */}
+
         </div>
-        {/* </div> */}
+    
             <div className={styles.lineTitle}>
                 <div className={styles.divLine}></div>
                 <div className={styles.title}>
@@ -173,9 +104,6 @@ console.log(products)
                 
               
         
-             
-          {/* </div> */}
-          {/* <Pickles /> */}
           <Footer/>
       </React.Fragment>
     )

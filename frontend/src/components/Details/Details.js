@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Details.module.scss";
-//import {productContext} from '../context/context';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import useListener from './Uselisteners';
 import cx from "classnames";
 import Footer from "../Footer/Footer";
 import Rating from "../Rating/Rating";
@@ -16,11 +14,6 @@ import { PRODUCT_REVIEW_SAVE_RESET } from "../../constants/productConstants";
 //* Sync
 //* if match,
 const Details = (props) => {
-  //todo STORE IN OWN CONTEXT? TO PASS THROUGH MORE THAN ONE FILE?
-  //todo... but It is LINKED to a context already. Via storeproduct database.
-  //todo... so SHOULD I? or maybe include it inside the context with rtrMatch
-  //let {storeproduct} = useContext(ProductContext);
-
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -31,8 +24,6 @@ const Details = (props) => {
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
 
-  // const productReviewDelete = useSelector((state) => state.productReviewDelete);
-  // const { success: productDeleteSucces } = productReviewDelete;
 
   const dispatch = useDispatch();
 
@@ -46,13 +37,12 @@ const Details = (props) => {
     }
     dispatch(detailsProduct(props.match.params.id));
     return () => {
-      //
+
     };
   }, [productSaveSuccess]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // dispatch actions to save usercomments
     dispatch(
       saveProductReview(props.match.params.id, {
         name: userInfo.name,
@@ -63,7 +53,6 @@ const Details = (props) => {
   };
 
   const handleAddToCart = () => {
-    // method to redirect to another url
     props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
   };
 
@@ -76,10 +65,6 @@ const Details = (props) => {
   ) : (
     <div className={styles.container}>
       <div className={styles.widthContainer}>
-
-
-    
-      {/* <h1>the mouse is ({coords.x}, {coords.y})</h1> */}
       <div className={styles.titleContainer}>
         <h1 className={cx(styles.title, styles.center)}>{product.title}</h1>
         <h2 className={cx(styles.subTitle, styles.center)}>
@@ -91,7 +76,6 @@ const Details = (props) => {
             SHOP
           </Link>
           &nbsp;/&nbsp;
-          {/* if (product.type === 2) { */}
           <Link
             to={product.type === 1 ? "/shop/products" : "/shop/accessories"}
             className={styles.cStyle}
@@ -110,7 +94,6 @@ const Details = (props) => {
             src={"/" + (product ? product.img : "images/antique.jpg")}
             alt="duckens"
           ></img>
-          {/* <img className={styles.image2} src={'/' + product.img} alt="duckens"></img> */}
         </div>
 
         {/* grid 2 */}
@@ -168,7 +151,7 @@ const Details = (props) => {
                   Out of Stock
                 </button>
               )}
-              {/* <div className={styles.liked}>&#10084;</div> */}
+
             </div>
             <div className={styles.statusWrap}>
               <div className={styles.stock}>

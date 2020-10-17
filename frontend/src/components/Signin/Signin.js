@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styles from './Signin.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import cx from 'classnames';
 import Footer from '../Footer/Footer';
 import { signin } from '../../actions/userActions';
 

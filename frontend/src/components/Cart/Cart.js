@@ -30,7 +30,7 @@ const Cart = (props) => {
         props.history.push("/signin?redirect=shipping");
     }
 
-    console.log(cartItems.length);
+    // console.log(cartItems.length);
 
     const itemsPrice =   cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0);
     const shippingPrice = itemsPrice > 50 ? 0 : 10;
@@ -90,13 +90,6 @@ const Cart = (props) => {
                                         </div>
                                     </div>
 
-                                    {/* {item.sale === false 
-                                                     ? 
-                                                (<h2 className={styles.cartPrice}>${item.price}.00</h2>)
-                                                     :  
-                                            <div className={styles.cartPrice}>${item.discount}.00</div>
-                            
-                                        } */}
     
 
 
@@ -106,16 +99,6 @@ const Cart = (props) => {
                         </li>
                     )}
 
-                        {/* <div className={styles.subTotalDetails}>
-                            <h3>
-                                subtotal ( {cartItems.reduce((a,c) => a + c.qty, 0)} items)
-                                :
-                                ${cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0)}
-                            </h3>
-                            <button onClick={checkoutHandler} className={styles.btnPrimary} disabled={cartItems.length ===0}>
-                                Checkout
-                            </button>
-                        </div> */}
                          </ul>
 
                         <div className={styles.subTotalDetails}>

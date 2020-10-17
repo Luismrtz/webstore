@@ -19,12 +19,9 @@
   //background-color: orangered;
  
   .widthContainer {
- // background-color: orange;
   margin: 10rem auto;
   max-width: 120rem;
-  //padding-left: 2rem;
   
-
   ul {
    list-style: none;
   }
@@ -53,13 +50,9 @@
 
 
 .grid {
-  //background-color: var(--lightGrey);
   margin: 10rem auto;
   max-width: 120rem;
   padding-left: 2rem;
-
-  //background-color: var(--mainBlue);
-
   display: grid;
   grid-template-columns:.2fr .5fr 1fr;
   grid-column-gap: 2rem;
@@ -81,8 +74,6 @@
     
     height: 40rem;
     width: 40rem;
-      //display: block;
-     // overflow: hidden;
       position: relative;
 
       .image {
@@ -136,7 +127,6 @@
          .button2, .button3 {
            color: var(--mainWhite);
            background-color:var(--mainDark);
-          //  margin-right: 1.6rem;
            font-size: 1.5rem;
            user-select: none;
            
@@ -180,23 +170,15 @@
 
 
       .button2, .button3 {
-        //     justify-content: center;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-        //    align-items: center;
-        //    text-align: center;
+
             text-decoration: none;
             z-index: 3;
-           // margin: 5px;
-            //align-self: center;
-            // grid-column: 2 / 3;
-            // grid-row: 3 / 4;
-            // grid-template-rows: 1/2;
             cursor:pointer;
             background: none;
             border: none;
-            //border: 2px solid white;
             color: var(--mainDark);
             text-transform: uppercase;
             background: var(--mainWhite);
@@ -219,8 +201,6 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  // align-content: center;
-  // align-items: center;
   justify-content: center;
   max-width: 115rem;
   margin: 7rem auto 2rem auto;
@@ -253,22 +233,15 @@
 
 
   .commentReviewContainer  {
-    // max-width: 115rem;
-    // margin: auto;
-    //margin: 4rem auto;
     display: flex;
     flex-wrap: wrap;
-    //justify-content: space-evenly;
-    //align-items: center;
-   // height: 100%;
+
 
     .subReviewContainer {
       order: 2;
       flex: 1 1 50rem;
       
     .review {
-      //padding: 0 2rem;
-  
       
       
       .reviewSingle {
@@ -276,7 +249,6 @@
       }
       li > div {
         text-align: left;
-       // color: blue;
 
         &:first-child {
           font-size: 1.4rem;
@@ -303,8 +275,6 @@
       flex: 1 1 40rem;
       order: 1;
       margin-bottom: 3rem;
-      //margin-right: 5rem;
-     // width: 20rem;
 
 
       .subContainer {

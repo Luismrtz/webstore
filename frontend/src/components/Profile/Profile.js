@@ -34,7 +34,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     if (userInfo) {
-      console.log(userInfo.name);
+      // console.log(userInfo.name);
       setEmail(userInfo.email);
       setName(userInfo.name);
       setPassword(userInfo.password);
@@ -43,7 +43,7 @@ const Profile = (props) => {
     return () => {};
   }, [userInfo]);
 
-  console.log(orders);
+  // console.log(orders);
 
   return (
     <React.Fragment>

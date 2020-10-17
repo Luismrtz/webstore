@@ -4,7 +4,6 @@
     border-radius: 5px;
     overflow: hidden;
     box-sizing: border-box;
-    // border: 1px solid #ddd;
  }
  
 
@@ -19,8 +18,6 @@
 
    height: 300px;
      display: grid;
-     //display: block;
-    // overflow: hidden;
      position: relative;
      
  }
@@ -38,8 +35,7 @@
  //? container for image overlay
  .overlayContainer {
      opacity: 0;
- 
-     //background-color: black;
+
      grid-column: 1 / -1;
      grid-row: 1 / -1;
      position: relative;
@@ -74,10 +70,7 @@
          z-index: 10;
          top: 2rem;
          right: 1.5rem;
-         //right: 50%;
         position: absolute;
-        // display: block;
-         //background: none;
      
         
      }
@@ -118,8 +111,6 @@
      padding: .6rem;
      border-radius: 50%;
      background-color: aqua;
-   // position: absolute;
-
 
  }
 
@@ -142,7 +133,6 @@
      width: 100%;
      justify-content: flex-start;
      padding-left: 2rem;
-     //flex-wrap: wrap;
      display: flex;
          .button2 {
              color: var(--mainWhite);
@@ -179,13 +169,8 @@
  
       display: flex;
      flex-direction: column;
-    // align-items: center;
      justify-content: center;
-     //align-content: center;
-     //justify-items: center;
      font-size: 1.3rem;
-     //padding: 2px;
-    //background-color: brown;
  }
  
  //? global for transition reusability
@@ -201,14 +186,6 @@
  .button1 {
    
      z-index: 3;
-     // position: relative;
-      //margin: 20px 0;
-     // left: 0;
-   //  align-self: center;
-     
-     // grid-column: 2 / 3;
-     // grid-row: 2 / 3;
-     //align-items: center;
      margin-bottom: 5px;
      border: none;
      cursor:pointer;
@@ -223,23 +200,14 @@
  
  
  .button2 {
- //     justify-content: center;
          display: flex;
          flex-direction: column;
          justify-content: center;
- //    align-items: center;
- //    text-align: center;
      text-decoration: none;
      z-index: 3;
-    // margin: 5px;
-     //align-self: center;
-     // grid-column: 2 / 3;
-     // grid-row: 3 / 4;
-     // grid-template-rows: 1/2;
      cursor:pointer;
      background: none;
      border: none;
-     //border: 2px solid white;
      color: var(--mainDark);
      text-transform: uppercase;
      background: var(--mainWhite);

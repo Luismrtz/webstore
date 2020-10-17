@@ -5,7 +5,6 @@ import {useSelector, useDispatch} from 'react-redux';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 import { listOrders, deleteOrder} from '../../actions/orderActions';
-// import AdminHideShow from './AdminHideShow';
 
 
 const OrderMenu = (props) => {
@@ -28,8 +27,6 @@ const OrderMenu = (props) => {
     }, [successDelete])
 
 
-    
-console.log(orders);
   
 
     const deleteHandler = (order) => {

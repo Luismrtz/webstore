@@ -7,7 +7,6 @@ const Pagination = ({postsPerPage, totalPosts, paginate}) => {
     for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i ++) {
         pageNumbers.push(i);
     }
-   // pageNumbers >= 1 ? console.log(pageNumbers) : console.log('poop');
 
     return (
         <nav>

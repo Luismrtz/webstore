@@ -63,9 +63,7 @@
         top: 20px;
         right: 20px;
        position: absolute;
-       // display: block;
-        //background: none;
-    
+
        
     }
 
@@ -146,7 +144,7 @@
 .overlay {
   
     z-index: 5;
-    background-color: #ffc60032;
+    background-color: var(--hoverColor);
     grid-column: 1 / -1;
     grid-row: 1 / -1;
     position: relative;
@@ -156,24 +154,18 @@
 
 //? button wrapper
 .bwrapper {
+    z-index: 9;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
-    
-        z-index: 10;
     min-width: 1.5rem;
 
      display: flex;
     flex-direction: column;
-   // align-items: center;
     justify-content: center;
-    //align-content: center;
-    //justify-items: center;
     font-size: 1.3rem;
-    //padding: 2px;
-   //background-color: brown;
+
 }
 
 //? global for transition reusability
@@ -188,15 +180,7 @@
 
 .button1 {
   
-    z-index: 3;
-    // position: relative;
-     //margin: 20px 0;
-    // left: 0;
-  //  align-self: center;
-    
-    // grid-column: 2 / 3;
-    // grid-row: 2 / 3;
-    //align-items: center;
+    z-index: 2;
     margin-bottom: 5px;
     border: none;
     cursor:pointer;
@@ -211,23 +195,15 @@
 
 
 .button2 {
-//     justify-content: center;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
-//    align-items: center;
-//    text-align: center;
     text-decoration: none;
     z-index: 3;
-   // margin: 5px;
-    //align-self: center;
-    // grid-column: 2 / 3;
-    // grid-row: 3 / 4;
-    // grid-template-rows: 1/2;
     cursor:pointer;
     background: none;
     border: none;
-    //border: 2px solid white;
     color: var(--mainDark);
     text-transform: uppercase;
     background: var(--mainWhite);
@@ -277,7 +253,7 @@
 //? list view description
 .contNope {
   
-   // justify-content: space-evenly;
+
     padding-bottom: 4rem;
     margin-left: 2rem;
 
@@ -303,10 +279,6 @@
 
         }
 
-        // .price {
-        //   font-size: 2rem;
-        //   padding-bottom: 3rem;
-        // }
     }
 
     .descript {
@@ -340,12 +312,6 @@
 @media (max-width: 600px) {
     .containerFlip {
         grid-template-columns: 1fr;
-      //  border-radius: 5px;
-      //  overflow: hidden;
-        
-        // text-align: center;
-       //  box-sizing: border-box;
-        // border: 1px solid #ddd;
     }
 }
 
