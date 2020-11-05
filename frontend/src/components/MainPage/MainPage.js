@@ -1,9 +1,11 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import styles from './MainPage.module.scss';
 import {Link} from 'react-router-dom';
 import Banner from '../Banner/Banner';
+import Loading from '../spinner/Loading'
 import MainSales from '../mainPageSales/MainSales';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { useSelector, useDispatch } from 'react-redux';
 import { bannerProduct} from '../../actions/bannerActions';
 import { listProducts} from '../../actions/productActions';
@@ -28,7 +30,7 @@ useEffect(() => {
     return () => {
        //
     }
-}, [])
+}, [dispatch])
 
 
 
@@ -38,8 +40,8 @@ const [isToggled] = useState(true);
 
 
 
-    return loading ? <div>Loading...</div> :
-    error || !banners ? <div>{error}</div> :
+    return loading ? <div><Loading/></div> :
+    error || !banners ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     (
 
       <React.Fragment>
@@ -94,11 +96,12 @@ const [isToggled] = useState(true);
             {/* //todo sales and new products          */}
           <div className={styles.grid}>
                         {products && products.map(product => {
-                            if (product.mainPage === true) {
+                            if (product.mainPage) {
                             return (
                                 <MainSales  key={product._id} product={product} isToggled={isToggled}/>
                                 ) 
                             }
+                            return false;
                         })}
           </div>
                 

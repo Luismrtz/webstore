@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./Details.module.scss";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Loading from '../spinner/Loading';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import cx from "classnames";
 import Footer from "../Footer/Footer";
 import Rating from "../Rating/Rating";
@@ -23,10 +25,8 @@ const Details = (props) => {
   const { product, loading, error } = pDetails;
   const productReviewSave = useSelector((state) => state.productReviewSave);
   const { success: productSaveSuccess } = productReviewSave;
-
-
   const dispatch = useDispatch();
-
+  const productId = props.match.params.id;
   useEffect(() => {
     if (productSaveSuccess) {
       alert("Review submitted successfully.");
@@ -35,16 +35,16 @@ const Details = (props) => {
 
       dispatch({ type: PRODUCT_REVIEW_SAVE_RESET });
     }
-    dispatch(detailsProduct(props.match.params.id));
+    dispatch(detailsProduct(productId));
     return () => {
 
     };
-  }, [productSaveSuccess]);
+  }, [dispatch, productId, productSaveSuccess]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      saveProductReview(props.match.params.id, {
+      saveProductReview(productId, {
         name: userInfo.name,
         rating: rating,
         comment: comment,
@@ -53,15 +53,16 @@ const Details = (props) => {
   };
 
   const handleAddToCart = () => {
-    props.history.push("/cart/" + props.match.params.id + "?qty=" + qty);
+    props.history.push(`/cart/${productId}?qty=${qty}`);
+   // props.history.push("/cart/" + productId + "?qty=" + qty);
   };
 
 
 
   return loading ? (
-    <div>Loading...</div>
+    <div><Loading/></div>
   ) : error || !product ? (
-    <div>{error}</div>
+    <ErrorMsg variant="danger">{error}</ErrorMsg>
   ) : (
     <div className={styles.container}>
       <div className={styles.widthContainer}>

@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import styles from './Signin.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import Footer from '../Footer/Footer';
 import { signin } from '../../actions/userActions';
+import Loading from '../spinner/Loading'
 
 
 const Signin = (props) => {
@@ -21,15 +23,15 @@ const Signin = (props) => {
         return () => {
             //
         }
-    }, [userInfo])
+    }, [props.history, redirect, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(signin(email, password));
     }
 
-    // return loading ? <div>Loading...</div> :
-    // error || !product ? <div>{error}</div> :
+    // return loading ? <div><Loading/></div> :
+    // error || !product ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     return(
     <React.Fragment>
         <div className={styles.form}>
@@ -39,8 +41,8 @@ const Signin = (props) => {
                     <h2 className={styles.title}>Sign-In</h2>
                 </li>
                 <li>
-                    {loading && <div>loading...</div>}
-                    {error && <div>{error}</div>}
+                    {loading && <div><Loading/></div>}
+                    {error && <ErrorMsg variant="danger">{error}</ErrorMsg>}
                 </li>
                 <li>
                     <label htmlFor="email">

@@ -1,14 +1,14 @@
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import Cookie from 'js-cookie';
+//import Cookie from 'js-cookie';
 import { productListReducer, productDetailsReducer, productSaveReducer, productDeleteReducer, productReviewSaveReducer } from '../reducer/productReducers';
 import {bannerListReducer} from '../reducer/bannerReducer';
 import { cartReducer } from '../reducer/cartReducer';
 import { userSigninReducer, userRegisterReducer, userUpdateReducer } from '../reducer/userReducer';
 import { orderDetailsReducer, orderCreateReducer, orderPayReducer, myOrderListReducer, orderListReducer, orderDeleteReducer } from '../reducer/orderReducer';
 
-const cartItems = Cookie.getJSON('cartItems') || [];
-const userInfo = Cookie.getJSON('userInfo') || null;
+const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+const userInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
 const initialState = { cart: { cartItems, shipping: {}, payment: {} }, userSignin: {userInfo} };
 const reducer = combineReducers({
     pList: productListReducer,

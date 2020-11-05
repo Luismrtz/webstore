@@ -18,7 +18,7 @@ router.get("/:id", async (req, res) => {
 
     }
    catch (error) {
-            res.status(404).send({msg: "Product Not Found."})
+            res.status(404).send({message: "Product Not Found."})
         }
     });
 
@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
         res.json(newProduct);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 
@@ -129,8 +129,9 @@ router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
 
 
 // delete single line in collection
-router.patch('/delete/:id', async(req,res) => {
+router.patch('/delete/:id', isAuth, isAdmin, async(req,res) => {
     try {
+       // console.log(product)
         const product = await Product.deleteOne(
             {_id: req.params.id},
            {$set: req.body}
@@ -138,7 +139,8 @@ router.patch('/delete/:id', async(req,res) => {
         res.json(product);
 
     } catch (err) {
-        res.json({ message: err})
+         res.json({ message: err})
+      //  res.status(404).send({message: 'Error in deleting product'});
     }
 
 });

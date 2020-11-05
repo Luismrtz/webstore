@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Cookie from 'js-cookie';
+//import Cookie from 'js-cookie';
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } from '../constants/cartConstants';
 
 const addToCart = (productId, qty) => async (dispatch, getState) => { // function returns another function of dispatch
@@ -16,8 +16,9 @@ const addToCart = (productId, qty) => async (dispatch, getState) => { // functio
             qty
         }});
 
-        const {cart: {cartItems}} = getState();
-        Cookie.set("cartItems", JSON.stringify(cartItems));
+        const {cart: {cartItems}} = getState(); // = getState().cart.cartItems
+       // Cookie.set("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem('cartItems', JSON.stringify(cartItems))
 
     } catch (error) {
        console.log("helloo")
@@ -27,7 +28,7 @@ const removeFromCart = (productId) => (dispatch, getState) => {
     dispatch({type: CART_REMOVE_ITEM, payload: productId});
 
     const {cart: {cartItems}} = getState();
-    Cookie.set("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
 const saveShipping = (data) => (dispatch) => {

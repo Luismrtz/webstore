@@ -2,6 +2,7 @@
 
 import express from 'express';
 import User from '../models/userModel';
+import bcrypt from 'bcryptjs';
 import {getToken, isAuth} from '../util'
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
         res.json(user);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 
@@ -63,7 +64,7 @@ router.get("/createadmin", async (req, res) => {
         res.json(newUser);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 
@@ -72,12 +73,25 @@ router.get("/createadmin", async (req, res) => {
 
 router.post('/signin', async(req, res) => {
     try {
+        const { email, password } = req.body;
+        if(!email || !password) {
+            return res.status(400).send({message: "Not all fields have been entered"})
+        }
 
         const signinUser = await User.findOne({
-            email: req.body.email,
-            password: req.body.password
+            email,
+           // password: req.body.password //comment out when bcrypt
         });
+        if (!signinUser) {
+            return res.status(400).send({message: "No account with this email has been registered."});
+        }
+        const isMatch = bcrypt.compareSync(password, signinUser.password)
+        if(!isMatch) {
+            return res.status(400).send({message: "Invalid credentials."})
+        }
+
         if(signinUser) {
+            if(isMatch) {
             res.json({
                 _id: signinUser.id,
                 name: signinUser.name,
@@ -85,27 +99,47 @@ router.post('/signin', async(req, res) => {
                 isAdmin: signinUser.isAdmin,
                 token: getToken(signinUser)
             });
+           return;
+         }
         }
 
     } catch(error) {
-        res.status(401).send({msg: 'Invalid Email or Password.'});
+        res.status(401).send({error: error.message});
     }
 });
 
 
+// const user = await User.updateOne(
+//     {_id: req.params.id},
+//   // {$set: req.body}
+//   { name: req.body.name,
+//     email: req.body.email,
+//     password: bcrypt.hashSync(req.body.password, 8),
+// }
+// )
 
 
+//* update user profile
 router.put('/:id', isAuth, async(req, res) => {
     try {
         const userId = req.params.id;
         const user = await User.findById(userId);
-
-        if (user) {
+       // console.log(req.body.newPassword)
+       const isMatch = bcrypt.compareSync(req.body.password, user.password)
+     //   if (user) {
+        if(!isMatch) {
+            return res.status(400).send({message: "Invalid credentials."})
+        }
+         if (req.body.newPassword && req.body.newPassword.length < 5) {
+             return res.status(400).send({message: "The password needs to be at least 5 characters long."})
+         }
+            if (isMatch) {
             user.name = req.body.name || user.name;
-            user.email = req.body.email || user.emali;
-            user.password = req.body.password || user.password;
+            user.email = req.body.email || user.email;
+             if(req.body.newPassword) {
+                user.password = bcrypt.hashSync(req.body.newPassword, 8);
+             }
             const updatedUser = await user.save();
-
             res.send({
                 _id: updatedUser.id,
                 name: updatedUser.name,
@@ -113,10 +147,11 @@ router.put('/:id', isAuth, async(req, res) => {
                 isAdmin: updatedUser.isAdmin,
                 token: getToken(updatedUser),
             });
-
         }
+        return;
+    //    }
     } catch(error) {
-        res.status(404).send({msg: 'User Not Found'});
+        res.status(404).send({message: 'User Not Found'});
     }
 });
 
@@ -130,12 +165,33 @@ router.put('/:id', isAuth, async(req, res) => {
 
 //? REGISTER: push to db 
 router.post('/register', async (req, res) => {
+    const {email, password, rePassword, name} = req.body;
     try {
+
+        if (!email || !password || !rePassword || !name) {
+            return res.status(400).send({message: "Not all fields have been entered."})
+        }
+        if (password.length < 5) {
+            return res.status(400).send({message: "The password needs to be at least 5 characters long."})
+        }
+        if (password !== rePassword) {
+            return res.status(400).send({message: "Password does not match."})
+        }
+
+
+
+        const existingUser = await User.findOne({email: email});
+        if(existingUser) {
+            return res.status(400).send({message: "An account with this email already exists."});
+        }
+
         const user = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        });
+            name,
+            email,
+            password: bcrypt.hashSync(req.body.password, 8),
+            });
+
+
         const newUser = await user.save();
         if (newUser) {
         res.json({
@@ -147,7 +203,7 @@ router.post('/register', async (req, res) => {
         });
         }
     }catch(error)  {
-      res.status(401).send({ message: 'Invalid User Data.' });
+      res.status(401).send({message: 'Invalid User Data.' });
     }
   });
 
@@ -158,16 +214,16 @@ router.post('/register', async (req, res) => {
 
 
 
-router.get("/:id", async (req, res) => {
-    try {
- const product = await Product.findOne({_id: req.params.id});
-        res.json(product);
+// router.get("/:id", async (req, res) => {
+//     try {
+//  const product = await User.findOne({_id: req.params.id});
+//         res.json(product);
 
-    }
-   catch (error) {
-            res.status(404).send({msg: "Product Not Found."})
-        }
-    });
+//     }
+//    catch (error) {
+//             res.status(404).send({message: "Product Not Found."})
+//         }
+//     });
 
 
 
@@ -226,7 +282,7 @@ router.delete('/:id', async (req, res) => {
 
 
 //? update revised
-router.patch('/update/:id', async(req,res) => {
+router.patch('/update/:id', isAuth, async(req,res) => {
     try {
         const user = await User.updateOne(
             {_id: req.params.id},
@@ -242,19 +298,19 @@ router.patch('/update/:id', async(req,res) => {
 
 
 ///! Just to push an admin
-//router.post(...
+//router.post(... in insomnia
 router.get("/createadmin", async(req, res) => {
     try {
         const user = new User({
-            name: 'test4',
-            email: 'four@goo.com',
-            password:'four',
+            name: 'admin',
+            email: 'admin@gmail.com',
+            password: bcrypt.hashSync('admin', 8),
             isAdmin: true
         });
         const newUser = await user.save();
         res.json(newUser);
     } catch(error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 })
 

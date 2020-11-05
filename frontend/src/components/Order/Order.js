@@ -3,6 +3,8 @@ import styles from './Order.module.scss'
 import Footer from '../Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
+import Loading from '../spinner/Loading'
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import {Link} from 'react-router-dom';
 import { detailsOrder, payOrder } from '../../actions/orderActions';
 import PaypalButton from '../PaypalButton/PaypalButton';
@@ -30,8 +32,8 @@ const Order = (props) => {
     const { loading, order, error } = orderDetails;
 
 
-        return loading ? <div>Loading...</div> :
-        error ? <div>{error}</div> :
+        return loading ? <div><Loading/></div> :
+        error ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
         (
         <div>
            

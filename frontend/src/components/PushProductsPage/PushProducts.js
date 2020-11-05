@@ -3,6 +3,8 @@ import styles from './PushProducts.module.scss';
 import {useSelector, useDispatch} from 'react-redux';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
+import Loading from '../spinner/Loading';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { saveProduct, listProducts, deleteProduct} from '../../actions/productActions';
 import Axios from 'axios';
 
@@ -26,6 +28,9 @@ const PushProducts = (props) => {
     const pList = useSelector(state => state.pList);
     const {products, loading, error} = pList;
 
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
     const productSave = useSelector(state => state.productSave);
     const {loading: loadingSave, success: successSave, error: errorSave} = productSave;
 
@@ -43,7 +48,7 @@ const PushProducts = (props) => {
             //
             
         }
-    }, [successSave, successDelete])
+    }, [dispatch,successSave, successDelete])
 
     const editItem = (product) => {
         setVisibility(true);
@@ -74,16 +79,25 @@ const PushProducts = (props) => {
     }
 
 
+
+  
+
     const uploadFileHandler = (e) => {
+        console.log(userInfo)
         const file = e.target.files[0];
         const bodyFormData = new FormData();
+        const requestPost = {
+            method: 'POST',
+            url: '/uploads',
+            data: bodyFormData,
+            headers:  (userInfo && userInfo.token) ? {
+                Authorization: 'Bearer ' + userInfo.token
+            } : {}
+        }
+
         bodyFormData.append('image', file);
         setUploading(true);
-        Axios.post('/uploads', bodyFormData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then(response => {
+        Axios(requestPost).then(response => {
             setImg(response.data);
             setUploading(false);
         }).catch(err => {
@@ -160,7 +174,7 @@ const PushProducts = (props) => {
                     <h2 className={styles.title}>Create an Item</h2>
                 </li>
                 <li>
-                    {loadingSave && <div>loading...</div>}
+                    {loadingSave && <div><Loading/></div>}
                     {errorSave && <div>{errorSave}</div>}
                 </li>
                 <li>{id}</li>
@@ -168,14 +182,14 @@ const PushProducts = (props) => {
                     <label htmlFor="title">
                         Title
                     </label>
-                    <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+                    <input type="text" name="title" id="title" value={title || ''} onChange={(e) => setTitle(e.target.value)}></input>
                 </li>
 
                 <li>
                     <label htmlFor="img">
                         Image
                     </label>
-                    <input type="text" name="image" id="img" value={img} onChange={(e) => setImg(e.target.value)}></input>
+                    <input type="text" name="image" id="img" value={img || ''} onChange={(e) => setImg(e.target.value)}></input>
                     <input type="file" onChange={uploadFileHandler}></input>
                     {uploading && <div>Uploading...</div>}
                 </li>
@@ -184,14 +198,14 @@ const PushProducts = (props) => {
                     <label htmlFor="price">
                         Price
                     </label>
-                    <input type="text" name="price" id="price" value={price} onChange={(e) => setPrice(e.target.value)}></input>
+                    <input type="text" name="price" id="price" value={price || ''} onChange={(e) => setPrice(e.target.value)}></input>
                 </li>
 
                 <li>
                     <label htmlFor="info">
                         Info
                     </label>
-                    <input type="text" name="info" id="info" value={info} onChange={(e) => setInfo(e.target.value)}></input>
+                    <input type="text" name="info" id="info" value={info || ''} onChange={(e) => setInfo(e.target.value)}></input>
                 </li>
 
  
@@ -201,7 +215,7 @@ const PushProducts = (props) => {
                     <label htmlFor="stock">
                         Stock
                     </label>
-                    <input type="text" name="stock" id="stock" value={stock} onChange={(e) => setStock(e.target.value)}></input>
+                    <input type="text" name="stock" id="stock" value={stock || ''} onChange={(e) => setStock(e.target.value)}></input>
                 </li>
 
      
@@ -210,7 +224,7 @@ const PushProducts = (props) => {
                     <label htmlFor="type">
                         Type
                     </label>
-                    <input type="text" name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}></input>
+                    <input type="text" name="type" id="type" value={type || ''} onChange={(e) => setType(e.target.value)}></input>
                 </li>
 
                 <li>
@@ -224,21 +238,21 @@ const PushProducts = (props) => {
                     <label htmlFor="discount">
                         Discount Price
                     </label>
-                    <input type="text" name="discount" id="discount" value={discount} onChange={(e) => setDiscount(e.target.value)}></input>
+                    <input type="text" name="discount" id="discount" value={discount || ''} onChange={(e) => setDiscount(e.target.value)}></input>
                 </li>
 
                 <li>
                     <label htmlFor="mainPage">
                         Display on Main Page ? (max 3) {mainPage}
                     </label>
-                    <input type="checkbox" checked={mainPage} name="mainPage" id="mainPage" value={mainPage} onChange={(e) => setMainPage(!mainPage)}></input>
+                    <input type="checkbox" checked={mainPage || ''} name="mainPage" id="mainPage" value={mainPage || ''} onChange={(e) => setMainPage(!mainPage)}></input>
                 </li>
 
                 <li>
                     <label htmlFor="newItem">
                         New Product {newItem}
                     </label>
-                    <input type="checkbox"  checked={newItem}   name="newItem" id="newItem" value={newItem} onChange={(e) => setNewItem(!newItem)}></input>
+                    <input type="checkbox"  checked={newItem || ''}   name="newItem" id="newItem" value={newItem || ''} onChange={(e) => setNewItem(!newItem)}></input>
                 </li>
   
                 <li>

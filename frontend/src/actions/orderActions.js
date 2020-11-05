@@ -61,7 +61,10 @@ const listMyOrders = () => async (dispatch, getState) => {
       });
       dispatch({ type: ORDER_LIST_SUCCESS, payload: data })
     } catch (error) {
-      dispatch({ type: ORDER_LIST_FAIL, payload: error.message });
+      dispatch({ type: ORDER_LIST_FAIL, payload: error.response && error.response.data.message ?
+        error.response.data.message
+         :
+        error.message });
     }
   }
 

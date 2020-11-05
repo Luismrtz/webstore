@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 
 import styles from './Cart.module.scss'
 import Footer from '../Footer/Footer';
@@ -17,14 +17,14 @@ const Cart = (props) => {
     const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
     // const num = Number(numItem)
     const dispatch = useDispatch();
-    const removeFromCartHandler = (productId) => {
-        dispatch(removeFromCart(productId))
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id))
     }
     useEffect(() => {
         if(productId) {
             dispatch(addToCart(productId, qty))
         }
-    }, []);
+    }, [dispatch, productId, qty]);
 
     const checkoutHandler = () => {
         props.history.push("/signin?redirect=shipping");
@@ -44,10 +44,10 @@ const Cart = (props) => {
             <h1 className={styles.title}>YOUR CART</h1>
 
             <div className={styles.heightContainer}>
-                {cartItems.lengdiv === 0 ? 
-                <div>
+                {cartItems.length === 0 ? 
+                <ErrorMsg>
                     Cart is empty
-                </div> 
+                </ErrorMsg> 
                 : 
                     <div className={styles.maxWidth}>
                  <ul className={styles.wrapper}>

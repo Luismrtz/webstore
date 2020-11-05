@@ -5,7 +5,7 @@ import './App.module.scss';
 import { Navbar4, Cart, Details, Profile, ProductList, ProductList2, ProductAll, Default, MainPage, Signin, Register, PushProducts, Shipping, PaymentPage, PlaceOrder, Order, OrderMenu} from './components/index';
 
 
-export default () => {
+export default function App() {
     return (
         <div >
             <Navbar4 />
