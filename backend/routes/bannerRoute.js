@@ -15,7 +15,7 @@ router.get("/:id", async (req, res) => {
         res.json(banner);
     }
    catch (error) {
-            res.status(404).send({msg: "banner Not Found."})
+            res.status(404).send({message: "banner Not Found."})
         }
     });
 
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
         res.json(newBanner);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 

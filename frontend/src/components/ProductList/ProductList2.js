@@ -5,6 +5,8 @@ import Pagination from '../Pagination/Pagination';
 import ProductItem from '../ProductItem/ProductItem';
 import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
+import Loading from '../spinner/Loading'
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 
@@ -87,8 +89,8 @@ const fifteen = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
 
-    return loading ? <div>Loading...</div> :
-    error || !products ? <div>{error}</div> :
+    return loading ? <div><Loading/></div> :
+    error || !products ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     (
 
         <div className={styles.mainContainer}>

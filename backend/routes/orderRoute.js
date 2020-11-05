@@ -10,18 +10,18 @@ router.get("/myorders", isAuth, async (req, res) => {
         res.json(orders);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 
 
-router.get("/", isAuth, async (req, res) => {
+router.get("/", isAuth, isAdmin, async (req, res) => {
     try {
         const orders = await Order.find({}).populate('user');
         res.json(orders);
 
     } catch (error) {
-        res.json({msg: error.message})
+        res.json({message: error.message})
     }
 });
 

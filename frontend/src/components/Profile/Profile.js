@@ -3,6 +3,8 @@ import styles from "./Profile.module.scss";
 import { Link } from "react-router-dom";
 import cx from "classnames";
 import Footer from "../Footer/Footer";
+import Loading from '../spinner/Loading'
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { logout, update } from "../../actions/userActions";
 import { listMyOrders } from "../../actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Profile = (props) => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ const Profile = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(update({ userId: userInfo._id, email, name, password }));
+    dispatch(update({ userId: userInfo._id, email, name, password, newPassword }));
   };
 
   const userUpdate = useSelector((state) => state.userUpdate);
@@ -37,11 +40,10 @@ const Profile = (props) => {
       // console.log(userInfo.name);
       setEmail(userInfo.email);
       setName(userInfo.name);
-      setPassword(userInfo.password);
     }
     dispatch(listMyOrders());
     return () => {};
-  }, [userInfo]);
+  }, [dispatch, userInfo]);
 
   // console.log(orders);
 
@@ -53,11 +55,11 @@ const Profile = (props) => {
             <form onSubmit={submitHandler}>
               <ul className={styles.formContainer}>
                 <li>
-                  <h2 className={styles.title}>User Profile</h2>
+                  <h2 className={styles.title}>Update User</h2>
                 </li>
                 <li>
-                  {loading && <div>loading...</div>}
-                  {error && <div>{error}</div>}
+                  {loading && <div><Loading/></div>}
+                  {error && <ErrorMsg variant="danger">{error}</ErrorMsg>}
                   {success && <div>Profile Saved Successfully</div>}
                 </li>
                 <li>
@@ -81,13 +83,24 @@ const Profile = (props) => {
                   ></input>
                 </li>
                 <li>
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">Verify password</label>
                   <input
-                    value={password || ""}
+                   // value={password || ""}
                     type="password"
                     id="password"
                     name="password"
                     onChange={(e) => setPassword(e.target.value)}
+                  ></input>
+                </li>
+
+                <li>
+                  <label htmlFor="password">New password</label>
+                  <input
+                 //   value={newPassword || ""}
+                    type="password"
+                    id="password"
+                    name="password"
+                    onChange={(e) => setNewPassword(e.target.value)}
                   ></input>
                 </li>
 
@@ -115,7 +128,7 @@ const Profile = (props) => {
         </div>
         <div className={styles.profileOrders}>
           {loadingOrders ? (
-            <div>Loading...</div>
+            <div><Loading/></div>
           ) : errorOrders ? (
             <div>{errorOrders}</div>
           ) : (

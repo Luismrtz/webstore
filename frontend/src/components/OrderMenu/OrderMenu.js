@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import styles from './OrderMenu.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import Loading from '../spinner/Loading';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 import { listOrders, deleteOrder} from '../../actions/orderActions';
@@ -18,22 +20,22 @@ const OrderMenu = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-  
+        
          dispatch(listOrders());
         return () => {
             //
             
         }
-    }, [successDelete])
+    }, [dispatch, successDelete])
+console.log(orders)
 
-
-  
 
     const deleteHandler = (order) => {
         dispatch(deleteOrder(order._id))
     }
 
-    return loading ? <div>Loading...</div> :
+    return loading ? <div><Loading/></div> : error ? <ErrorMsg variant="danger">{error}</ErrorMsg>
+    :
     (
 
     <div className={styles.mainContainer}>

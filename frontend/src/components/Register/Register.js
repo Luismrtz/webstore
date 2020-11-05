@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import styles from './Register.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import Footer from '../Footer/Footer';
+import Loading from '../spinner/Loading'
 import { register } from '../../actions/userActions';
 
 
@@ -23,15 +25,19 @@ const Register = (props) => {
         return () => {
             //
         }
-    }, [userInfo])
+    }, [props.history, redirect, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password));
+       // if(password !== rePassword) {
+        //    alert('Password and confirm password do not match')
+      //  } else {
+            dispatch(register(name, email, password, rePassword));
+      //  }
     }
 
-    // return loading ? <div>Loading...</div> :
-    // error || !product ? <div>{error}</div> :
+    // return loading ? <div><Loading/></div> :
+    // error || !product ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     return(
     <React.Fragment>
         <div className={styles.form}>
@@ -41,8 +47,8 @@ const Register = (props) => {
                     <h2 className={styles.title}>Create Account</h2>
                 </li>
                 <li>
-                    {loading && <div>loading...</div>}
-                    {error && <div>{error}</div>}
+                    {loading && <div><Loading/></div>}
+                    {error && <ErrorMsg variant="danger">{error}</ErrorMsg>}
                 </li>
                 <li>
                     <label htmlFor="name">

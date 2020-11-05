@@ -3,6 +3,8 @@ import styles from './Shipping.module.scss';
 import { useDispatch} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { saveShipping } from '../../actions/cartActions';
+import Loading from '../spinner/Loading'
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 
 
@@ -22,8 +24,8 @@ const Shipping = (props) => {
         props.history.push('payment')
     }
 
-    // return loading ? <div>Loading...</div> :
-    // error || !product ? <div>{error}</div> :
+    // return loading ? <div><Loading/></div> :
+    // error || !product ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     return(
     <React.Fragment>
     <div>

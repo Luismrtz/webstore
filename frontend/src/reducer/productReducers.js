@@ -13,13 +13,13 @@ import {
     PRODUCT_DELETE_FAIL, PRODUCT_REVIEW_SAVE_REQUEST, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_FAIL, PRODUCT_REVIEW_SAVE_RESET
      } from "../constants/productConstants";
 
-function productListReducer(state= {products: []}, action) {
+function productListReducer(state= { loading: true, products: []}, action) {
 
     switch (action.type) {
         case PRODUCT_LIST_REQUEST: //send request to server to get list of products
             return { loading: true, products: []}; // for loading box during this case
         case PRODUCT_LIST_SUCCESS: // received data from server
-            return { loading: false, products: action.payload}; // 
+            return { ...state, loading: false, products: action.payload}; // 
         case PRODUCT_LIST_FAIL: // in case of an error
             return { loading: false, error: action.payload}
         default: 
@@ -28,7 +28,7 @@ function productListReducer(state= {products: []}, action) {
 }
 
 
-function productDetailsReducer(state= {products: {reviews: [] }}, action) {
+function productDetailsReducer(state= {loading: true, products: {reviews: [] }}, action) {
 
     switch (action.type) {
         case PRODUCT_DETAILS_REQUEST: //send request to server to get list of products
@@ -48,7 +48,7 @@ function productDeleteReducer(state= {products: {}}, action) {
         case PRODUCT_DELETE_REQUEST: //send request to server to get list of products
             return { loading: true}; // for loading box during this case
         case PRODUCT_DELETE_SUCCESS: // received data from server
-            return { loading: false, product: action.payload, success: true}; // 
+            return {...state, loading: false, product: action.payload, success: true}; // 
         case PRODUCT_DELETE_FAIL: // in case of an error
             return { loading: false, error: action.payload}
         default: 
@@ -62,7 +62,7 @@ function productSaveReducer(state= {products: {}}, action) {
         case PRODUCT_SAVE_REQUEST: //send request to server to get list of products
             return { loading: true}; // for loading box during this case
         case PRODUCT_SAVE_SUCCESS: // received data from server
-            return { loading: false, success: true, product: action.payload}; // 
+            return {...state, loading: false, success: true, product: action.payload}; // 
         case PRODUCT_SAVE_FAIL: // in case of an error
             return { loading: false, error: action.payload}
         default: 

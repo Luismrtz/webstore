@@ -139,9 +139,12 @@ const Dropdown = () => {
       <Link to={"/profile"} onClick={(e) => setOpen(!open)}>
         <li className={styles.dropdownMenuItemSec}>Account</li>
       </Link>
+      { userInfo.isAdmin && (
       <Link to={"/ordermenu"} onClick={(e) => setOpen(!open)}>
         <li className={styles.dropdownMenuItemSec}>Orders</li>
       </Link>
+            )
+          }
       { userInfo.isAdmin && (
               <Link  to={"/pushItems"} onClick={(e) => setOpen(!open)}>
               <li className={styles.dropdownMenuItemSec}>Push Items</li>
