@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Shipping.module.scss';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { saveShipping } from '../../actions/cartActions';
 import Loading from '../spinner/Loading'
@@ -9,17 +9,32 @@ import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 
 
 const Shipping = (props) => {
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+    const cart = useSelector(state => state.cart);
+    const {shipping} = cart;
+    if(!userInfo) {
+        props.history.push('/signin');
 
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    const [postalCode, setPostalCode] = useState('');
+    }
+    if(userInfo && !cart.cartItems.length) {
+        props.history.push('/cart');
+    }
+    
+    console.log(cart.cartItems)
+    console.log(shipping);
+    console.log(userInfo)
+    const [address, setAddress] = useState(shipping.address);
+    const [city, setCity] = useState(shipping.city);
+    const [country, setCountry] = useState(shipping.country);
+    const [postalCode, setPostalCode] = useState(shipping.postalCode);
 
     const dispatch = useDispatch();
 
 
     const submitHandler = (e) => {
         e.preventDefault();
+        //todo change to ({fullName, address, city, postalCode, country})
         dispatch(saveShipping({address, city, country, postalCode}));
         props.history.push('payment')
     }
@@ -42,23 +57,23 @@ const Shipping = (props) => {
                     <label htmlFor="address">
                         Address
                     </label>
-                    <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}></input>
+                    <input value={address || ''} type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}></input>
                 </li>
                 <li>
                     <label htmlFor="city">
                         City
                     </label>
-                    <input type="text" name="city" id="city" onChange={(e) => setCity(e.target.value)}></input>
+                    <input  value={city || ''} type="text" name="city" id="city" onChange={(e) => setCity(e.target.value)}></input>
                 </li>                <li>
                     <label htmlFor="postalCode">
                         Postal Code
                     </label>
-                    <input type="text" name="postalCode" id="postalCode" onChange={(e) => setPostalCode(e.target.value)}></input>
+                    <input value={postalCode || ''} type="text" name="postalCode" id="postalCode" onChange={(e) => setPostalCode(e.target.value)}></input>
                 </li>                <li>
                     <label htmlFor="country">
                         Country
                     </label>
-                    <input type="text" name="country" id="country" onChange={(e) => setCountry(e.target.value)}></input>
+                    <input value={country || ''} type="text" name="country" id="country" onChange={(e) => setCountry(e.target.value)}></input>
                 </li>
                 <li>
                     <button type="submit" className={styles.button}>Continue</button>

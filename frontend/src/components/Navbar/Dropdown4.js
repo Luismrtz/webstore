@@ -122,7 +122,7 @@ const Dropdown = () => {
       className={styles.dropdownMenuItem}
       onClick={(e) => setOpen3(!open3)}
     >
-      Store
+      {userInfo.name}
       <span className={styles.collapsePlus}>
         <div className={styles.signSize}>
           {open3 === false ? "+" : "-"}

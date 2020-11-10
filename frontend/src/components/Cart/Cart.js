@@ -31,11 +31,13 @@ const Cart = (props) => {
     }
 
     // console.log(cartItems.length);
+    
+    const round2 = (num) => Number(num.toFixed(2)); // round to 2 decimal
 
-    const itemsPrice =   cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0);
-    const shippingPrice = itemsPrice > 50 ? 0 : 10;
-    const taxPrice = 0.15 * itemsPrice;
-    const totalPrice = itemsPrice + shippingPrice + taxPrice;
+    const itemsPrice =   round2(cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0));
+    const shippingPrice = itemsPrice > 50 ? round2(0) : round2(10);
+    const taxPrice = round2(0.15 * itemsPrice);
+    const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
 
 
@@ -94,7 +96,7 @@ const Cart = (props) => {
 
 
   
-                                <div className={cx(styles.cartPrice)}>${(item.sale ? item.discount : item.price) * item.qty}.00</div>
+                                <div className={cx(styles.cartPrice)}>${((item.sale ? item.discount : item.price) * item.qty).toFixed(2)}</div>
 
                         </li>
                     )}
@@ -108,11 +110,11 @@ const Cart = (props) => {
                                 </li>
                                 <li>
                                     <div className={styles.fontSizeSm}>Items</div>
-                                    <div className={styles.fontSizeSm}>${itemsPrice}</div>
+                                    <div className={styles.fontSizeSm}>${itemsPrice.toFixed(2)}</div>
                                 </li>
                                 <li>
                                     <div className={styles.fontSizeSm}>Shipping</div>
-                                    <div className={styles.fontSizeSm}>${`${cartItems.length === 0 ? '0' : shippingPrice}`}</div>
+                                    <div className={styles.fontSizeSm}>${`${cartItems.length === 0 ? '0' : (shippingPrice.toFixed(2))}`}</div>
                                 </li>
                                 <li>
                                     <div className={styles.fontSizeSm}>Tax</div>
@@ -120,7 +122,7 @@ const Cart = (props) => {
                                 </li>
                                 <li>
                                     <div className={styles.fontSize}>Order Total</div>
-                                    <div className={styles.fontSize}>${`${cartItems.length === 0 ? '0' : totalPrice}`}</div>
+                                    <div className={styles.fontSize}>${`${cartItems.length === 0 ? '0' : (totalPrice).toFixed(2)}`}</div>
                                 </li>
                                 
                                     <button onClick={checkoutHandler} className={cx(styles.btnPrimary, styles.maxWidth)} disabled={cartItems.length ===0}>

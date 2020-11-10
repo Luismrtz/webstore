@@ -75,7 +75,9 @@ const PushProducts = (props) => {
     }
 
     const deleteHandler = (product) => {
-        dispatch(deleteProduct(product._id))
+        if(window.confirm('Are you sure you want to delete?')) {
+            dispatch(deleteProduct(product._id))
+        }
     }
 
 
@@ -127,6 +129,7 @@ const PushProducts = (props) => {
                             <th>SalePrice</th>
                             <th>MainPage</th>
                             <th>NewItem</th>                          
+                            <th>Actions</th>                          
                         </tr>
                     </thead>
 
@@ -141,7 +144,7 @@ const PushProducts = (props) => {
                                 <td>{product.discount}</td>
                                 <td>{JSON.stringify(product.mainPage)}</td>
                                 <td>{JSON.stringify(product.newItem)}</td>
-                                <td>
+                                <td className={styles.btnwrap}>
                                     <button className={styles.button} onClick={()=> editItem(product)}>
                                         Edit
                                     </button>{' '}
@@ -153,7 +156,11 @@ const PushProducts = (props) => {
                         ))}
                     </tbody>
                 </table>
-                <div className={styles.buttonContainer}>
+  
+
+
+            </div>
+            <div className={styles.buttonContainer}>
                     {visibility === false ? 
 
                     <button className={styles.button} onClick={() => editItem({})}>Create Product</button>
@@ -161,9 +168,6 @@ const PushProducts = (props) => {
                     <button type="button" className={cx(styles.button)} onClick={(e) => setVisibility(!visibility)}>Back</button>
                     }
                  </div>
-
-
-            </div>
         </div>
 
        {visibility && 
@@ -175,7 +179,7 @@ const PushProducts = (props) => {
                 </li>
                 <li>
                     {loadingSave && <div><Loading/></div>}
-                    {errorSave && <div>{errorSave}</div>}
+                    {errorSave && <ErrorMsg variant="danger2">{errorSave}</ErrorMsg>}
                 </li>
                 <li>{id}</li>
                 <li>

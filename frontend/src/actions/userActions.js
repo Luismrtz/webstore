@@ -56,6 +56,9 @@ const register = (name, email, password, rePassword) => async (dispatch) => {
 
 const logout = () => (dispatch) => {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('shippingAddress');
+    localStorage.removeItem('paymentMethod');
     dispatch({ type: USER_LOGOUT})
 }
 

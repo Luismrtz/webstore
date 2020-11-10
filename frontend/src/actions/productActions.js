@@ -146,7 +146,10 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
             dispatch({type: PRODUCT_DELETE_SUCCESS, payload: data});
         }
     } catch(error) {
-        dispatch({type: PRODUCT_DELETE_FAIL, payload: error.message })
+        dispatch({type: PRODUCT_DELETE_FAIL, payload:          error.response && error.response.data.message ?
+            error.response.data.message
+             :
+            error.message })
 
     }
 }

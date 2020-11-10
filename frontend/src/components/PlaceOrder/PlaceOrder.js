@@ -1,28 +1,56 @@
 import React, {useEffect} from 'react';
 import styles from './PlaceOrder.module.scss'
 import Footer from '../Footer/Footer';
+import Loading from '../spinner/Loading';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import {Link} from 'react-router-dom';
 import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 import { createOrder } from '../../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../../constants/orderConstants';
 const PlaceOrder = (props) => {
+
+//! todo
+//todo CONSOLE ERROR
+//*index.js:1 Warning: Cannot update during an existing state transition
+//* (such as within `render`).
+//* Render methods should be a pure function of props and state.
 
     const cart = useSelector(state => state.cart);
     const {cartItems, shipping, payment} = cart;
+
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+
     const orderCreate = useSelector(state => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
+    console.log(payment)
+    console.log(cartItems)
+    console.log(order)
 
-    if(!shipping.address) {
+    if(!userInfo) {
+        props.history.push('/signin');
+    }
+    if(userInfo && !cart.cartItems.length) {
+        props.history.push('/cart');
+    }
+    if(userInfo && !shipping.address) {
         props.history.push('/shipping');
-    }else if(!payment.paymentMethod) {
-        props.history.push('/payment');
+    }
+    if(userInfo && !payment) {
+        props.history.push('payment');
     }
 
-    const itemsPrice =   cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0);
-    const shippingPrice = itemsPrice > 100 ? 0 : 10;
-    const taxPrice = 0.15 * itemsPrice;
-    const totalPrice = itemsPrice + shippingPrice + taxPrice;
+
+
+
+    const round2 = (num) => Number(num.toFixed(2)); // round to 2 decimal
+
+    const itemsPrice =   round2(cartItems.reduce((a,c) => a + (c.sale === true ? c.discount : c.price) * c.qty, 0));
+    const shippingPrice = itemsPrice > 50 ? round2(0) : round2(10);
+    const taxPrice = round2(0.15 * itemsPrice);
+    const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
 
     const dispatch = useDispatch();
@@ -30,20 +58,25 @@ const PlaceOrder = (props) => {
 
 
     const placeOrderHandler = () => {
-        dispatch(createOrder({
-             orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
-            taxPrice, totalPrice
+        dispatch(createOrder({...cart,
+             orderItems: cart.cartItems, shipping, payment, itemsPrice, shippingPrice,
+             taxPrice, totalPrice
         }));
     }
   
+//     dispatch(createOrder({
+//         orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
+//        taxPrice, totalPrice
+//    }));
 
   
 
     useEffect(() => {
         if(success) {
             props.history.push('/order/' + order._id);
+            dispatch({type: ORDER_CREATE_RESET})
         }
-    }, [success]);
+    }, [dispatch,props.history, order, success]);
     
     return (
 
@@ -114,7 +147,7 @@ const PlaceOrder = (props) => {
 
                         </div>
                     
-                        <div className={cx(styles.cartPrice)}>${(item.sale ? item.discount : item.price) * item.qty}.00</div>
+                        <div className={cx(styles.cartPrice)}>${((item.sale ? item.discount : item.price) * item.qty).toFixed(2)}</div>
                 
                     </li>
 
@@ -132,24 +165,30 @@ const PlaceOrder = (props) => {
                          Checkout
                     </button>
                     </li>
+                    {
+                        loading && <Loading/>
+                    } 
+                    {
+                        error && <ErrorMsg variante="danger">{error}</ErrorMsg>
+                    }
                     <li>
                         <h3 className={styles.fontSize}>Order Summary</h3>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Items</div>
-                        <div className={styles.fontSizeSm}>${itemsPrice}</div>
+                        <div className={styles.fontSizeSm}>${itemsPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Shipping</div>
-                        <div className={styles.fontSizeSm}>${shippingPrice}</div>
+                        <div className={styles.fontSizeSm}>${shippingPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Tax</div>
-                        <div className={styles.fontSizeSm}>${taxPrice}</div>
+                        <div className={styles.fontSizeSm}>${taxPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSize}>Order Total</div>
-                        <div className={styles.fontSize}>${totalPrice}</div>
+                        <div className={styles.fontSize}>${totalPrice.toFixed(2)}</div>
                     </li>
                 </ul>
             

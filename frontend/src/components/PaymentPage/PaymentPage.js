@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 import styles from './PaymentPage.module.scss';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { savePayment } from '../../actions/cartActions';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
@@ -9,6 +9,25 @@ import Loading from '../spinner/Loading'
 
 
 const PaymentPage = (props) => {
+    const cart = useSelector(state => state.cart);
+    const { shipping} = cart;
+
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+
+
+    if(!userInfo) {
+        props.history.push('/signin');
+    }
+
+    if(userInfo && !shipping.address) {
+        props.history.push('/shipping');
+    }
+
+    if(userInfo && !cart.cartItems.length) {
+        props.history.push('/cart');
+    }
+
 
     const [paymentMethod, setPaymentMethod] = useState('');
 
@@ -37,7 +56,7 @@ const PaymentPage = (props) => {
                 </li>
                 <li>
                     <div className={styles.radioFlex}>
-                        <input type="radio" name="paymentMethod" id="paymentMethod" value="paypal" onChange={(e) => setPaymentMethod(e.target.value)}></input>
+                        <input type="radio" name="paymentMethod" id="paymentMethod" value="PayPal" onChange={(e) => setPaymentMethod(e.target.value)}></input>
                         <label htmlFor="paymentMethod" >
                             Paypal
                         </label>

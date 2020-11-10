@@ -31,11 +31,14 @@ const removeFromCart = (productId) => (dispatch, getState) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 }
 
-const saveShipping = (data) => (dispatch) => {
+const saveShipping = (data) => (dispatch, getState) => {
+    
     dispatch({ type: CART_SAVE_SHIPPING, payload: data});
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
 }
 
 const savePayment = (data) => (dispatch) => {
     dispatch({ type: CART_SAVE_PAYMENT, payload: data});
+    localStorage.setItem("paymentMethod", JSON.stringify(data));
 }
 export {addToCart, removeFromCart, saveShipping, savePayment};
