@@ -9,6 +9,8 @@ import productRoute from './routes/productRoute'
 import orderRoute from './routes/orderRoute'
 import bodyParser from 'body-parser';
 import uploadRoute from './routes/uploadRoute';
+import "regenerator-runtime/runtime.js";
+
 
 const app = express();
 const path = require('path');
