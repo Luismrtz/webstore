@@ -26,8 +26,7 @@ function Navbar4() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
-  // console.log(cartItems.length);
-  // console.log(userInfo);
+
 
   return (
     <nav className={styles.mainNavContainer}>
@@ -176,11 +175,11 @@ function NavHoverLinks() {
         <div className={styles.onHoverBlock}>
           <span className={styles.onHoverArrow}></span>
 
-          <Link to={"/shop/products"} className={styles.iconButtonHov}>
-            Products
+          <Link to={"/shop/jars"} className={styles.iconButtonHov}>
+            Jars
           </Link>
-          <Link to={"/shop/accessories"} className={styles.iconButtonHov}>
-            Accessories
+          <Link to={"/shop/cups"} className={styles.iconButtonHov}>
+            Cups
           </Link>
           <Link to={"/shop"} className={styles.iconButtonHov}>
             sales

@@ -27,7 +27,6 @@ const OrderMenu = (props) => {
             
         }
     }, [dispatch, successDelete])
-console.log(orders)
 
 
     const deleteHandler = (order) => {

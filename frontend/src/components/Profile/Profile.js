@@ -40,7 +40,7 @@ const Profile = (props) => {
       props.history.push("/signin");
     }
     else {
-      // console.log(userInfo.name);
+
       setEmail(userInfo.email);
       setName(userInfo.name);
       dispatch(listMyOrders());
@@ -48,7 +48,7 @@ const Profile = (props) => {
     return () => {};
   }, [dispatch, userInfo, props.history]);
 
-  // console.log(orders);
+ 
 
   return ( 
   //   loading ? <div><Loading/></div> : error ? <ErrorMsg variant="danger">{error}</ErrorMsg>

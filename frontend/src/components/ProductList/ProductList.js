@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styles from './ProductList.module.scss';
 import Pagination from '../Pagination/Pagination';
@@ -38,7 +38,7 @@ useEffect(() => {
     return () => {
        //
     }
-}, [])
+}, [dispatch])
 
 
 
@@ -111,13 +111,13 @@ const fifteen = () => {
 
           <div className={styles.titleContainer}>
 
-            <h1 className={cx(styles.title, styles.center)}>DUCKES</h1>
+            <h1 className={cx(styles.title, styles.center)}>JARS</h1>
             <h2 className={cx(styles.subTitle, styles.center)}>
             <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
             <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
             {/* if (product.type === 2) { */}
                 <Link to="/" className={styles.cStyle}>
-                    </Link>&nbsp;DUCKES</h2>
+                    </Link>&nbsp;JARS</h2>
 
     </div>
 

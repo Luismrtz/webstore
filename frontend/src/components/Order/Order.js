@@ -73,7 +73,7 @@ const Order = (props) => {
         dispatch(deliverOrder(order._id))
     }
 
-    console.log(order && order)
+
 
         return loading ? <div><Loading/></div> :
         error ? <ErrorMsg variant="danger">{error}</ErrorMsg> :

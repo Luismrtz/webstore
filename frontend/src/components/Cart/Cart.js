@@ -30,7 +30,6 @@ const Cart = (props) => {
         props.history.push("/signin?redirect=shipping");
     }
 
-    // console.log(cartItems.length);
     
     const round2 = (num) => Number(num.toFixed(2)); // round to 2 decimal
 
@@ -47,7 +46,7 @@ const Cart = (props) => {
 
             <div className={styles.heightContainer}>
                 {cartItems.length === 0 ? 
-                <ErrorMsg>
+                <ErrorMsg variant="danger">
                     Cart is empty
                 </ErrorMsg> 
                 : 

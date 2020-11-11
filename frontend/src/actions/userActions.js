@@ -35,7 +35,6 @@ const signin = (email, password) => async (dispatch) => {
            error.response.data.message
             :
            error.message});
-        console.log(error);
     }
 }
 

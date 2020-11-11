@@ -26,7 +26,8 @@ const PushProducts = (props) => {
     const [visibility, setVisibility] = useState(false);
 
     const pList = useSelector(state => state.pList);
-    const {products, loading, error} = pList;
+    const {products} = pList;
+    //const {products, loading, error} = pList;
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -35,7 +36,8 @@ const PushProducts = (props) => {
     const {loading: loadingSave, success: successSave, error: errorSave} = productSave;
 
     const productDelete = useSelector(state => state.productDelete);
-    const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
+    const { success: successDelete, error: errorDelete} = productDelete;
+    //const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
 
     const dispatch = useDispatch();
 
@@ -85,7 +87,6 @@ const PushProducts = (props) => {
   
 
     const uploadFileHandler = (e) => {
-        console.log(userInfo)
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         const requestPost = {
@@ -103,7 +104,6 @@ const PushProducts = (props) => {
             setImg(response.data);
             setUploading(false);
         }).catch(err => {
-            console.log(err);
             setUploading(false);
         })
     }
@@ -115,6 +115,7 @@ const PushProducts = (props) => {
         <div className={styles.content}>
             <div className={styles.productHeader}>
                 <h3>PRODUCTS</h3>
+                {errorDelete && <ErrorMsg variant="danger2">{errorDelete}</ErrorMsg>}
             </div>
            
             <div className={styles.productList}>

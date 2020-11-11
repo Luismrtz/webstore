@@ -131,7 +131,6 @@ router.patch('/update/:id', isAuth, isAdmin, async(req,res) => {
 // delete single line in collection
 router.patch('/delete/:id', isAuth, isAdmin, async(req,res) => {
     try {
-       // console.log(product)
         const product = await Product.deleteOne(
             {_id: req.params.id},
            {$set: req.body}

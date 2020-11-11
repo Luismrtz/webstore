@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './Shipping.module.scss';
 import { useDispatch, useSelector} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { saveShipping } from '../../actions/cartActions';
-import Loading from '../spinner/Loading'
-import ErrorMsg from '../ErrorMsg/ErrorMsg';
+
 import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 
 
@@ -20,10 +19,7 @@ const Shipping = (props) => {
     if(userInfo && !cart.cartItems.length) {
         props.history.push('/cart');
     }
-    
-    console.log(cart.cartItems)
-    console.log(shipping);
-    console.log(userInfo)
+
     const [address, setAddress] = useState(shipping.address);
     const [city, setCity] = useState(shipping.city);
     const [country, setCountry] = useState(shipping.country);
@@ -39,8 +35,7 @@ const Shipping = (props) => {
         props.history.push('payment')
     }
 
-    // return loading ? <div><Loading/></div> :
-    // error || !product ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
+
     return(
     <React.Fragment>
     <div>

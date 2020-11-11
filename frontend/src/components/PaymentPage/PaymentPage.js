@@ -3,9 +3,8 @@ import styles from './PaymentPage.module.scss';
 import { useDispatch, useSelector} from 'react-redux';
 import Footer from '../Footer/Footer';
 import { savePayment } from '../../actions/cartActions';
-import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
-import Loading from '../spinner/Loading'
+
 
 
 const PaymentPage = (props) => {
@@ -40,8 +39,6 @@ const PaymentPage = (props) => {
         props.history.push('placeorder')
     }
 
-    // return loading ? <div><Loading/></div> :
-    // error || !product ? <ErrorMsg variant="danger">{error}</ErrorMsg> :
     return(
     <React.Fragment>
     <div>

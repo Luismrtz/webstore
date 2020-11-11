@@ -20,8 +20,8 @@ function Footer() {
 
                 <div >
                     <h2 className={styles.textLarge}>Navigation</h2>
-                    <div className={styles.textSmall}><Link to="/shop/products">Products</Link></div>
-                    <div className={styles.textSmall}><Link to="/shop/accessories">Accessories</Link></div>
+                    <div className={styles.textSmall}><Link to="/shop/jars">Jars</Link></div>
+                    <div className={styles.textSmall}><Link to="/shop/cups">Cups</Link></div>
                     <div className={styles.textSmall}><Link to="/shop">Sales</Link></div>
                 </div>
     
@@ -41,9 +41,9 @@ function Footer() {
                 <div >
                     <h2 className={styles.textLarge}>SYMBOLS</h2>
                     <div className={styles.iconsWrapper}>
-                    <a target="_black" href="#"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
-                       <a target="_black" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
-                        <a target="_black" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>          
+                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-martinez-307742bb/"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
+                       <a target="_blank" rel="noreferrer" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
+                        <a target="_blank" rel="noreferrer" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>          
                     </div>
                 </div>
             </div>

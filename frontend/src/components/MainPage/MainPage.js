@@ -55,16 +55,16 @@ const [isToggled] = useState(true);
 
         <div className={styles.displayContainer}>
             <div className={styles.imgOverlay}>
-                    <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
-                    <Link to={'/shop/accessories'}  className={styles.overlayWrapper}></Link> 
+                    <img className={styles.image} src='images/mugs/speckles.jpg' alt="duckens"/>
+                    <Link to={'/shop/cups'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
-                        <Link to={'/shop/accessories'} className={styles.mainButton}>Accessories</Link>
+                        <Link to={'/shop/cups'} className={styles.mainButton}>Cups</Link>
                     </div>
           
             </div>
 
             <div className={styles.imgOverlay}>
-                    <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
+                    <img className={styles.image} src='images/mugs/morning.jpg' alt="duckens"/>
                     <Link to={'/shop'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
                         <Link to={'/shop'} className={styles.mainButton}>New Items</Link>
@@ -73,7 +73,7 @@ const [isToggled] = useState(true);
             </div>
 
             <div className={styles.imgOverlay}>
-                    <img className={styles.image} src='images/antique.jpg' alt="duckens"/>
+                    <img className={styles.image} src='images/jars/3jars.jpg' alt="duckens"/>
                     <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
                         <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>

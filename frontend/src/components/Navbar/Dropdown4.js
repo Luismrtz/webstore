@@ -103,11 +103,11 @@ const Dropdown = () => {
                   : cx(styles.dropdownMenuInner, styles.show)
               }
             >
-              <Link to={"/shop/products"} onClick={(e) => setOpen(!open)}>
-                <li className={styles.dropdownMenuItemSec}>Products</li>
+              <Link to={"/shop/jars"} onClick={(e) => setOpen(!open)}>
+                <li className={styles.dropdownMenuItemSec}>Jars</li>
               </Link>
-              <Link to={"/shop/accessories"} onClick={(e) => setOpen(!open)}>
-                <li className={styles.dropdownMenuItemSec}>Accessories</li>
+              <Link to={"/shop/cups"} onClick={(e) => setOpen(!open)}>
+                <li className={styles.dropdownMenuItemSec}>Cups</li>
               </Link>
               <Link to={"/shop"} onClick={(e) => setOpen(!open)}>
                 <li className={styles.dropdownMenuItemSec}>Sales</li>
@@ -169,9 +169,9 @@ const Dropdown = () => {
 
           <div className={styles.dropdownItemContainer}>
                <div className={styles.itemSpacing}>
-                    <a target="_black" href="#"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
-                    <a target="_black" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
-                    <a target="_black" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>
+                    <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-martinez-307742bb/"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
+                    <a target="_blank" rel="noreferrer" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
+                    <a target="_blank" rel="noreferrer" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>
                 </div>          
            </div>
          

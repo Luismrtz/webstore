@@ -14,7 +14,7 @@ export default function App() {
             <Route exact path="/" component={MainPage}/>
                 <Route path="/signin" component={Signin} />
                 <Route path="/register" component={Register} />
-                <Route path="/shop/products" component={ProductList}/>
+                <Route path="/shop/jars" component={ProductList}/>
                 <Route path="/ordermenu" component={OrderMenu}/>
                 <Route path="/profile" component={Profile}/>
                 <Route path="/shipping" component={Shipping}/>
@@ -22,7 +22,7 @@ export default function App() {
                 <Route path="/placeorder" component={PlaceOrder}/>
                 <Route path="/order/:id" component={Order}/>
                 <AdminRoute path="/pushItems" component={PushProducts} />
-                <Route path="/shop/accessories" component={ProductList2}/>
+                <Route path="/shop/Cups" component={ProductList2}/>
                 <Route exact path="/shop" component={ProductAll}/>
                 <Route path="/details/:id" component={Details}/>
                 <Route exact path="/cart/:id?" component={Cart}/>

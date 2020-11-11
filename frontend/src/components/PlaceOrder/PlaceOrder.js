@@ -25,9 +25,7 @@ const PlaceOrder = (props) => {
 
     const orderCreate = useSelector(state => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
-    console.log(payment)
-    console.log(cartItems)
-    console.log(order)
+
 
     if(!userInfo) {
         props.history.push('/signin');
