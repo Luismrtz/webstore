@@ -71,7 +71,10 @@
 }
 }
 
-@media (max-width:1200px) {
+//! media
+
+//1200px
+@media (max-width: 75rem) {
 
     .container {
         padding-left: 2rem;
@@ -83,7 +86,9 @@
     
 }
 
-@media (max-width:990px) {
+
+//990px
+@media (max-width: 61.875) {
 
     .container {
 
