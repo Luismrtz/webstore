@@ -69,4 +69,17 @@ router.patch('/update/:id', async(req,res) => {
 
 });
 
+
+//delete
+//   router.delete("/",  async (req, res) => {
+//       try {
+//     const banner = await Banner.remove({});
+   
+      
+//       res.send(banner);
+//     } catch(error) {
+//       res.status(404).send("Product Not Found.")
+//     }
+//   });
+
 export default router;

@@ -47,6 +47,9 @@ router.get("/:id", isAuth, async(req, res) => {
 
 router.post("/", isAuth, async(req, res) => {
     try {
+        if(req.body.orderItems.length === 0) {
+            res.status(400).send({message: 'Cart is empty'});
+        }
 
         const newOrder = new Order({
             orderItems: req.body.orderItems,
@@ -59,7 +62,7 @@ router.post("/", isAuth, async(req, res) => {
             totalPrice: req.body.totalPrice
         });
         const newOrderCreated = await newOrder.save();
-        res.status(201).send({ message: "New Order Created", data: newOrderCreated });
+        res.status(201).send({ message: "New Order Created", order: newOrderCreated });
     } catch (err) {
         res.json({ message: err})
     }
@@ -100,14 +103,16 @@ router.put("/:id/pay", isAuth, async(req, res) => {
         if(order) {
             order.isPaid = true;
             order.paidAt = Date.now();
-            order.payment = {
-                paymentMethod: 'paypal',
-                paymentResult: {
-                    payerID: req.body.payerID,
-                    orderID: req.body.orderID,
-                    paymentID: req.body.paymentID
-                }
+            order.paymentResult = {
+
+                id: req.body.id,
+                status: req.body.status,
+                update_time: req.body.update_time,
+                email_address: req.body.email_address,
             }
+     
+                
+            
             const updatedOrder = await order.save();
             res.send({ message: "Order Paid.", order: updatedOrder });
         }
@@ -116,6 +121,25 @@ router.put("/:id/pay", isAuth, async(req, res) => {
     } catch (err) {
         res.status(404).send({message:'Order not found.'})
     }
-})
+});
+
+
+router.put("/:id/deliver", isAuth, async(req, res) => {
+    try {
+
+        const order = await Order.findById(req.params.id);
+        if(order) {
+            order.isDelivered = true;
+            order.deliveredAt = Date.now();
+
+            const updatedOrder = await order.save();
+            res.send({ message: "Order Delivered.", order: updatedOrder });
+        }
+
+     
+    } catch (err) {
+        res.status(404).send({message:'Order not found.'})
+    }
+});
 
 export default router;

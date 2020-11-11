@@ -27,23 +27,27 @@
 
 
     .content {
-       
+    
         //background-color: RED;
         max-width: 115rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-wrap: wrap;
-        justify-content: center;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // flex-wrap: wrap;
+        // justify-content: center;
+        // display: inline-block;
+        // vertical-align: middle;
         margin:6rem auto 10rem auto;
         padding: 0 2rem;
     
-    
         .productHeader {
+            text-align: center;
             font-size: 2.5rem;
         }
     
         .productList {
+          
+            overflow-x: auto;
             min-height: 50vh;
             //display: flex;
             margin-top: 6rem;
@@ -59,21 +63,30 @@
             }
             
         .table {
-            
+       
+           border-collapse: collapse;
+            border-spacing: 0;
             width: 100%;
             
          
             tr {
-                width: auto;
-                text-align: center;
+               // width: auto;
+                text-align: left;
                 white-space: nowrap;
         
                 font-size: 1.1rem;
     
                 th {
-                    min-width: 5rem;
+                   // min-width: 3rem;
                     font-size: 1.3rem;
                     text-align: left;
+                }
+                th, td {
+                    border: 0.1rem solid #dbdbdb;
+                    padding: 0.5rem;
+                }
+                .btnwrap {
+                    width: 1rem;
                 }
             }
             tbody > tr:nth-child(odd) {
@@ -88,71 +101,71 @@
 
 //! media queries
 
-//950px
-@media (max-width: 59.375rem) {
-    .mainContainer {
+// //950px
+// @media (max-width: 59.375rem) {
+//     .mainContainer {
 
-        .content {
-            .productList {
-                .table {
-                    display: block; // needed for overflow
+//         .content {
+//             .productList {
+//                 .table {
+//                     display: block; // needed for overflow
                     
-                    overflow-x: auto;  
-                    width: 65rem;
-                }
-            }
-        }
-    }
- }
+//                     overflow-x: auto;  
+//                     width: 65rem;
+//                 }
+//             }
+//         }
+//     }
+//  }
 
 
-//850px
-@media (max-width: 53.125rem) {
-    .mainContainer {
+// //850px
+// @media (max-width: 53.125rem) {
+//     .mainContainer {
 
-        .content {
-            .productList {
-                .table {
-                    display: block; // needed for overflow
-                    overflow-x: auto;  
-                    width: 55rem;
-                }
-            }
-        }
-    }
- }
+//         .content {
+//             .productList {
+//                 .table {
+//                     display: block; // needed for overflow
+//                     overflow-x: auto;  
+//                     width: 55rem;
+//                 }
+//             }
+//         }
+//     }
+//  }
 
 
     
-//600px
-@media (max-width: 37.5rem) {
-    .mainContainer {
+// //600px
+// @media (max-width: 37.5rem) {
+//     .mainContainer {
 
-        .content {
-            .productList {
-                .table {
-                    display: block; // needed for overflow
-                    overflow-x: auto;  
-                    width: 42rem;
-                }
-            }
-        }
-    }
-    }
+//         .content {
+//             .productList {
+//                 .table {
+//                     display: block; // needed for overflow
+//                     overflow-x: auto;  
+//                     width: 42rem;
+//                 }
+//             }
+//         }
+//     }
+//     }
 
 
-//460px
-@media (max-width: 28.75rem) {
-    .mainContainer {
+// //460px
+// @media (max-width: 28.75rem) {
+//     .mainContainer {
 
-        .content {
-            .productList {
-                .table {
-                    display: block; // needed for overflow
-                    overflow-x: auto;  
-                    width: 26rem;
-                }
-            }
-        }
-    }
-    }
+//         .content {
+//             .productList {
+//                 .table {
+//                     display: block; // needed for overflow
+//                     overflow-x: auto;  
+//                     width: 26rem;
+//                 }
+//             }
+//         }
+//     }
+//     }

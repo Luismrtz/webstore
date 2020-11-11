@@ -37,7 +37,7 @@ useEffect(() => {
     return () => {
        //
     }
-}, [])
+}, [dispatch])
 
 
 let access = products.filter(e => {
@@ -98,12 +98,12 @@ const fifteen = () => {
 
           <div className={styles.titleContainer}>
 
-                <h1 className={cx(styles.title, styles.center)}>ACCESSORIES</h1>
+                <h1 className={cx(styles.title, styles.center)}>CUPS</h1>
                 <h2 className={cx(styles.subTitle, styles.center)}>
                 <Link to="/" className={styles.cStyle}>HOME</Link>&nbsp;/&nbsp; 
                 <Link to="/shop" className={styles.cStyle}>SHOP</Link>&nbsp;/&nbsp; 
                     <Link to="/" className={styles.cStyle}>
-                        </Link>&nbsp;ACCESSORIES</h2>
+                        </Link>&nbsp;CUPS</h2>
 
             </div>
             
@@ -145,6 +145,7 @@ const fifteen = () => {
                                 <ProductItem isToggled={isToggled} key={product._id} product={product} />
                                 ) 
                             }
+                            return false;
                         })}
                     </div>
 

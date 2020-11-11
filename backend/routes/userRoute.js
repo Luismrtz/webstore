@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// //? get ALL post
+// //? get ALL post (add isauth/isadmin)
 router.get("/", async (req, res) => {
     // User.find() for promise version?
     try {

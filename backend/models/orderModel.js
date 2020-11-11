@@ -10,8 +10,13 @@ const shippingSchema = ({
 
 
 const paymentSchema = ({
-    paymentMethod: { type: String, required: true }
+    paymentMethod: { type: String, required: true },
+
 })
+
+
+
+
 
 
 const orderItemSchema = new mongoose.Schema({
@@ -34,17 +39,26 @@ const orderSchema = new mongoose.Schema({
     orderItems: [orderItemSchema],
     shipping: shippingSchema,
     payment: paymentSchema,
+
+    paymentResult: {
+        id: String,
+        status: String,
+        update_time: String,
+        email_address: String
+    },
+
+
     itemsPrice: {
-        type: Number
+        type: Number, required: true
     }, 
     taxPrice: {
-        type: Number
+        type: Number, required: true
     },
     shippingPrice: {
-        type: Number
+        type: Number, required: true
     },
     totalPrice: {
-        type: Number
+        type: Number, required: true
     },
     isPaid: {
         type: Boolean, 

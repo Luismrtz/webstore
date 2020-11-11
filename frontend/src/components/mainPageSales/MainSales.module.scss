@@ -149,7 +149,7 @@
  .overlay {
    
      z-index: 5;
-     background-color: #ffc60032;
+     background-color: var(--hoverColor);
      grid-column: 1 / -1;
      grid-row: 1 / -1;
      position: relative;

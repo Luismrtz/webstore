@@ -42,7 +42,7 @@ function productDetailsReducer(state= {loading: true, products: {reviews: [] }},
         }
 }
 
-function productDeleteReducer(state= {products: {}}, action) {
+function productDeleteReducer(state= {}, action) {
 
     switch (action.type) {
         case PRODUCT_DELETE_REQUEST: //send request to server to get list of products
@@ -56,7 +56,7 @@ function productDeleteReducer(state= {products: {}}, action) {
         }
 }
 
-function productSaveReducer(state= {products: {}}, action) {
+function productSaveReducer(state= {}, action) {
 
     switch (action.type) {
         case PRODUCT_SAVE_REQUEST: //send request to server to get list of products

@@ -36,22 +36,29 @@ const Profile = (props) => {
   const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
 
   useEffect(() => {
-    if (userInfo) {
-      // console.log(userInfo.name);
+    if (!userInfo) {
+      props.history.push("/signin");
+    }
+    else {
+
       setEmail(userInfo.email);
       setName(userInfo.name);
+      dispatch(listMyOrders());
     }
-    dispatch(listMyOrders());
     return () => {};
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, props.history]);
 
-  // console.log(orders);
+ 
 
-  return (
+  return ( 
+  //   loading ? <div><Loading/></div> : error ? <ErrorMsg variant="danger">{error}</ErrorMsg>
+  // :
+  // (
     <React.Fragment>
       <div className={styles.profile}>
         <div className={styles.profileInfo}>
           <div className={styles.form}>
+          
             <form onSubmit={submitHandler}>
               <ul className={styles.formContainer}>
                 <li>
@@ -60,7 +67,7 @@ const Profile = (props) => {
                 <li>
                   {loading && <div><Loading/></div>}
                   {error && <ErrorMsg variant="danger">{error}</ErrorMsg>}
-                  {success && <div>Profile Saved Successfully</div>}
+                  {success && <ErrorMsg variant="success">Profile Saved Successfully</ErrorMsg>}
                 </li>
                 <li>
                   <label htmlFor="name">Name</label>
@@ -98,7 +105,6 @@ const Profile = (props) => {
                   <input
                  //   value={newPassword || ""}
                     type="password"
-                    id="password"
                     name="password"
                     onChange={(e) => setNewPassword(e.target.value)}
                   ></input>
@@ -149,7 +155,7 @@ const Profile = (props) => {
                     <td>{order.createdAt}</td>
                     <td>{order.totalPrice}</td>
                     <td>{order.isPaid}</td>
-                    <td>
+                    <td className={styles.btnwrap}>
                         
                       <Link  to={"/order/" + order._id}><button className={styles.button}>DETAILS</button></Link>
                     </td>

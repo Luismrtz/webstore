@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import styles from './ProductList.module.scss';
 import Pagination from '../Pagination/Pagination';
 import ProductItem from '../ProductItem/ProductItem';
@@ -41,7 +41,7 @@ useEffect(() => {
     return () => {
        //
     }
-}, [])
+}, [dispatch])
 
 let defNew = products.filter(e => {
     return (

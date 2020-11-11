@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
+import Axios from 'axios';
+import {PayPalButton} from 'react-paypal-button-v2'
 import styles from './Order.module.scss'
 import Footer from '../Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,30 +8,71 @@ import cx from 'classnames';
 import Loading from '../spinner/Loading'
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import {Link} from 'react-router-dom';
-import { detailsOrder, payOrder } from '../../actions/orderActions';
-import PaypalButton from '../PaypalButton/PaypalButton';
+import { detailsOrder, payOrder, deliverOrder } from '../../actions/orderActions';
+import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants';
+// import PaypalButton from '../PaypalButton/PaypalButton';
 
 const Order = (props) => {
     const orderPay = useSelector(state => state.orderPay);
     const {loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+    const orderDeliver = useSelector(state => state.orderDeliver);
+    const {loading: loadingDeliver, success: successDeliver, error: errorDeliver } = orderDeliver;
+  
+    const [sdkReady, setSdkReady] = useState(false);
+    const orderId = props.match.params.id;
+    const userSignin = useSelector(state => state.userSignin);
+    const {userInfo} = userSignin;
+    
+    const orderDetails = useSelector(state => state.orderDetails);
+    const { loading, order, error } = orderDetails;
     const dispatch = useDispatch();
     useEffect(() => {
-        if (successPay) {
-            props.history.push('/profile');
-        } else {
-            dispatch(detailsOrder(props.match.params.id));
-        }
-        return () => {
-          
-        };
-    }, [successPay]);
 
-    const handleSuccessPayment = (paymentResult) => {
+        const addPaypalSdk = async() => {
+            const result = await Axios.get("/config/paypal");
+            const clientID = result.data;
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://www.paypal.com/sdk/js?client-id=' + clientID;
+            script.async = true;
+            script.onload = () => {
+                setSdkReady(true);
+            }
+            document.body.appendChild(script);
+        };
+
+        if(!order || successPay || successDeliver || (order && order._id !== orderId)) {
+           dispatch({ type: ORDER_PAY_RESET});
+           dispatch({ type: ORDER_DELIVER_RESET});
+            dispatch(detailsOrder(orderId));
+        } else {
+            if(!order.isPaid) {
+                if(!window.paypal) {
+                    addPaypalSdk();
+                } else {
+                    setSdkReady(true);
+                }
+            }
+        }
+
+        // if (successPay) {
+        //     props.history.push('/profile');
+        // } else {
+        //     dispatch(detailsOrder(orderId));
+        // }
+        // return () => {
+          
+        // };
+    }, [order, orderId, dispatch, sdkReady, successPay, successDeliver]);
+
+    const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
     }
 
-    const orderDetails = useSelector(state => state.orderDetails);
-    const { loading, order, error } = orderDetails;
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order._id))
+    }
+
 
 
         return loading ? <div><Loading/></div> :
@@ -46,11 +89,13 @@ const Order = (props) => {
                         Shipping
                     </h3>
                     <div>
-                        {order.shipping.address}, {order.shipping.city},
+                        {/* <strong>Name: </strong> {order.shipping.name} <br/>*/}
+                        <strong>Address: </strong>{order.shipping.address}, {order.shipping.city},
                         {order.shipping.postalCode}, {order.shipping.country},
                     </div>
                     <div>
-                        {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}
+                        {order.isDelivered ? <ErrorMsg variant="success">Delivered at + {order.deliveredAt}</ErrorMsg> : 
+                        <ErrorMsg variant="danger2">Not Delivered.</ErrorMsg>}
                     </div>
                 </div>
                 <div>
@@ -61,7 +106,8 @@ const Order = (props) => {
                         Payment Method: {order.payment.paymentMethod}
                     </div>
                     <div>
-                        {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."}
+                    {order.isPaid ? <ErrorMsg variant="success">Paid at + {order.paidAt}</ErrorMsg> : 
+                        <ErrorMsg variant="danger2">Not Paid.</ErrorMsg>}
                     </div>
                 </div>
 
@@ -107,7 +153,7 @@ const Order = (props) => {
 
                         </div>
                     
-                        <div className={cx(styles.cartPrice)}>${(item.sale ? item.discount : item.price) * item.qty}.00</div>
+                        <div className={cx(styles.cartPrice)}>${((item.sale ? item.discount : item.price) * item.qty).toFixed(2)}</div>
                 
                     </li>
 
@@ -120,32 +166,55 @@ const Order = (props) => {
 
             <div className={styles.placeorderAction}>
                 <ul>
-                    <li className={styles.placeorderActionPayment}>
-                        {!order.isPaid && 
-                        <PaypalButton
-                         amount={order.totalPrice} 
-                         onSuccess={handleSuccessPayment}/>
+                    
+                        {!order.isPaid && (
+                          <li className={styles.placeorderActionPayment}>
+                                {!sdkReady ? (<Loading></Loading>) : ( 
+                                    <>
+                                    {errorPay && <ErrorMsg variant="danger2">{errorPay}</ErrorMsg>}
+                                    {loadingPay && <Loading></Loading>}
+                                    <PayPalButton amount={order.totalPrice} onSuccess={successPaymentHandler}>
+                                    </PayPalButton>
+                                    </>
+                                )
+                                }
+                              
+                            </li>
+                        )
+                        // <PaypalButton
+                        //  amount={order.totalPrice} 
+                        //  onSuccess={handleSuccessPayment}/>
                          }
-                    </li>
+
+                    
                     <li>
                         <h3 className={styles.fontSize}>Order Summary</h3>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Items</div>
-                        <div className={styles.fontSizeSm}>${order.itemsPrice}</div>
+                        <div className={styles.fontSizeSm}>${order.itemsPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Shipping</div>
-                        <div className={styles.fontSizeSm}>${order.shippingPrice}</div>
+                        <div className={styles.fontSizeSm}>${order.shippingPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSizeSm}>Tax</div>
-                        <div className={styles.fontSizeSm}>${order.taxPrice}</div>
+                        <div className={styles.fontSizeSm}>${order.taxPrice.toFixed(2)}</div>
                     </li>
                     <li>
                         <div className={styles.fontSize}>Order Total</div>
-                        <div className={styles.fontSize}>${order.totalPrice}</div>
+                        <div className={styles.fontSize}>${order.totalPrice.toFixed(2)}</div>
                     </li>
+                    {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                             <li> 
+                                 {loadingDeliver && <Loading></Loading>}
+                                 {errorDeliver && <ErrorMsg variant="danger2">{errorDeliver}</ErrorMsg>}
+                                 <button type="button" className={styles.button} onClick={deliverHandler}>
+                                 Deliver Order
+                                 </button>
+                             </li>
+                         )}
                 </ul>
             
             </div>

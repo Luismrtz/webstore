@@ -23,7 +23,7 @@ const ProductItem = ({product: {_id, title, img, info, price ,sale, discount, ne
                                 <h2 className={styles.saleString}>SALE</h2>
                             </div>
                             <div className={cx(styles.circle, styles.circleString)}> 
-                                <h2 className={styles.price}>{percentage}%</h2>
+                                <h2 className={styles.price}>{percentage.toFixed(0)}%</h2>
                             </div>
                         </div>
                         ) } 

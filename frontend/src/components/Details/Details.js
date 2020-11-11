@@ -78,10 +78,10 @@ const Details = (props) => {
           </Link>
           &nbsp;/&nbsp;
           <Link
-            to={product.type === 1 ? "/shop/products" : "/shop/accessories"}
+            to={product.type === 1 ? "/shop/products" : "/shop/cups"}
             className={styles.cStyle}
           >
-            {product.type === 1 ? "DUCKS" : "ACCESSORIES"}
+            {product.type === 1 ? "DUCKS" : "cups"}
           </Link>
           &nbsp;/&nbsp;{product.title}
         </h2>

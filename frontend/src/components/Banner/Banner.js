@@ -24,7 +24,6 @@ const Banner = ({banners}) => {
 
 
 
-    // console.log(sliderArr)
 
     const [x, setX] = useState(0);
     const goLeft = () => {
@@ -32,7 +31,7 @@ const Banner = ({banners}) => {
     };
     const goRight = useCallback(() => {
         x === -100 * (sliderArr && sliderArr.length - 1) ? setX(0) : setX(x - 100);
-    },[sliderArr && sliderArr.length, x] );
+    },[sliderArr, x] );
 
 
 useEffect(() => {

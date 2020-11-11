@@ -26,7 +26,8 @@ const PushProducts = (props) => {
     const [visibility, setVisibility] = useState(false);
 
     const pList = useSelector(state => state.pList);
-    const {products, loading, error} = pList;
+    const {products} = pList;
+    //const {products, loading, error} = pList;
 
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -35,7 +36,8 @@ const PushProducts = (props) => {
     const {loading: loadingSave, success: successSave, error: errorSave} = productSave;
 
     const productDelete = useSelector(state => state.productDelete);
-    const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
+    const { success: successDelete, error: errorDelete} = productDelete;
+    //const {loading: loadingDelete, success: successDelete, error: errorDelete} = productDelete;
 
     const dispatch = useDispatch();
 
@@ -75,7 +77,9 @@ const PushProducts = (props) => {
     }
 
     const deleteHandler = (product) => {
-        dispatch(deleteProduct(product._id))
+        if(window.confirm('Are you sure you want to delete?')) {
+            dispatch(deleteProduct(product._id))
+        }
     }
 
 
@@ -83,7 +87,6 @@ const PushProducts = (props) => {
   
 
     const uploadFileHandler = (e) => {
-        console.log(userInfo)
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         const requestPost = {
@@ -101,7 +104,6 @@ const PushProducts = (props) => {
             setImg(response.data);
             setUploading(false);
         }).catch(err => {
-            console.log(err);
             setUploading(false);
         })
     }
@@ -113,6 +115,7 @@ const PushProducts = (props) => {
         <div className={styles.content}>
             <div className={styles.productHeader}>
                 <h3>PRODUCTS</h3>
+                {errorDelete && <ErrorMsg variant="danger2">{errorDelete}</ErrorMsg>}
             </div>
            
             <div className={styles.productList}>
@@ -127,6 +130,7 @@ const PushProducts = (props) => {
                             <th>SalePrice</th>
                             <th>MainPage</th>
                             <th>NewItem</th>                          
+                            <th>Actions</th>                          
                         </tr>
                     </thead>
 
@@ -141,7 +145,7 @@ const PushProducts = (props) => {
                                 <td>{product.discount}</td>
                                 <td>{JSON.stringify(product.mainPage)}</td>
                                 <td>{JSON.stringify(product.newItem)}</td>
-                                <td>
+                                <td className={styles.btnwrap}>
                                     <button className={styles.button} onClick={()=> editItem(product)}>
                                         Edit
                                     </button>{' '}
@@ -153,7 +157,11 @@ const PushProducts = (props) => {
                         ))}
                     </tbody>
                 </table>
-                <div className={styles.buttonContainer}>
+  
+
+
+            </div>
+            <div className={styles.buttonContainer}>
                     {visibility === false ? 
 
                     <button className={styles.button} onClick={() => editItem({})}>Create Product</button>
@@ -161,9 +169,6 @@ const PushProducts = (props) => {
                     <button type="button" className={cx(styles.button)} onClick={(e) => setVisibility(!visibility)}>Back</button>
                     }
                  </div>
-
-
-            </div>
         </div>
 
        {visibility && 
@@ -175,7 +180,7 @@ const PushProducts = (props) => {
                 </li>
                 <li>
                     {loadingSave && <div><Loading/></div>}
-                    {errorSave && <div>{errorSave}</div>}
+                    {errorSave && <ErrorMsg variant="danger2">{errorSave}</ErrorMsg>}
                 </li>
                 <li>{id}</li>
                 <li>

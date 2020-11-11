@@ -27,11 +27,12 @@ const OrderMenu = (props) => {
             
         }
     }, [dispatch, successDelete])
-console.log(orders)
 
 
     const deleteHandler = (order) => {
+        if(window.confirm('Are you sure you want to delete?')) {
         dispatch(deleteOrder(order._id))
+        }
     }
 
     return loading ? <div><Loading/></div> : error ? <ErrorMsg variant="danger">{error}</ErrorMsg>
@@ -43,6 +44,8 @@ console.log(orders)
         <div className={styles.content}>
             <div className={styles.productHeader}>
                 <h3>ORDERS</h3>
+                {loadingDelete && <Loading/>}
+                {errorDelete && <ErrorMsg variant="danger">{errorDelete}</ErrorMsg>}
             </div>
            
             <div className={styles.productList}>
@@ -55,7 +58,7 @@ console.log(orders)
                             <th>USER</th>
                             <th>IS PAID</th>
                             <th>PAID AT</th>
-                            <th>DELIVERED</th>
+                            <th>IS DELIVERED</th>
                             <th>ACTIONS</th>                        
                         </tr>
                     </thead>
@@ -70,8 +73,8 @@ console.log(orders)
                                 <td>{order.isPaid.toString()}</td>
                                 <td>{order.paidAt}</td>
                                 <td>{order.isDelivered.toString()}</td>
-                                <td>{order.deliveredAt}</td>
-                                <td>
+                                {/* <td>{order.deliveredAt}</td> */}
+                                <td className={styles.btnwrap}>
                                     <Link to={"/order/" + order._id} ><button className={cx(styles.button)}>Details</button></Link>
                                         {' '}
                                     <button type="button" className={cx(styles.button, styles.secondary)} onClick={() => deleteHandler(order)}>

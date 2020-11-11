@@ -14,8 +14,7 @@ import {
     PRODUCT_DELETE_FAIL,
     PRODUCT_REVIEW_SAVE_REQUEST,
     PRODUCT_REVIEW_SAVE_SUCCESS,
-    PRODUCT_REVIEW_SAVE_FAIL,
-    PRODUCT_REVIEW_SAVE_RESET
+    PRODUCT_REVIEW_SAVE_FAIL
 } from "../constants/productConstants";
 
 
@@ -139,14 +138,16 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
 
     try {
         dispatch({type: PRODUCT_DELETE_REQUEST, payload: productId});
-        console.log(userInfo)
         const { data } = await Axios(requestReg);
         if (data) {
 
             dispatch({type: PRODUCT_DELETE_SUCCESS, payload: data});
         }
     } catch(error) {
-        dispatch({type: PRODUCT_DELETE_FAIL, payload: error.message })
+        dispatch({type: PRODUCT_DELETE_FAIL, payload:          error.response && error.response.data.message ?
+            error.response.data.message
+             :
+            error.message })
 
     }
 }
