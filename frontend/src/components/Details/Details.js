@@ -58,7 +58,6 @@ const Details = (props) => {
   };
 
 
-
   return loading ? (
     <div><Loading/></div>
   ) : error || !product ? (
@@ -115,7 +114,14 @@ const Details = (props) => {
                 text={product.numReviews + " reviews"}
               />
             </Link>
-            <h2 className={styles.price}>${product.price}.00</h2>
+            {product.sale === false ? (
+               <h2 className={styles.price}>${(product.price).toFixed(2)}</h2>
+            ) :
+            (<div className={styles.discountWrapper}> 
+              <h2 className={styles.price}>${(product.discount).toFixed(2)}</h2>
+              <h2 className={styles.sale} >${product.price.toFixed(2)}</h2>
+            </div>
+            )}
             <h3 className={styles.descript}>{product.info}</h3>
           </div>
 

@@ -74,9 +74,9 @@ const [isToggled] = useState(true);
 
             <div className={styles.imgOverlay}>
                     <img className={styles.image} src='images/jars/3jars.jpg' alt="duckens"/>
-                    <Link to={'/shop/products'}  className={styles.overlayWrapper}></Link> 
+                    <Link to={'/shop/jars'}  className={styles.overlayWrapper}></Link> 
                     <div className={styles.bwrapper}>
-                        <Link to={'/shop/products'} className={styles.mainButton}>Products</Link>
+                        <Link to={'/shop/jars'} className={styles.mainButton}>Jars</Link>
                     </div>
                     
             </div>

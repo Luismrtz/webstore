@@ -102,6 +102,22 @@
             font-size: 3rem;
             padding-bottom: 3rem;
         }
+        .discountWrapper {
+          display: flex;
+          align-content: center;
+          
+          .sale{
+            text-decoration: line-through;
+              font-size: 1rem;
+              padding-left: .5rem;
+              padding-top: .1rem;
+ 
+          }
+ 
+          .price {
+            font-size: 2rem;
+          }
+      }
         .descript {
           margin-top: 1rem;
             font-size: 1.3rem;
