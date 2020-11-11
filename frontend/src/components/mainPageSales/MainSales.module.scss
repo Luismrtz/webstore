@@ -242,6 +242,7 @@
          align-content: center;
          
          .sale{
+             text-decoration: line-through;
              font-size: 1rem;
              padding-left: .5rem;
              padding-top: .7rem;
@@ -268,13 +269,10 @@
      display: none;
  }
  
- 
- //? media queries: come back to fix these later
- @media (max-width: 1000px) {
 
- }
- 
- @media (max-width: 768px) {
+
+ //768 px
+ @media (max-width: 48rem) {
     .imgOverlay {
 
         height: 400px;

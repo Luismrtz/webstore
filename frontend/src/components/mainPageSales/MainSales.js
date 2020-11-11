@@ -54,10 +54,10 @@ const MainSales = ({product: {_id, title, img, info, price, type, inCart, sale, 
             <div className={styles.contents}>
                 <div className={ styles.contDesc}>
                     <h1 className={styles.title}>{title}</h1>
-                {sale === false ? (<h2 className={styles.price}>${price}.00</h2>) : 
+                {sale === false ? (<h2 className={styles.price}>${price.toFixed(2)}</h2>) : 
                         (<div className={styles.discountWrapper}> 
-                            <h2 className={styles.price}>${discount}.00</h2>
-                            <h2 className={styles.sale} style={{textDecoration: 'line-through'}}>${price}.00</h2>
+                            <h2 className={styles.price}>${discount.toFixed(2)}</h2>
+                            <h2 className={styles.sale}>${price.toFixed(2)}</h2>
                         </div>) }
                     <h3 className={ styles.nope}>{info}</h3>
                   

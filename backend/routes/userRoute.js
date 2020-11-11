@@ -3,7 +3,7 @@
 import express from 'express';
 import User from '../models/userModel';
 import bcrypt from 'bcryptjs';
-import {getToken, isAuth} from '../util'
+import {getToken, isAuth, isAdmin} from '../util'
 const router = express.Router();
 
 
@@ -20,8 +20,8 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// //? get ALL post (add isauth/isadmin)
-router.get("/", async (req, res) => {
+// //? get ALL post 
+router.get("/", isAuth, isAdmin, async (req, res) => {
     // User.find() for promise version?
     try {
         const user = await User.find({});

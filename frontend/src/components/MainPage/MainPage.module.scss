@@ -147,8 +147,8 @@
 
 //? media queries
 
-
-@media (max-width: 1200px) {
+//1200rem
+@media (max-width: 75rem) {
     .displayContainer {
         margin: 0 2rem;
      
@@ -166,7 +166,8 @@
 
 }
 
-@media (max-width: 990px) {
+//990px
+@media (max-width: 61.875rem) {
 
     .grid {
     
@@ -183,7 +184,8 @@
 
 }
 
-@media (max-width:768px) {
+//768
+@media (max-width: 48rem) {
     .displayContainer {
          grid-template-columns: repeat(1, 1fr);
          margin: 0 2rem;

@@ -300,8 +300,10 @@
 }
 
 
-//? media queries: come back to fix these later
-@media (max-width: 1000px) {
+
+//! media queries
+//1000px
+@media (max-width: 62.5rem) {
     .containerFlip {
 
         grid-template-columns: .75fr 1fr;
@@ -309,7 +311,8 @@
     }
 }
 
-@media (max-width: 600px) {
+//600px
+@media (max-width: 37.5rem) {
     .containerFlip {
         grid-template-columns: 1fr;
     }
@@ -317,13 +320,3 @@
 
 
 
-//! DELETE : JUST A TEST
-.show {
-    display: block;
-}
-
-
-//? manually display none
-.none {
-    display: none;
-}

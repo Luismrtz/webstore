@@ -24,8 +24,7 @@ router.get("/:id", async (req, res) => {
 
 
 
-// //? try catch approach  add isauth, isadmin
-router.get("/", async (req, res) => {
+router.get("/",  async (req, res) => {
     // User.find() for promise version?
     try {
         const newProduct = await Product.find({});
