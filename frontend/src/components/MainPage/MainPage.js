@@ -2,14 +2,14 @@ import React, {useState, useEffect} from 'react';
 
 import styles from './MainPage.module.scss';
 import {Link} from 'react-router-dom';
-import Banner from '../banner/Banner';
+import Banner from '../Banner/Banner';
 import Loading from '../spinner/Loading'
 import MainSales from '../mainPageSales/MainSales';
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { useSelector, useDispatch } from 'react-redux';
 import { bannerProduct} from '../../actions/bannerActions';
 import { listProducts} from '../../actions/productActions';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 
 
 const ProductList = () => {

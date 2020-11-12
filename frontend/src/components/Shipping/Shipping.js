@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import styles from './Shipping.module.scss';
 import { useDispatch, useSelector} from 'react-redux';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { saveShipping } from '../../actions/cartActions';
 
-import CheckoutSteps from '../checkoutSteps/CheckoutSteps';
+import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 
 
 const Shipping = (props) => {

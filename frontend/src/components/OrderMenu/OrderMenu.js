@@ -3,9 +3,9 @@ import styles from './OrderMenu.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import Loading from '../spinner/Loading';
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import cx from 'classnames';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { listOrders, deleteOrder} from '../../actions/orderActions';
 
 
