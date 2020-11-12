@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
 import {PayPalButton} from 'react-paypal-button-v2'
 import styles from './Order.module.scss'
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import Loading from '../spinner/Loading'

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import ErrorMsg from '../errorMsg/ErrorMsg';
 
 import styles from './Cart.module.scss'
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';

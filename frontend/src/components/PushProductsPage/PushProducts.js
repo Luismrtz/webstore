@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './PushProducts.module.scss';
 import {useSelector, useDispatch} from 'react-redux';
 import cx from 'classnames';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import Loading from '../spinner/Loading';
 import ErrorMsg from '../errorMsg/ErrorMsg';
 import { saveProduct, listProducts, deleteProduct} from '../../actions/productActions';

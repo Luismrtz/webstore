@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Loading from '../spinner/Loading';
 import ErrorMsg from '../errorMsg/ErrorMsg';
 import cx from "classnames";
-import Footer from "../footer/Footer";
-import Rating from "../rating/Rating";
+import Footer from "../Footer/Footer";
+import Rating from "../Rating/Rating";
 import {
   detailsProduct,
   saveProductReview,

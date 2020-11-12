@@ -1,9 +1,9 @@
 import React, { useState} from 'react';
 import styles from './PaymentPage.module.scss';
 import { useDispatch, useSelector} from 'react-redux';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { savePayment } from '../../actions/cartActions';
-import CheckoutSteps from '../checkoutSteps/CheckoutSteps';
+import CheckoutSteps from '../CheckoutSteps/CheckoutSteps';
 
 
 

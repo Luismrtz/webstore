@@ -3,7 +3,7 @@ import styles from './Signin.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import ErrorMsg from '../errorMsg/ErrorMsg';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { signin } from '../../actions/userActions';
 import Loading from '../spinner/Loading'
 

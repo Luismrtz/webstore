@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import styles from './ProductList.module.scss';
-import Pagination from '../pagination/Pagination';
-import ProductItem from '../productItem/ProductItem';
+import Pagination from '../Pagination/Pagination';
+import ProductItem from '../ProductItem/ProductItem';
 import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
 import Loading from '../spinner/Loading'
@@ -11,7 +11,7 @@ import cx from 'classnames';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts} from '../../actions/productActions';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 const ProductList = () => {
 
 

@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Loading from '../spinner/Loading';
 import ErrorMsg from '../errorMsg/ErrorMsg';
 import cx from 'classnames';
-import Footer from '../footer/Footer';
+import Footer from '../Footer/Footer';
 import { listOrders, deleteOrder} from '../../actions/orderActions';
 
 
