@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styles from "./Profile.module.scss";
 import { Link } from "react-router-dom";
 import cx from "classnames";
-import Footer from "../Footer/Footer";
+import Footer from "../footer/Footer";
 import Loading from '../spinner/Loading'
-import ErrorMsg from '../ErrorMsg/ErrorMsg';
+import ErrorMsg from '../errorMsg/ErrorMsg';
 import { logout, update } from "../../actions/userActions";
 import { listMyOrders } from "../../actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";
