@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styles from './PlaceOrder.module.scss'
 import Footer from '../Footer/Footer';
 import Loading from '../spinner/Loading';
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import {Link} from 'react-router-dom';

@@ -6,7 +6,7 @@ import ProductItem from '../ProductItem/ProductItem';
 import {ReactComponent as Grid} from '../assets/grid.svg';
 import {ReactComponent as List} from '../assets/list.svg';
 import Loading from '../spinner/Loading'
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import cx from 'classnames';
 import Footer from '../Footer/Footer';
 

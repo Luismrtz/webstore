@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import cx from "classnames";
 import Footer from "../Footer/Footer";
 import Loading from '../spinner/Loading'
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { logout, update } from "../../actions/userActions";
 import { listMyOrders } from "../../actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";

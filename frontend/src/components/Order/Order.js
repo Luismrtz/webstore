@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import cx from 'classnames';
 import Loading from '../spinner/Loading'
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import {Link} from 'react-router-dom';
 import { detailsOrder, payOrder, deliverOrder } from '../../actions/orderActions';
 import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../../constants/orderConstants';

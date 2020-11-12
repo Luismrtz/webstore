@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg.js';
 
 import styles from './Cart.module.scss'
 import Footer from '../Footer/Footer';

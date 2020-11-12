@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './Register.module.scss';
 import {Link} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import ErrorMsg from '../errorMsg/ErrorMsg';
+import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import Footer from '../Footer/Footer';
 import Loading from '../spinner/Loading'
 import { register } from '../../actions/userActions';
