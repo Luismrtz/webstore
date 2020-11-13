@@ -57,7 +57,7 @@ const Signin = (props) => {
                     <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
                 </li>
                 <li>
-                    <button type="submit" className={styles.button}>Signin</button>
+                    <button type="submit" className={styles.button}>Sign-in</button>
                 </li>
                 <li className={styles.text}>
                     New to Symbols?

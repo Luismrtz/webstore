@@ -22,7 +22,7 @@ const dispatch = useDispatch();
 const [filter, setFilter] = useState(null);
 const [isToggled, setToggled] = useState(true);
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostsPerPage] = useState(4);
+const [postsPerPage, setPostsPerPage] = useState(10);
 //temp borderLine fix
 const [borderNew, setBorderNew] = useState(true);
 const [borderSpecial, setBorderSpecial] = useState(false);

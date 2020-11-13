@@ -47,7 +47,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <div className={styles.copyRight}>Copyright {(new Date().getFullYear())}, Luis martinez</div>
+            <div className={styles.copyRight}>Copyright {(new Date().getFullYear())}, Luis Martinez</div>
         </div>
     </React.Fragment>
     
