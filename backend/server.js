@@ -9,7 +9,7 @@ import productRoute from './routes/productRoute'
 import orderRoute from './routes/orderRoute'
 import bodyParser from 'body-parser';
 import uploadRoute from './routes/uploadRoute';
-
+import "regenerator-runtime/runtime.js";
 
 const app = express();
 const path = require('path');
@@ -51,9 +51,9 @@ app.get('/config/paypal', (req, res) => {
 });
 
 app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
-app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.use(express.static(path.join(__dirname, '/../frontend/build')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/frontend/build/index.html'));
+    res.sendFile(path.join(__dirname, '/../frontend/build/index.html'));
 });
 
 
