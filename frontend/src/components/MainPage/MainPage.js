@@ -12,7 +12,7 @@ import { listProducts} from '../../actions/productActions';
 import Footer from '../Footer/Footer';
 
 
-const ProductList = () => {
+const MainPage = () => {
 
 
 //*let value = useContext(ProductContext);  every products had value.products/currentPosts, originally. But can just destructure
@@ -112,4 +112,4 @@ const [isToggled] = useState(true);
     )
 }
 
-export default ProductList;
+export default MainPage;

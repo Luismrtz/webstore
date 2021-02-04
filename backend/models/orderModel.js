@@ -31,7 +31,7 @@ const orderItemSchema = new mongoose.Schema({
         ref: 'Product',
         required: true
     }
-})
+});
 
 
 const orderSchema = new mongoose.Schema({
