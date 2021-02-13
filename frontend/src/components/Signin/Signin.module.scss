@@ -1,9 +1,9 @@
 .form {
-    margin:4rem auto;
+    margin:4rem auto 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    min-height: 60vh;
 
     .formContainer {
         display: flex;
@@ -58,5 +58,67 @@
     }
   
 
+
+}
+
+
+.testUserWrapper {
+    display: flex;
+    flex-direction: column;
+       align-items: center;
+       padding: 0 1rem;
+.testUser {
+   max-width: 30rem;
+
+    margin-bottom: 8rem;
+    font-size: 1.7rem;
+    color: var(--mainDark);
+      
+  h4 {
+    margin: 1.5rem 0;
+  }
+  
+   ul > li {
+    list-style: inside;
+    font-weight: bold;
+    padding-top: 1.5rem;
+    // text-align: start;
+    // color: var(--font-color);
+  }
+  ul{
+    margin-bottom: 2rem;
+}
+ 
+  
+ ul > li:nth-child(1) {
+    padding-top: 1rem;
+  
+  }
+
+    .nowrap {
+        // color: red;
+       display: inline-block;
+       font-weight: 400;
+     }
+}
+}
+
+  
+
+
+
+
+@media (max-width: 24.75rem) {
+ 
+           .form {
+
+               .formContainer {
+                  
+                   width: 22rem;
+              
+               }
+           }
+        
+    
 
 }

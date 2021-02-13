@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import styles from "./Footer.module.scss";
 import {useSelector } from "react-redux";
 
@@ -43,7 +42,7 @@ function Footer() {
                     <div className={styles.iconsWrapper}>
                     <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-martinez-307742bb/"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
                        <a target="_blank" rel="noreferrer" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
-                        <a target="_blank" rel="noreferrer" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>          
+                         
                     </div>
                 </div>
             </div>

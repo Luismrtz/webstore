@@ -171,7 +171,6 @@ const Dropdown = () => {
                <div className={styles.itemSpacing}>
                     <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-martinez-307742bb/"><FaIcons.FaLinkedinIn className={styles.icons}></FaIcons.FaLinkedinIn></a>
                     <a target="_blank" rel="noreferrer" href="https://github.com/Luismrtz"> <FaIcons.FaGithub className={styles.icons}/></a>
-                    <a target="_blank" rel="noreferrer" href="#"><AiIcons.AiOutlineFileText className={styles.icons}/></a>
                 </div>          
            </div>
          

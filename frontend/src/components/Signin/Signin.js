@@ -68,6 +68,36 @@ const Signin = (props) => {
             </ul>
             </form>
         </div>
+        <div className={styles.testUserWrapper}>
+        <div className={styles.testUser}>
+        <h4>
+                    Try one of these test accounts
+                </h4>
+            <ul>
+                <li> Email: <div className={styles.nowrap}>
+                     testing@test.com
+                    </div>
+                </li>
+                <li>Password: <div className={styles.nowrap}>
+                     testing
+                    </div>
+                </li>
+            </ul>
+            <ul>
+                <li> Email: <div className={styles.nowrap}>
+                     testing2@test.com
+                    </div>
+                </li>
+                <li>Password: <div className={styles.nowrap}>
+                     testing2
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        </div>
+ 
+     
 
 
     <Footer/>
