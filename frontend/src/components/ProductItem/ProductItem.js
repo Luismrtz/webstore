@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './ProductItem.module.scss';
 import {Link} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
 
-const ProductItem = ({product: {_id, title, img, info, price ,sale, discount, newItem}, isToggled}) => {
 
-   
+const ProductItem = ({ product: {_id, title, img, info, price ,sale, discount, newItem}, isToggled} ) => {
+    const [qty] = useState(1);
+    const history = useHistory();
+     const productId = _id;
+
+
+
+    const handleAddToCart = () => {
+ 
+        history.push(`/cart/${productId}?qty=${qty}`);
+       // props.history.push("/cart/" + productId + "?qty=" + qty);
+      };
     const percentage =100 - (discount/price)*100;
     return  (
       
@@ -65,7 +76,7 @@ const ProductItem = ({product: {_id, title, img, info, price ,sale, discount, ne
                 </div>
                
                 <div className={(isToggled === true ? styles.nope : styles.listIcons)}>
-                    <Link  to="/cart"className={styles.button2}>Add to Cart</Link>
+                    <div onClick={handleAddToCart} className={styles.button2}>Add to Cart</div>
  
                 </div> 
             </div>

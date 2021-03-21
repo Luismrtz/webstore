@@ -181,7 +181,7 @@ const fifteen = () => {
                         {newCurP && newCurP.map(product => {
                            
                             return (
-                                <ProductItem isToggled={isToggled} key={product._id} product={product} />
+                                <ProductItem  isToggled={isToggled} key={product._id} product={product} />
                                 ) 
                             
                         })}
